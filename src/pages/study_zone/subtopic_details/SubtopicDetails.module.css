@@ -1,0 +1,244 @@
+/* Layout & Beautiful Gradient Background */
+.sd_layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+   background: linear-gradient(to bottom, #28c4df, #ffd38b);
+}
+
+.sd-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Reading Material Styling */
+.textContent {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #334155;
+    margin-bottom: 2.5rem;
+    white-space: pre-wrap; 
+}
+
+/* Subtle Divider Line */
+.contentDivider {
+    border: none;
+    height: 2px;
+    background: #e2e8f0;
+    margin-bottom: 2.5rem;
+    border-radius: 2px;
+}
+
+/* Scrollable Container */
+.scrollContainer {
+    flex: 1;
+    overflow-y: auto;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pageWrapper {
+    width: 100%;
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Back Button */
+.headerArea {
+    display: flex;
+    align-items: center;
+}
+
+.backBtn {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    color: #334155;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s ease;
+}
+
+.backBtn:hover {
+    background: white;
+    color: #009cbf; /* Primary Blue */
+    transform: translateX(-4px);
+}
+
+/* ========================================= */
+/* THE MASTER WHITE BOX                      */
+/* ========================================= */
+.contentCard {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    
+    /* Smooth Entry Animation */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* White Box Header */
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cardHeader h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.badge {
+    background: #eff6ff;
+    color: #009cbf;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+/* ========================================= */
+/* INDIVIDUAL QUESTION CARDS                 */
+/* ========================================= */
+.questionsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.questionItem {
+    background: #f8fafc; /* Very light grey/blue */
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+/* Engaging hover effect on each question */
+.questionItem:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+    border-color: #cbd5e1;
+}
+
+.questionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.qNumber {
+    font-weight: 800;
+    color: #009cbf;
+    font-size: 1.1rem;
+}
+
+.difficultyBadge {
+    font-size: 0.8rem;
+    background: #e2e8f0;
+    color: #475569;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.questionText {
+    font-size: 1.15rem;
+    color: #1e293b;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+}
+
+/* ========================================= */
+/* READ-ONLY OPTIONS STYLING                 */
+/* ========================================= */
+.optionsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.option {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Hide the ugly disabled radio button completely */
+.option input[type="radio"] {
+    display: none;
+}
+
+/* Make the label look like standard text, not a clickable button */
+.option label {
+    color: #475569;
+    font-size: 1rem;
+    cursor: default; /* Arrow cursor, not a pointer */
+    width: 100%;
+}
+
+/* ========================================= */
+/* ANSWERS & EXPLANATIONS                    */
+/* ========================================= */
+.correctAnswer {
+    background: #dcfce7; /* Light green */
+    color: #166534; /* Dark green text */
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-size: 1rem;
+    border-left: 4px solid #22c55e;
+}
+
+.explanation {
+    background: #eff6ff; /* Light blue */
+    color: #009cbf; /* Dark blue text */
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border-left: 4px solid #009cbf;
+}
+
+/* Status Messages */
+.loadingText, .errorText, .noDataText {
+    text-align: center;
+    padding: 2rem;
+    color: #64748b;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.errorText { color: #ef4444; }

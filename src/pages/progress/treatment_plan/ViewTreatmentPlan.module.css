@@ -1,0 +1,566 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ===== PAGE WRAPPER ===== */
+.vtp-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #18c1d6 0%, #0fa3b1 45%, #f6c27a 100%);
+  /* padding: 0; */
+  font-family: Poppins, sans-serif;
+  /* remove extra padding */
+}
+
+/* ===== MAIN CONTENT ===== */
+.vtp-main {
+  flex: 1;
+  /* padding: 26px; */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== HEADER PILL ===== */
+.vtp-header-pill {
+  background: #fff;
+  max-width: 100%;
+  border-radius: 18px;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 30px;
+  padding: 30px;
+  text-align: center;
+}
+
+/* ===== GLOBAL CARD ===== */
+.vtp-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 18px 22px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.vtp-card-header {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.vtp-increasing {
+  color: #16a34a;
+  font-size: 12px;
+}
+
+/* ===== TOP ROW ===== */
+.vtp-top-row {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 20px;
+  margin: 30px;
+}
+
+.vtp-study-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 325px;
+}
+
+.vtp-loading {
+  width: 100%;
+  text-align: center;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 24px;
+  margin: 30px;
+  font-size: 16px;
+  color: #0c4866;
+}
+
+.vtp-progress-card {
+  max-width: 100%;
+  height: 325px;
+  /* increased height */
+  display: flex;
+  /* center content */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+/* Gauge */
+.vtp-gauge-container {
+  position: relative;
+  min-width: 100%;
+  height: 120px;
+  flex: 1;
+}
+
+.vtp-gauge {
+  width: 100%;
+  height: 100%;
+}
+
+/* Gauge Paths */
+.vtp-gauge-path-yellow {
+  stroke: #EFA930;
+  /* Yellow */
+  stroke-width: 14;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.vtp-gauge-path-teal {
+  stroke: #00A5B7;
+  /* Teal */
+  stroke-width: 14;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.vtp-gauge-path-bg {
+  stroke: rgba(15, 163, 177, 0.2);
+  stroke-width: 14;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.vtp-gauge-path-bg-light {
+  stroke: rgba(239, 169, 48, 0.16);
+  stroke-width: 8;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.vtp-gauge-circle {
+  fill: #EFA930;
+  /* Yellow Fill */
+  stroke: #fff;
+  stroke-width: 4;
+}
+
+/* Text inside gauge */
+.vtp-gauge-text {
+  position: absolute;
+  top: 55%;
+  /* Adjusted vertical center */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.vtp-gauge-label {
+  font-size: 16px;
+  color: #0C4866;
+  /* Dark Blue */
+  font-weight: 500;
+}
+
+.vtp-gauge-value {
+  font-size: 32px;
+  /* Larger font */
+  color: #00A5B7;
+  /* Teal */
+  font-weight: 800;
+  line-height: 1;
+}
+
+.vtp-gauge-sub {
+  font-size: 14px;
+  color: #0C4866;
+  /* Dark Blue */
+  font-weight: 400;
+}
+
+/* Right column container */
+.vtp-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  /* make the column full width of parent */
+}
+
+/* First line card */
+.vtp-study-header-card {
+  background: #17b6c9;
+  color: #fff;
+  border-radius: 18px;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 15px;
+}
+
+/* List card with next three lines */
+.vtp-study-list-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  /* full width */
+  max-width: 100%;
+  box-shadow: none;
+  border: 1px solid #e0e0e0;
+}
+
+/* Each item in the list */
+.vtp-study-item {
+  font-size: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.vtp-study-item:last-child {
+  border-bottom: none;
+}
+
+/* ===== SUBJECT MASTERY SECTION ===== */
+.vtp-subject-section {
+  background: #0fa3b1;
+  border-radius: 22px;
+  padding: 20px;
+  margin: 30px;
+  margin-top: 0;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Title aligned left */
+.vtp-subject-section h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  text-align: left;
+}
+
+/* Grid for subject cards */
+.vtp-subject-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+/* Individual subject card */
+.vtp-sub-card {
+  background: #fff;
+  color: #0f172a;
+  border-radius: 18px;
+  padding: 24px 16px;
+  /* increased height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 14px;
+  width: 100%;
+  height: 210px;
+  /* fixed height for uniformity */
+  box-sizing: border-box;
+  transition: transform 0.2s ease;
+}
+
+.vtp-sub-card:hover {
+  transform: translateY(-4px);
+}
+
+/* SVG icon container (optional) */
+.vtp-sub-card svg {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+  /* space between SVG and text */
+}
+
+.vtp-sub-card p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.vtp-sub-card strong {
+  font-size: 22px;
+  font-weight: 800;
+  margin-top: 6px;
+  color: #0f172a;
+}
+
+
+/* ===== BOTTOM ROW ===== */
+.vtp-bottom-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  /* Adjusted ratio to prevent overlapping */
+  gap: 20px;
+  margin: 30px;
+  margin-top: 15px;
+}
+
+.vtp-tracker-card {
+  height: 410px;
+  width: 100%;
+  /* Changed from 70% to fill container */
+}
+
+.vtp-line-chart {
+  width: 100%;
+  height: 200px;
+}
+
+.vtp-line-chart path:nth-child(1) {
+  stroke: #17b6c9;
+  fill: none;
+  stroke-width: 3;
+}
+
+.vtp-line-chart path:nth-child(2) {
+  stroke: #ec4899;
+  fill: none;
+  stroke-width: 3;
+}
+
+/* Legend */
+.vtp-legend span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 6px;
+}
+
+.blue {
+  background: #17b6c9;
+}
+
+.pink {
+  background: #ec4899;
+}
+
+.vtp-days {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #0a2140;
+}
+
+/* ===== RIGHT COLUMN ===== */
+.vtp-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* General padding for all cards */
+.vtp-right-column .vtp-card {
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Weak Area Tracker - removed negative margin hacks */
+.vtp-right-column .vtp-card:first-child {
+  height: 250px;
+  /* taller */
+  width: 100%;
+  /* Standard width */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Question Analytics - removed negative margin hacks */
+.vtp-right-column .vtp-card:last-child {
+  height: 140px;
+  /* shorter */
+  width: 100%;
+  /* Standard width */
+  display: flex;
+  justify-content: center;
+  /* center content horizontally */
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== BUTTON ===== */
+.vtp-btn {
+  background: #17b6c9;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 7px 16px;
+  margin-top: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.vtp-btn:hover {
+  background: #0fa3b1;
+}
+
+/* Weak Text */
+.vtp-weak {
+  font-size: 12px;
+  color: #ec4899;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Accuracy Row */
+.vtp-accuracy-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+.vtp-accuracy-row strong {
+  font-size: 18px;
+  color: #0f172a;
+  font-weight: 800;
+}
+
+/* QA Row */
+.vtp-qa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.vtp-qa strong {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* ===== TABLETS & MEDIUM SCREENS (max-width: 1024px) ===== */
+@media (max-width: 1024px) {
+  .vtp-top-row {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 16px;
+  }
+
+  .vtp-subject-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 905px) {
+  .vtp-top-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 853px) {
+  .vtp-subject-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .vtp-bottom-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* ===== SMALL TABLETS / LARGE PHONES (max-width: 768px) ===== */
+@media (max-width: 768px) {
+
+  .vtp-right-column .vtp-card:first-child,
+  .vtp-right-column .vtp-card:last-child {
+    width: 100%;
+    margin-left: 0;
+    height: auto;
+    min-height: 140px;
+  }
+}
+
+/* ===== MOBILE PHONES (max-width: 480px) ===== */
+@media (max-width: 480px) {
+  .vtp-subject-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vtp-top-row,
+  .vtp-bottom-row {
+    gap: 16px;
+  }
+
+  .vtp-sub-card {
+    height: 160px;
+    padding: 16px 12px;
+  }
+
+  .vtp-gauge-container {
+    width: 180px;
+    height: 100px;
+  }
+
+  .vtp-gauge-text strong {
+    font-size: 24px;
+  }
+
+  .vtp-days {
+    letter-spacing: 0;
+  }
+
+  .vtp-tracker-card {
+    height: auto;
+    min-height: 300px;
+  }
+}
+
+/* ===== EXTRA SMALL SCREENS (<360px) ===== */
+@media (max-width: 360px) {
+  .vtp-sub-card {
+    height: 140px;
+    padding: 12px 8px;
+  }
+
+  .vtp-gauge-container {
+    width: 150px;
+    height: 90px;
+  }
+
+  .vtp-gauge-text strong {
+    font-size: 20px;
+  }
+
+  .vtp-days {
+    font-size: 11px;
+  }
+}

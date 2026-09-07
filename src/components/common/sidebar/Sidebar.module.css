@@ -1,0 +1,90 @@
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    background-color: #fff;
+    border-right: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    align-self: flex-start;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    margin-bottom: 30px;
+}
+
+.sidebar-logo {
+    width: 120px;
+    height: auto;
+}
+
+.menu-item {
+    position: relative;
+    width: 100%;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #0C4866;
+    /* Default Text Color */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.menu-item.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: #00A5B7;
+    z-index: 50;
+    transition: background-color 0.2s ease;
+}
+
+/* Hover state: Keep text dark blue and perhaps add a light background */
+.menu-item:hover {
+    background-color: #f0f4f7;
+    /* Optional: light grey/blue hover effect */
+    color: #0C4866;
+}
+
+/* Active state: Dark background and White text */
+.menu-item.active {
+    background-color: #0C4866;
+    color: #fff;
+}
+
+.menu-item svg,
+.menu-item svg path {
+    fill: currentColor;
+}
+
+/* This forces the SVG inside the active item to be white */
+.menu-item.active svg path {
+    fill: #EFA930;
+}
+
+@media (max-width: 768px) {
+
+    /* Sidebar */
+    .sidebar {
+        position: fixed;
+        left: -260px;
+        top: 0;
+        height: 100vh;
+        width: 250px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+}

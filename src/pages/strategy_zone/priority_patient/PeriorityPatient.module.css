@@ -1,0 +1,57 @@
+/* PAGE WRAPPER ONLY — content styles live in PriorityPatientsFramework.css */
+
+.pp-container {
+    display: flex;
+    min-height: 100svh;
+    width: 100%;
+    background: linear-gradient(to bottom, #0CB8CC, #F7C26A);
+    font-family: Poppins, sans-serif;
+}
+
+.pp-main-area {
+    flex: 1;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.pp-back-btn-container {
+    margin: 0 30px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.pp-back-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pp-next-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #009cbf;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    transition: background 0.18s ease, transform 0.15s ease;
+    width: 150px;
+    justify-content: center;
+}
+
+.pp-next-btn:hover {
+    background: #007fa0;
+    transform: translateX(2px);
+}
+
+.pp-next-btn svg {
+    flex-shrink: 0;
+}

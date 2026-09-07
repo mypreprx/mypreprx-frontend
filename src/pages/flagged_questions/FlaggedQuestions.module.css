@@ -1,0 +1,167 @@
+/* ---------------- PAGE LAYOUT ---------------- */
+.fq-container {
+    display: flex;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+}
+
+/* ---------------- MAIN AREA ---------------- */
+.fq-main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.fq-back-btn-container {
+    margin-bottom: 20px;
+}
+
+/* ---------------- CONTENT ---------------- */
+.fq-content {
+    flex: 1;
+    padding: 30px;
+    background: linear-gradient(to bottom, #4fc3f7, #f7c873);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Video grid */
+.fq-video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Drill card */
+.fq-drill-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+    min-height: 200px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fq-drill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.fq-drill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.fq-drill-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: #082C4E;
+}
+
+.fq-drill-question {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.5;
+    text-align: center;
+    margin: auto 0;
+    padding: 0 10px;
+}
+
+.fq-drill-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.fq-review-btn,
+.fq-unflag-btn {
+    flex: 1;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.fq-review-btn {
+    background: #E7A524;
+    color: #333;
+}
+
+.fq-unflag-btn {
+    background: #009cbf;
+    color: white;
+}
+
+.fq-review-btn:hover,
+.fq-unflag-btn:hover {
+    opacity: 0.9;
+}
+
+/* Header Card Customization */
+.fq-header-card {
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 30px;
+    text-align: center;
+    background: white;
+    color: #003F52;
+    max-width: 100%;
+    padding: 40px 30px;
+    border-radius: 40px;
+}
+
+.fq-header-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #083862;
+    margin-bottom: 6px;
+}
+
+.fq-header-card p {
+    font-size: 17px;
+    color: #0C4866;
+    font-weight: 400;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+    .fq-video-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .fq-container {
+        flex-direction: column;
+    }
+
+    .fq-main-area {
+        width: 100%;
+    }
+
+    .fq-video-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .fq-drill-card {
+        height: auto;
+        min-height: 180px;
+    }
+
+    .fq-drill-question {
+        margin: 20px 0;
+    }
+}

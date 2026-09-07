@@ -1,0 +1,103 @@
+﻿ .hero-wrapper {
+   min-height: 100dvh;
+   background-size: cover;
+   background-position: center;
+   text-align: center;
+   color: #fff;
+   position: relative;
+   font-family: Poppins, sans-serif;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+   padding: 35px 30px 23px;
+ }
+
+ /* Top text at top */
+ .top-text {
+   font-size: 20px;
+ }
+
+ /* LOGO */
+ .main-logo {
+   width: 215px;
+ }
+
+ /* TITLE */
+ .main-title {
+   font-size: 32px;
+   font-weight: 600;
+   margin-bottom: 10px;
+ }
+
+ /* SUBTITLE */
+ .sub-title {
+   font-size: 23px;
+   line-height: 1.4;
+ }
+
+ /* BUTTON GROUP */
+ .hero-btn-group {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 25px;
+   flex-wrap: wrap;
+   margin-block: 25px 46px;
+ }
+
+ .hero-btn-yellow {
+   padding: 14px 30px;
+   border-radius: 20px;
+   border: none;
+   background: hsl(38, 86%, 56%);
+   color: #083862;
+   font-weight: 600;
+   cursor: pointer;
+   width: 220px;
+   height: 50px;
+   font-size: 15px;
+   transition: all 0.2s ease-out;
+ }
+
+ /* White Button */
+ .hero-btn-white {
+   background: #ffffff;
+   color: #083862;
+   padding: 14px 30px;
+   border-radius: 20px;
+   border: none;
+   font-weight: 600;
+   cursor: pointer;
+   width: 220px;
+   height: 50px;
+   font-size: 15px;
+   transition: all 0.2s ease-out;
+ }
+
+ .hero-btn-yellow:hover {
+   background: hsl(38, 86%, 62%);
+ }
+
+ .hero-btn-white:hover {
+   background: hsl(0, 0%, 90%);
+ }
+
+ /* STATS SECTION */
+ .stats {
+   display: flex;
+   justify-content: center;
+   column-gap: 100px;
+   row-gap: 40px;
+   flex-wrap: wrap;
+ }
+
+ .stat h2 {
+   font-size: 40px;
+   font-weight: 800;
+ }
+
+ .stat p {
+   font-size: 20px;
+   opacity: 0.95;
+ }

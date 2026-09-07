@@ -1,0 +1,303 @@
+/* GLOBAL */
+.tdm-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(to bottom, #4fc3f7, #f7c873);
+  font-family: "Inter", sans-serif;
+}
+
+/* MAIN CONTENT */
+.tdm-main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tdm-back-btn-container {
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.tdm-content {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* HEADER CARD (replaces tdm-top-card) */
+.tdm-header-card {
+  background: white;
+  color: #003F52;
+  text-align: center;
+  max-width: 100%;
+  padding: 40px 30px;
+  border-radius: 40px;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.tdm-header-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #083862;
+}
+
+.tdm-header-card p {
+  font-size: 17px;
+  color: #0C4866;
+  margin: 5px 0;
+  font-weight: 400;
+}
+
+/* SUBMIT BUTTON (Start SATA Practice Drill) */
+.tdm-submit-btn {
+  display: block;
+  margin: 0 auto 30px auto;
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  background: #f8b400;
+  color: #082C4E;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tdm-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* VIDEO GRID */
+.tdm-video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* CARD STYLING */
+.tdm-video-card {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s;
+  min-height: 250px;
+  justify-content: space-between;
+}
+
+.tdm-video-card:hover {
+  transform: translateY(-5px);
+}
+
+.tdm-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.tdm-video-card h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #072445;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+/* Description or Affirmation inside card */
+.tdm-card-content {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 20px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Affirmation Specifics */
+.tdm-affirmation {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: left;
+}
+
+.tdm-affirmation-icon {
+  flex-shrink: 0;
+}
+
+.tdm-affirmation-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #0a2540;
+  line-height: 1.4;
+}
+
+/* Message Button inside Card */
+.tdm-message-btn {
+  background-color: #009cbf;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.3s;
+  width: 100%;
+  max-width: 220px;
+}
+
+.tdm-message-btn:hover {
+  background-color: #007a9e;
+}
+
+/* MODAL STYLES */
+.tdm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.tdm-modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.tdm-modal-content h3 {
+  margin-bottom: 20px;
+  color: #072445;
+  font-size: 22px;
+  text-align: center;
+}
+
+.tdm-modal-step {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.tdm-modal-step strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #072445;
+  font-size: 18px;
+}
+
+.tdm-highlight {
+  font-weight: 700;
+  color: #00A5B7;
+}
+
+.tdm-breathing-modal {
+  text-align: center;
+}
+
+.tdm-breathing-img {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tdm-breathing-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #072445;
+  margin-bottom: 10px;
+}
+
+.tdm-breathing-subtext {
+  font-size: 16px;
+  color: #555;
+}
+
+.tdm-close-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #00A5B7;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  float: right;
+  transition: background 0.2s;
+}
+
+.tdm-close-btn:hover {
+  background: #008a99;
+}
+
+/* ================== TABLETS & SMALL SCREENS ≤ 1024px ================== */
+@media (max-width: 1024px) {
+  .tdm-video-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* ================== SMALL PHONES ≤ 768px ================== */
+@media (max-width: 768px) {
+  .tdm-container {
+    flex-direction: column;
+  }
+
+  .tdm-submit-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .tdm-modal-content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 569px) {
+  .tdm-video-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================== EXTRA SMALL PHONES ≤ 480px ================== */
+@media (max-width: 480px) {
+  .tdm-video-card {
+    padding: 20px;
+    min-height: auto;
+  }
+}

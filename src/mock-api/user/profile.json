@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "data": {
+    "id": "p001",
+    "fullName": "Ali Khan",
+    "email": "ali.khan@email.com",
+    "phone": "+92-300-1234567",
+    "gender": "Male",
+    "dateOfBirth": "1998-06-15",
+    "bloodGroup": "O+"
+  }
+}

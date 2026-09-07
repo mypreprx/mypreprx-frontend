@@ -1,0 +1,366 @@
+.container {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+}
+
+.listHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.title {
+    margin: 0;
+    color: #083862;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.backBtn {
+    background: #f0f0f0;
+    color: #333;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.backBtn:hover {
+    background: #e0e0e0;
+}
+
+.createBtn {
+    background: linear-gradient(135deg, #083862 0%, #0a4f8a 100%);
+    color: #fff;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(8, 56, 98, 0.2);
+}
+
+.createBtn:hover {
+    box-shadow: 0 4px 12px rgba(8, 56, 98, 0.3);
+}
+
+.topicsTable {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.table th {
+    background: #f8fafc;
+    color: #083862;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.topicLink {
+    color: #0a4f8a;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.topicLink:hover {
+    color: #083862;
+    text-decoration: underline;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.viewBtn,
+.editBtn,
+.deleteBtn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.viewBtn {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.viewBtn:hover {
+    background: #bbdefb;
+}
+
+.editBtn {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.editBtn:hover {
+    background: #ffe0b2;
+}
+
+.deleteBtn {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.deleteBtn:hover {
+    background: #ffcdd2;
+}
+
+.subtopicsPanel {
+    margin-top: 24px;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+.panelHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.panelHeader h3 {
+    margin: 0;
+    color: #083862;
+    font-size: 16px;
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.closeBtn:hover {
+    color: #000;
+}
+
+.subtopicsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+}
+
+.subtopicCard {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.subtopicCard h4 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-size: 14px;
+}
+
+.subtopicCard p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.noData {
+    text-align: center;
+    color: #999;
+    padding: 24px;
+    font-style: italic;
+}
+
+.formGroup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.textInput {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    width: 400px;
+}
+
+.textInput:focus {
+    outline: none;
+    border-color: #083862;
+    box-shadow: 0 0 0 3px rgba(8, 56, 98, 0.1);
+}
+
+.textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.textarea:focus {
+    outline: none;
+    border-color: #083862;
+    box-shadow: 0 0 0 3px rgba(8, 56, 98, 0.1);
+}
+
+.generateBtn,
+.saveBtn {
+    background: linear-gradient(135deg, #083862 0%, #0a4f8a 100%);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.generateBtn:disabled,
+.saveBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.generateBtn:hover:not(:disabled),
+.saveBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(8, 56, 98, 0.3);
+}
+
+.generatedSection,
+.editForm {
+    margin-top: 24px;
+}
+
+.subHeader {
+    margin: 20px 0 12px 0;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.subtopicItem {
+    border: 1px solid #eee;
+    padding: 14px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    background: #fafafa;
+}
+
+.subtopicItem label {
+    display: block;
+    margin-bottom: 6px;
+    color: #666;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.subtopicHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.subtopicHeader span {
+    color: #333;
+    font-weight: 600;
+}
+
+.removeBtn {
+    background: #ffebee;
+    color: #c62828;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.removeBtn:hover {
+    background: #ffcdd2;
+}
+
+.addSubBtn {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #4caf50;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 20px;
+}
+
+.addSubBtn:hover {
+    background: #c8e6c9;
+}
+
+.formActions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}

@@ -1,0 +1,21 @@
+/* PAGE WRAPPER ONLY — content styles live in SataBootCamp.css */
+
+.sata-container {
+    display: flex;
+    min-height: 100svh;
+    width: 100%;
+    background: linear-gradient(to bottom, #0CB8CC, #F7C26A);
+    font-family: Poppins, sans-serif;
+}
+
+.sata-content-area {
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.sata-back-btn-container {
+    margin: 0 30px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

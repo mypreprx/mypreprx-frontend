@@ -1,0 +1,521 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.profile-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #00a5b7 0%, #f6c36a 100%);
+}
+
+.profile-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   CONTENT WRAPPER
+   ============================================ */
+.profile-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0px 40px;
+}
+
+/* ============================================
+   HERO BANNER
+   ============================================ */
+.profile-hero {
+  width: 100%;
+  background: linear-gradient(135deg, #009cbf 0%, #0b2d4f 100%);
+  padding: 36px 40px 28px;
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.profile-hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 700px;
+  width: 100%;
+}
+
+/* Avatar */
+.profile-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* dimming overlay + eye icon on hover */
+.profile-avatar-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.2s;
+}
+
+.profile-avatar-wrap:hover::after {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.profile-avatar-view-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 156, 191, 0.9);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  z-index: 2;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.profile-avatar-wrap:hover .profile-avatar-view-badge {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Lightbox ── */
+.pf-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pfLbFadeIn 0.2s ease;
+}
+
+@keyframes pfLbFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.pf-lightbox-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  animation: pfLbPop 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes pfLbPop {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pf-lightbox-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s;
+}
+
+.pf-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.pf-lightbox-img {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.pf-lightbox-name {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+
+.profile-avatar-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  display: block;
+}
+
+.profile-avatar-edit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #f5b233;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid #fff;
+  transition: background 0.2s;
+}
+
+.profile-avatar-edit:hover {
+  background: #e0a12a;
+}
+
+/* Hero text */
+.profile-hero-info {
+  flex: 1;
+}
+
+.profile-hero-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px;
+}
+
+.profile-hero-email {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+}
+
+/* ============================================
+   FORM CARD
+   ============================================ */
+.profile-card-outer {
+  width: 100%;
+  max-width: 700px;
+}
+
+.profile-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 36px 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #003b44;
+  margin: 0 0 28px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f0f4f8;
+}
+
+/* ── Avatar upload inside card ── */
+.pf-avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 0 20px;
+  border-bottom: 2px solid #f0f4f8;
+  margin-bottom: 20px;
+}
+
+.pf-avatar-preview-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.pf-avatar-preview {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #009cbf;
+  display: block;
+}
+
+.pf-avatar-badge {
+  position: absolute;
+  bottom: 0;
+  right: -2px;
+  background: #f5b233;
+  color: #000;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 5px;
+  border-radius: 8px;
+  border: 1.5px solid #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.pf-avatar-actions {
+  flex: 1;
+}
+
+.pf-avatar-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a2b3c;
+  margin: 0 0 3px;
+}
+
+.pf-avatar-hint {
+  font-size: 11px;
+  color: #9aabb8;
+  margin: 0 0 12px;
+}
+
+.pf-avatar-btns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pf-upload-btn {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: #009cbf;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  transition: background 0.18s, transform 0.1s;
+}
+
+.pf-upload-btn:hover {
+  background: #007a9a;
+  transform: translateY(-1px);
+}
+
+.pf-remove-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1.5px solid #d93025;
+  background: transparent;
+  color: #d93025;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.18s;
+}
+
+.pf-remove-btn:hover {
+  background: #d93025;
+  color: #fff;
+}
+
+/* ── 2-column grid ── */
+.profile-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 24px;
+}
+
+/* field */
+.pf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pf-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #7a8a99;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.pf-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1.5px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 11px 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #fafcfe;
+}
+
+.pf-input-wrap:focus-within {
+  border-color: #009cbf;
+  box-shadow: 0 0 0 3px rgba(0, 156, 191, 0.12);
+  background: #fff;
+}
+
+.pf-icon {
+  flex-shrink: 0;
+}
+
+.pf-input-wrap input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #1a2b3c;
+  background: transparent;
+  font-family: inherit;
+}
+
+.pf-input-wrap input::placeholder {
+  color: #b5c0cc;
+}
+
+.pf-eye {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
+.profile-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 2px solid #f0f4f8;
+}
+
+.profile-save-btn {
+  flex: 1;
+  padding: 13px;
+  border: none;
+  border-radius: 22px;
+  background: #f5b233;
+  color: #1a1a1a;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.profile-save-btn:hover {
+  background: #e0a12a;
+  transform: translateY(-1px);
+}
+
+.profile-save-btn:active {
+  transform: translateY(0);
+}
+
+.profile-save-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.profile-logout-btn {
+  padding: 13px 28px;
+  border: 2px solid #d93025;
+  border-radius: 22px;
+  background: transparent;
+  color: #d93025;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.profile-logout-btn:hover {
+  background: #d93025;
+  color: #fff;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .profile-hero {
+    padding: 24px 20px 20px;
+  }
+
+  .profile-hero-name {
+    font-size: 19px;
+  }
+
+  .profile-card {
+    padding: 24px 20px;
+  }
+
+  .profile-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+  }
+
+  .profile-save-btn,
+  .profile-logout-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-hero-info {
+    text-align: center;
+  }
+
+  .profile-card {
+    border-radius: 14px;
+    padding: 20px 16px;
+  }
+}

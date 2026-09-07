@@ -1,0 +1,181 @@
+/* GLOBAL */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.pp-layout {
+    display: flex;
+    min-height: 100dvh;
+    background: linear-gradient(to bottom, #28c4df, #ffd38b);
+}
+
+/* MAIN CONTENT */
+.pp-main {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* HORIZONTAL CARD */
+.pp-horizontal-card-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 30px 30px 55px 30px;
+}
+
+.pp-horizontal-card {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 40px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.2s;
+    width: 100%;
+    height: auto;
+}
+
+.pp-horizontal-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #083862;
+    margin-bottom: 6px;
+}
+
+.pp-horizontal-card p {
+    font-size: 17px;
+    font-weight: 400;
+    color: #0C4866;
+}
+
+/* RECTANGLE CARDS */
+.pp-rectangle-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin: 30px;
+    align-items: stretch;
+    /* 1. Forces all grid items in a row to be equal height */
+}
+
+.loading,
+.error,
+.noData {
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    color: #072445;
+}
+
+.practiceWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+    /* 2. Tells the wrapper to take up that full grid height */
+}
+
+.practiceWrap> :first-child {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Vertically centers the text inside the card */
+}
+
+.practiceActions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: auto;
+    /* 4. THE MAGIC LINE: Pushes the buttons to the very bottom, keeping them aligned across all cards! */
+}
+
+.playBtn,
+.previewBtn,
+.smallBtn {
+    background: #EFA930;
+    border: none;
+    color: #072445;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.previewCard {
+    background: rgba(255, 255, 255, 0.98);
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.previewQ {
+    font-weight: 600;
+    color: #072445;
+    margin-bottom: 8px;
+}
+
+.previewOptions {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 8px;
+}
+
+.previewOptions li {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(7, 36, 69, 0.06);
+}
+
+.correctOption {
+    background: linear-gradient(90deg, rgba(239, 169, 48, 0.08), rgba(7, 36, 69, 0.02));
+    border-left: 4px solid #EFA930;
+    padding-left: 8px;
+    font-weight: 700;
+}
+
+.previewControls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.answerBlock {
+    margin-top: 8px;
+    background: #f7f9fb;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.rationale {
+    margin-top: 6px;
+    color: #0C4866
+}
+
+/* Selected state is now internal to TopicCard, but we might keep the wrapper's layout here if needed.
+   Currently everything is handled by TopicCard. */
+
+.back-btn-container {
+    margin-left: 30px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .pp-rectangle-cards {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 519px) {
+    .pp-rectangle-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .pp-horizontal-card p {
+        font-size: 16px;
+    }
+}

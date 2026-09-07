@@ -1,0 +1,59 @@
+.sz-wrapper {
+  display: flex;
+  min-height: 100dvh;
+  font-family: Poppins, sans-serif;
+}
+
+.sz-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #24c3db 0%, #ffd38b 100%);
+  position: relative;
+}
+
+/* Welcome Screen */
+.sz-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.sz-center-logo {
+  width: 180px;
+}
+
+.sz-center h1 {
+  color: #003049;
+  font-size: 2.25rem;
+}
+
+.sz-center p {
+  color: #003049;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.sz-ask-btn {
+  background: #f8b400;
+  color: #003049;
+  border: none;
+  padding: 12px 60px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s;
+}
+
+.sz-ask-btn:hover {
+  background: hsl(44, 100%, 55%);
+}
+
+.backBtnContainer {
+  padding: 20px 40px 0 40px;
+}

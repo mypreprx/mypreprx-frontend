@@ -1,0 +1,464 @@
+/* CONTAINER */
+.aa-container {
+  display: flex;
+  min-height: 100dvh;
+  background: linear-gradient(to bottom, #2fc1d0, #f4c77f);
+  font-family: Poppins, sans-serif;
+}
+
+/* MAIN CONTENT */
+.aa-content {
+  flex: 1;
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+/* HEADER CARD */
+.aa-header-card {
+  background: white;
+  color: #003F52;
+  text-align: center;
+  max-width: 100%;
+  padding: 40px 30px;
+  border-radius: 40px;
+  margin: 30px 30px 40px 30px;
+}
+
+.aa-header-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #083862;
+  margin-bottom: 6px;
+}
+
+.aa-header-card p {
+  font-size: 17px;
+  color: #0C4866;
+  font-weight: 400;
+}
+
+/* ── TOP SECTION: CALENDAR + FORM SIDE BY SIDE ── */
+.aa-top-section {
+  display: flex;
+  gap: 24px;
+  margin: 0 30px;
+  align-items: flex-start;
+}
+
+/* CALENDAR */
+.aa-calendar-card {
+  background: white;
+  border-radius: 16px;
+  padding: 22px;
+  flex: 1;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.aa-calendar-header {
+  background: #00a5b7;
+  border-radius: 10px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.aa-calendar-header div {
+  text-align: center;
+}
+
+.aa-calendar-header h4 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.aa-calendar-header p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.aa-arrow {
+  font-size: 22px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.aa-calendar-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  text-align: center;
+}
+
+.aa-day-name {
+  font-weight: 600;
+  font-size: 12px;
+  color: #577c86;
+}
+
+.aa-date-cell {
+  padding: 7px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #003F52;
+  transition: background 0.15s;
+}
+
+.aa-date-cell:hover {
+  background: #e8f8fb;
+}
+
+.aa-date-cell.aa-active {
+  border: 2px solid #f8b400;
+  color: #f8b400;
+  font-weight: 700;
+}
+
+/* FORM CARD */
+.aa-form-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  flex: 1.2;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 16px;
+  border-left: 3px solid transparent;
+  transition: border-color 0.25s;
+}
+
+/* Form highlighted when in edit mode */
+.aa-form-editing {
+  border-left: 3px solid #f8b400 !important;
+}
+
+/* Edit mode banner at top of form */
+.aa-edit-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff8e1;
+  border: 1px solid #f8b400;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #b37700;
+}
+
+.aa-cancel-inline {
+  background: transparent;
+  border: 1.5px solid #f8b400;
+  border-radius: 6px;
+  color: #b37700;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.aa-cancel-inline:hover {
+  background: #f8b400;
+  color: #fff;
+}
+
+.aa-date-label {
+  font-size: 14px;
+  color: #003F52;
+  margin: 0;
+}
+
+/* TEXTAREA CARD */
+.aa-textarea-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.aa-textarea-card textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  height: 160px;
+  resize: none;
+  font-family: "Inter", sans-serif;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f5f5f5;
+  color: #082C4E;
+  box-sizing: border-box;
+}
+
+.aa-char-count {
+  font-size: 12px;
+  color: #aaaaaa;
+  text-align: right;
+}
+
+.aa-save-btn {
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: none;
+  background: #f8b400;
+  color: #082C4E;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  font-size: 15px;
+  transition: opacity 0.2s, background 0.2s;
+}
+
+/* Update mode: teal button */
+.aa-update-mode {
+  background: #00a5b7 !important;
+  color: #fff !important;
+}
+
+.aa-update-mode:hover:not(:disabled) {
+  background: #008fa0 !important;
+}
+
+.aa-save-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── BOTTOM: ALL AFFIRMATIONS ── */
+.aa-all-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px 28px;
+  margin: 28px 30px 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.aa-all-card h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #003F52;
+  margin: 0 0 16px;
+}
+
+.aa-empty {
+  color: #aaaaaa;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.aa-affirmation-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.aa-affirmation-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: #f0fafc;
+  border-radius: 10px;
+  padding: 12px 14px;
+  gap: 10px;
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+/* The item currently being edited gets a gold highlight */
+.aa-item-active {
+  border-left: 3px solid #f8b400 !important;
+  background: #fffef0 !important;
+}
+
+.aa-affirmation-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.aa-affirmation-date {
+  font-size: 11px;
+  font-weight: 600;
+  color: #00a5b7;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.aa-affirmation-text {
+  font-size: 14px;
+  color: #003F52;
+  line-height: 1.5;
+}
+
+.aa-delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #cc4444;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.aa-delete-btn:hover {
+  background: #ffe0e0;
+}
+
+/* ── ITEM ACTION BUTTONS (view mode) ── */
+.aa-item-actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.aa-edit-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #00a5b7;
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.aa-edit-btn:hover {
+  background: #e8f8fb;
+}
+
+/* ── INLINE EDIT MODE ── */
+.aa-edit-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.aa-edit-textarea {
+  width: 100%;
+  border: 1.5px solid #00a5b7;
+  outline: none;
+  font-size: 14px;
+  min-height: 80px;
+  resize: vertical;
+  font-family: "Inter", sans-serif;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fff;
+  color: #082C4E;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.aa-edit-textarea:focus {
+  border-color: #f8b400;
+}
+
+.aa-edit-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.aa-update-btn {
+  flex: 1;
+  padding: 8px 0;
+  border-radius: 8px;
+  border: none;
+  background: #00a5b7;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+  transition: opacity 0.2s, background 0.2s;
+}
+
+.aa-update-btn:hover:not(:disabled) {
+  background: #008fa0;
+}
+
+.aa-update-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.aa-cancel-btn {
+  flex: 1;
+  padding: 8px 0;
+  border-radius: 8px;
+  border: 1.5px solid #aaa;
+  background: transparent;
+  color: #555;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.aa-cancel-btn:hover:not(:disabled) {
+  background: #f5f5f5;
+}
+
+.aa-cancel-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* BACK BUTTON */
+.aa-back-btn {
+  margin-top: 30px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: 2px solid #003F52;
+  background: transparent;
+  color: #003F52;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.aa-back-btn:hover {
+  background: #003F52;
+  color: white;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .aa-top-section {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .aa-container {
+    flex-direction: column;
+  }
+
+  .aa-top-section {
+    margin: 0 16px;
+  }
+
+  .aa-all-card {
+    margin: 24px 16px 0;
+  }
+}

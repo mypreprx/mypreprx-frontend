@@ -1,0 +1,22 @@
+/* PAGE WRAPPER ONLY — content styles live in CriticalThinkingFramework.css */
+
+.ct-container {
+    display: flex;
+    min-height: 100svh;
+    background: linear-gradient(to bottom, #0CB8CC, #F7C26A);
+    font-family: Poppins, sans-serif;
+}
+
+.ct-main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.ct-back-btn-container {
+    margin: 0 30px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

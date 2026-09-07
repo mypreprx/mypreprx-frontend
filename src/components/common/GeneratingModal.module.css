@@ -1,0 +1,130 @@
+/* ===== Full-screen overlay ===== */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 36, 69, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ===== Card ===== */
+.modal {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 44px 40px 36px;
+    width: min(480px, 90vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid rgba(0, 165, 183, 0.15);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(32px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ===== Brain icon with pulse ring ===== */
+.iconWrap {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #e8f9fb 0%, #d0f0f4 100%);
+    border-radius: 50%;
+}
+
+.iconWrap svg {
+    animation: breathe 2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.1); }
+}
+
+.pulse {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 165, 183, 0.4);
+    animation: pulseRing 1.8s ease-out infinite;
+}
+
+@keyframes pulseRing {
+    0%   { transform: scale(0.9); opacity: 0.8; }
+    100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* ===== Text ===== */
+.title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0a2540;
+    margin: 0 0 10px;
+    letter-spacing: -0.3px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #5a7184;
+    line-height: 1.6;
+    margin: 0 0 28px;
+    max-width: 360px;
+}
+
+/* ===== Animated dots ===== */
+.dotsRow {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00A5B7;
+    animation: bounce 1.2s ease-in-out infinite;
+}
+
+.dot:nth-child(1) { animation-delay: 0s; }
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+    0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
+    40%            { transform: scale(1.2); opacity: 1; }
+}
+
+/* ===== Warning bar ===== */
+.warningBar {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #fff8ed;
+    border: 1px solid #f6a623;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #7a5200;
+    line-height: 1.5;
+    text-align: left;
+    width: 100%;
+}

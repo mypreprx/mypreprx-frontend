@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Ag P 20 Semi';
+  src: url('../assets/fonts/AgP20Semi.ttf') format('truetype');
+  font-weight: 600; /* semi-bold */
+  font-style: normal;
+}

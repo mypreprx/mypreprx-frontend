@@ -1,0 +1,153 @@
+.ssm-study-page {
+  display: flex;
+  min-height: 100svh;
+  font-family: Poppins, sans-serif;
+  background: linear-gradient(to bottom, #4bc3e1, #fcd888);
+}
+
+/* Main Content */
+.ssm-main-content {
+  flex: 1;
+}
+
+/* Study Header */
+.ssm-study-header {
+  background: white;
+  color: #003F52;
+  text-align: center;
+  max-width: 100%;
+  padding: 40px 30px;
+  border-radius: 40px;
+  margin: 30px 30px 60px 30px;
+}
+
+.ssm-study-header h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #083862;
+  margin-bottom: 6px;
+}
+
+.ssm-study-header p {
+  font-size: 17px;
+  color: #0C4866;
+  font-weight: 400;
+}
+
+/* Categories */
+.ssm-categories {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 0 30px 30px;
+}
+
+.ssm-categories button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #0a2140;
+  background-color: white;
+  color: #0a2140;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ssm-categories button.active {
+  background-color: #0a2140;
+  color: white;
+}
+
+/* Card */
+.ssm-card {
+  background-color: #fff;
+  border-radius: 15px;
+  max-width: 600px;
+  height: 350px;
+  min-height: fit-content;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 60px auto 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+
+.ssm-card h3 {
+  margin-bottom: 10px;
+  color: #0a2140;
+}
+
+.ssm-card p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Toggle Button */
+.ssm-toggle-btn {
+  display: flex;
+  justify-content: center;
+  border-radius: 25px;
+  overflow: hidden;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.ssm-toggle-btn button {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.ssm-toggle-btn button.on {
+  background-color: #fbb034;
+  color: #fff;
+}
+
+.ssm-toggle-btn button.off {
+  background-color: #0a2140;
+  color: #fff;
+}
+
+.ssm-toggle-btn button.on:focus,
+.ssm-toggle-btn button.off:focus {
+  outline: none;
+}
+
+.ssm-now-playing {
+  margin-top: 25px;
+  font-size: 14px;
+  color: #0a2140;
+  background: rgba(10, 33, 64, 0.05);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.ssm-now-playing span {
+  font-weight: 700;
+  color: #fbb034;
+}
+
+
+/* ---------------- TABLETS / MEDIUM SCREENS ---------------- */
+@media (max-width: 1024px) {
+  .ssm-card {
+    max-width: 100%;
+    margin-inline: 30px;
+  }
+
+  .ssm-categories {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+.back-btn-container {
+  margin-left: 30px;
+}
+

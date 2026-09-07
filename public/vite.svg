@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="PrepRX logo">
+  <defs>
+    <linearGradient id="prepRxGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00A5B7" />
+      <stop offset="100%" stop-color="#764ba2" />
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="26" fill="url(#prepRxGradient)" />
+  <path d="M33 32h18c5.523 0 10 4.477 10 10v8c0 5.523-4.477 10-10 10H33V32Z" fill="#fff" />
+  <path d="M33 64h18c5.523 0 10 4.477 10 10v18c0 5.523-4.477 10-10 10H33V64Z" fill="#fff" />
+  <path d="M63 32h18c5.523 0 10 4.477 10 10v18c0 5.523-4.477 10-10 10H63V32Z" fill="#fff" />
+  <path d="M63 64h18c5.523 0 10 4.477 10 10v18c0 5.523-4.477 10-10 10H63V64Z" fill="#fff" />
+</svg>

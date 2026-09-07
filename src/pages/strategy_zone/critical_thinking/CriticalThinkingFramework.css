@@ -1,0 +1,227 @@
+:root {
+  --think-primary-navy: #0d1e2b;
+  --think-teal-accent: #009cbf;
+  --think-teal-hover: #00718f;
+  --think-teal-light: #e0f2f7;
+  --think-text-dark: #1f2937;
+  --think-text-muted: #4b5563;
+  --think-border-light: #e5e7eb;
+}
+
+.think-container {
+  display: flex;
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px 20px;
+  width: 100%;
+}
+
+.think-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid var(--think-border-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.think-left-card {
+  flex: 1.8;
+  padding: 36px 32px;
+}
+
+.think-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.think-header-icon {
+  width: 48px;
+  height: 48px;
+  background-color: var(--think-teal-light);
+  color: var(--think-teal-accent);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.think-title {
+  color: var(--think-primary-navy);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.think-subtitle {
+  color: var(--think-teal-accent);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.think-divider {
+  width: 40px;
+  height: 3px;
+  background-color: var(--think-teal-accent);
+  margin: 16px 0;
+  border-radius: 2px;
+}
+
+.think-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.think-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--think-border-light);
+}
+
+.think-letter-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--think-teal-light);
+  color: var(--think-teal-accent);
+  font-size: 15px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.think-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--think-teal-light);
+  color: var(--think-teal-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.think-item-content {
+  flex: 1;
+}
+
+.think-item-title {
+  color: var(--think-primary-navy);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.think-item-sub {
+  color: var(--think-text-muted);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.think-bullets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  list-style-type: disc;
+  padding-left: 16px;
+}
+
+.think-bullets li {
+  color: var(--think-text-dark);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.think-item-footer {
+  color: var(--think-text-muted);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.think-item-quote {
+  color: var(--think-text-dark);
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.think-right-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  background-color: #fafbfc;
+  padding: 40px 24px 48px;
+  align-self: flex-start;
+}
+
+.think-image-container {
+  width: 100%;
+  max-width: 220px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.think-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.think-cta-title {
+  color: var(--think-primary-navy);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.think-cta-desc {
+  color: var(--think-text-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 32px;
+  max-width: 240px;
+}
+
+.think-btn {
+  width: 100%;
+  padding: 14px 20px;
+  background-color: #EFA930;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.think-btn:hover {
+  background-color: #d99a26;
+}
+
+.think-btn:focus,
+.think-btn:focus-visible {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .think-container {
+    flex-direction: column;
+  }
+}

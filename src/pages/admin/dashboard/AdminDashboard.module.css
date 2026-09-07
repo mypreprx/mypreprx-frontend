@@ -1,0 +1,270 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.header {
+    margin-bottom: 10px;
+}
+
+.title {
+    margin: 0 0 5px 0;
+    color: #083862;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.subtitle {
+    margin: 0;
+    color: #666;
+    font-size: 15px;
+}
+
+.loading {
+    text-align: center;
+    padding: 60px;
+    color: #888;
+    font-size: 16px;
+}
+
+/* Stats Cards */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.statCard {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.statCard:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.statIcon {
+    font-size: 36px;
+    background: linear-gradient(135deg, #083862 0%, #0a4f8a 100%);
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.statNumber {
+    font-size: 32px;
+    font-weight: 800;
+    color: #083862;
+}
+
+.statLabel {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Charts */
+.chartsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.chartCard {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.chartTitle {
+    margin: 0 0 20px 0;
+    color: #083862;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.chartContainer {
+    width: 100%;
+}
+
+/* Recent Section */
+.recentSection {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sectionTitle {
+    margin: 0;
+    color: #083862;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.seeAllBtn {
+    background: #083862;
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.seeAllBtn:hover {
+    background: #0a4f8a;
+}
+
+.recentList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.recentItem {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    background: #f8fafc;
+    border-radius: 12px;
+    transition: background 0.2s ease;
+}
+
+.recentItem:hover {
+    background: #f0f5fa;
+}
+
+.avatar {
+    min-width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #083862 0%, #0a4f8a 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.userInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.userName {
+    font-weight: 600;
+    color: #333;
+    font-size: 15px;
+}
+
+.userEmail {
+    color: #888;
+    font-size: 13px;
+}
+
+.userDate {
+    color: #999;
+    font-size: 13px;
+}
+
+.noData {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+}
+
+.summaryInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 10px 0;
+}
+
+.summaryItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #475569;
+}
+
+.summaryItem strong {
+    color: #083862;
+    font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .chartsGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+    .statCard {
+        padding: 18px;
+    }
+
+    .statIcon {
+        width: 55px;
+        height: 55px;
+        font-size: 28px;
+    }
+
+    .statNumber {
+        font-size: 26px;
+    }
+
+    .chartCard {
+        padding: 18px;
+    }
+
+    .recentSection {
+        padding: 18px;
+    }
+}

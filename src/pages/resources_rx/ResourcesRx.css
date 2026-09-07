@@ -1,0 +1,229 @@
+/* ============================================================
+   GLOBAL LAYOUT
+   ============================================================ */
+.rrx-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #10c6d8 0%, #f9c56b 100%);
+  overflow: hidden;
+}
+
+.rrx-main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+}
+
+.rrx-content-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================================================
+   HEADER & BACK BUTTON
+   ============================================================ */
+.rrx-header-card {
+  width: 100% !important;
+  max-width: 900px !important;
+  background: white !important;
+  border-radius: 40px !important;
+  padding: 40px 30px !important;
+  margin-bottom: 50px !important;
+  text-align: center !important;
+}
+
+.rrx-back-btn-container {
+  align-self: flex-start;
+  max-width: 900px;
+  margin: 0 auto 30px;
+  width: 100%;
+  padding-left: 10px;
+}
+
+/* ============================================================
+   PROMO BANNER
+   ============================================================ */
+.rrx-promo-banner {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 12px 30px;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+.rrx-promo-banner p {
+  margin: 0;
+  font-weight: 600;
+  color: #072445;
+  font-size: 15px;
+}
+
+.rrx-social {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.rrx-social.tiktok { color: #fe2c55; }
+.rrx-social.instagram { color: #e1306c; }
+.rrx-social.youtube { color: #ff0000; }
+
+/* ============================================================
+   FILTERS
+   ============================================================ */
+.rrx-filter-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.rrx-filter-btn {
+  padding: 10px 24px;
+  border-radius: 25px;
+  border: none;
+  background: white;
+  color: #0c4866;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.rrx-filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.rrx-filter-btn.active {
+  background: #072445;
+  color: white;
+}
+
+/* ============================================================
+   CARDS GRID
+   ============================================================ */
+.rrx-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 440px);
+  gap: 30px;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 60px;
+}
+
+.rrx-card {
+  background: white;
+  border-radius: 30px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: 1px solid transparent;
+  min-height: 260px;
+}
+
+.rrx-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+  border-color: rgba(16, 198, 216, 0.3);
+}
+
+.rrx-card-category {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #10c6d8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.rrx-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #072445;
+  margin: 0 0 12px 0;
+}
+
+.rrx-card p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.rrx-card-footer {
+  margin-top: 25px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rrx-download-btn {
+  background: #009cbf;
+  color: white;
+  border: none;
+  border-radius: 18px;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.rrx-download-btn:hover {
+  background: #0089a8;
+  transform: scale(1.05);
+}
+
+.rrx-download-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ============================================================
+   RESPONSIVENESS
+   ============================================================ */
+@media (max-width: 1024px) {
+  .rrx-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .rrx-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .rrx-content-scroll {
+    padding: 20px;
+  }
+  
+  .rrx-header-card {
+    padding: 30px 20px !important;
+  }
+  
+  .rrx-promo-banner {
+    padding: 10px 15px;
+  }
+}

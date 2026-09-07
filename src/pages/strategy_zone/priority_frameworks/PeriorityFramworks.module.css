@@ -1,0 +1,78 @@
+.pf-study-layout {
+    display: flex;
+    min-height: 100dvh;
+    background: linear-gradient(to bottom, #28c4df, #ffd38b);
+    font-family: Poppins, sans-serif;
+}
+
+/* MAIN CONTENT */
+.pf-study-main {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.pf-back-btn-container {
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+/* HEADER */
+.pf-header {
+    background: white;
+    color: #003F52;
+    text-align: center;
+    max-width: 100%;
+    padding: 40px 30px;
+    border-radius: 40px;
+    margin: 30px 30px 60px 30px;
+}
+
+.pf-header h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #083862;
+    margin-bottom: 6px;
+}
+
+.pf-header p {
+    font-size: 17px;
+    color: #0C4866;
+    font-weight: 400;
+}
+
+/* RECTANGLE CARDS */
+.pf-rectangle-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin: 30px;
+    margin-top: 0;
+}
+
+
+/* Responsiveness */
+@media (min-width: 1518px) {
+    .pf-rectangle-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1023px) {
+    .pf-rectangle-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* MOBILE RESPONSIVE (768px) */
+@media (max-width: 768px) {
+    .pf-rectangle-cards {
+        gap: 20px;
+    }
+}
+
+/* PHONE RESPONSIVE (480px) */
+@media (max-width: 480px) {
+    .pf-header p {
+        font-size: 16px;
+    }
+}

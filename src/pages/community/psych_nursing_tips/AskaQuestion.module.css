@@ -1,0 +1,146 @@
+ /* MAIN PAGE LAYOUT */
+ .ask-container {
+   display: flex;
+   min-height: 100dvh;
+   background: linear-gradient(to bottom, #0CB8CC, #F7C26A);
+   font-family: Poppins, sans-serif;
+ }
+
+ /* MAIN CONTENT */
+ .ask-content-area {
+   flex: 1;
+ }
+ 
+ .ask-back-btn-container {
+     margin-left: 30px;
+     margin-bottom: 20px;
+ }
+
+ /* HEADER */
+ .ask-topics-header {
+   background: white;
+   color: #003F52;
+   text-align: center;
+   max-width: 100%;
+   padding: 40px 30px;
+   border-radius: 40px;
+   margin: 30px 30px 45px 30px;
+ }
+
+ .ask-topics-header h3 {
+   font-size: 24px;
+   font-weight: 700;
+   color: #083862;
+   margin-bottom: 6px;
+ }
+
+ .ask-topics-header p {
+   font-size: 17px;
+   color: #0C4866;
+   font-weight: 400;
+ }
+
+ /* MAIN REQUEST CARD */
+ .ask-request-card {
+   padding: 18px;
+   border-radius: 20px;
+   width: 600px;
+   margin: 0 auto 30px;
+   transition: all 0.2s ease-out;
+ }
+
+ /* EACH INPUT CARD */
+ .ask-input-card {
+   background: #ffffff;
+   border-radius: 30px;
+   padding: 18px 23px 23px;
+   margin-bottom: 25px;
+ }
+
+ .ask-input-card:last-child {
+   margin-bottom: 0;
+ }
+
+ /* LABEL */
+ .ask-input-card label {
+   display: block;
+   font-size: 17px;
+   font-weight: 600;
+   color: #083862;
+   margin-bottom: 8px;
+   margin-left: 2px;
+ }
+
+ /* INPUT & SELECT */
+ .ask-input-card input,
+ .ask-input-card select {
+   width: 100%;
+   border: 1px solid #083862;
+   border-radius: 12px;
+   padding: 10px 12px;
+   font-size: 15px;
+   color: #0C4866;
+   font-weight: 400;
+   outline: none;
+   background: #fff;
+ }
+
+ .ask-input-card select {
+   cursor: pointer;
+ }
+
+ .ask-post-btn-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .ask-post-btn {
+   padding: 14px 30px;
+   margin-top: 30px;
+   border-radius: 30px;
+   border: none;
+   background: hsl(38, 86%, 56%);
+   color: #083862;
+   font-weight: 600;
+   cursor: pointer;
+   width: 250px;
+   height: 52px;
+   font-size: 16px;
+   transition: all 0.2s ease-out;
+ }
+
+ .ask-post-btn:hover {
+   background: hsl(38, 86%, 59%);
+ }
+
+
+ /* Responsiveness */
+ /* TABLETS & MEDIUM SCREENS ≤ 992px */
+ @media (max-width: 875px) {
+   .ask-request-card {
+     width: 495px;
+   }
+
+   .ask-input-card label {
+     font-size: 16px;
+   }
+
+   .ask-input-card input,
+   .ask-input-card select {
+     font-size: 14px;
+   }
+ }
+
+ /* SMALL SCREENS / PHONES */
+ @media (max-width: 519px) {
+   .ask-request-card {
+     width: 400px;
+   }
+ }
+
+ @media (max-width: 424px) {
+   .ask-request-card {
+     width: 335px;
+   }
+ }

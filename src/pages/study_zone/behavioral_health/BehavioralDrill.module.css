@@ -1,0 +1,271 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f7f9fc;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.backBtn {
+    background: none;
+    border: none;
+    color: #072445;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    font-size: 16px;
+    padding: 0;
+}
+
+.drillHeader {
+    margin-bottom: 2rem;
+}
+
+.drillHeader h2 {
+    color: #072445;
+    margin-bottom: 0.5rem;
+}
+
+.drillHeader p {
+    color: #6d839c;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.scenarioCard {
+    background: #eef2f6;
+    border-left: 4px solid #00A5B7;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.scenarioCard h3 {
+    color: #072445;
+    margin-bottom: 0.5rem;
+    font-size: 16px;
+}
+
+.scenarioCard p {
+    color: #0c4866;
+    line-height: 1.6;
+}
+
+.questionCard {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+}
+
+.questionText {
+    font-size: 18px;
+    color: #072445;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.sataHint {
+    color: #00A5B7;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 1rem;
+    margin-top: -10px;
+}
+
+.optionsList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.optionCard {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border: 2px solid #e0e5ed;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 16px;
+    color: #072445;
+}
+
+.optionCard:hover:not(.correct):not(.wrong) {
+    border-color: #00A5B7;
+    background: #f0fbFC;
+}
+
+.optionCard.selected {
+    border-color: #00A5B7;
+    background: #f0fbFC;
+}
+
+.optionCard.correct {
+    border-color: #4caf50;
+    background: #e8f5e9;
+}
+
+.optionCard.wrong {
+    border-color: #f44336;
+    background: #ffebee;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #cbd5e1;
+    border-radius: 4px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.optionCard.selected .checkbox {
+    border-color: #00A5B7;
+}
+
+.checkboxInner {
+    width: 10px;
+    height: 10px;
+    background: #00A5B7;
+    border-radius: 2px;
+}
+
+.rationaleCard {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid #072445;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.rationaleCard h3 {
+    margin-bottom: 1rem;
+    color: #072445;
+}
+
+.feedbackCorrect {
+    color: #4caf50;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.feedbackWrong {
+    color: #f44336;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.stepBadge {
+    display: inline-block;
+    background: #072445;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+}
+
+.teachingBlock {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #eef2f6;
+}
+
+.teachingBlock h4 {
+    color: #00A5B7;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.teachingBlock p {
+    color: #0c4866;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.wrongAnswers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.wrongAnswerRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.wrongAnswerLetter {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #eceef1;
+    color: #667085;
+    font-weight: 700;
+    font-size: 13px;
+    border-radius: 6px;
+    margin-top: 1px;
+}
+
+.wrongAnswerText {
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    padding-top: 3px;
+}
+
+.drillButtons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submitBtn {
+    background: #00A5B7;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.submitBtn:hover:not(:disabled) {
+    background: #008a99;
+}
+
+.submitBtn:disabled {
+    background: #cbd5e1;
+    cursor: not-allowed;
+}

@@ -1,0 +1,412 @@
+/* CONTAINER */
+.ss-container {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #2fc1d0, #f4c77f);
+  font-family: Poppins, sans-serif;
+}
+
+/* MAIN CONTENT */
+.ss-content {
+  flex: 1;
+}
+
+/* HEADER CARD */
+.ss-header-card {
+  background: white;
+  color: #003F52;
+  text-align: center;
+  max-width: 100%;
+  padding: 40px 30px;
+  border-radius: 40px;
+  margin: 30px 30px 60px 30px;
+}
+
+.ss-header-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #083862;
+  margin-bottom: 6px;
+}
+
+.ss-header-card p {
+  font-size: 17px;
+  color: #0C4866;
+  font-weight: 400;
+}
+
+/* TEXTAREA CARD */
+.ss-textarea-card {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  margin-top: 0;
+}
+
+.ss-textarea-card textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #001f3f;
+  height: 200px;
+  resize: none;
+  font-family: "Inter", sans-serif;
+  padding: 10px;
+  border-radius: 12px;
+  background: #f5f5f5;
+  /* subtle background for textarea */
+}
+
+/* SUBMIT BUTTON WITH SVG */
+.ss-submit-btn {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.ss-submit-btn svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* PAST SCRIPTS CARD */
+.ss-past-scripts-card {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  color: #003f52;
+  margin: 30px;
+  margin-top: 0;
+}
+
+.ss-past-scripts-card h4 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.ss-script-item {
+  background: #001f3f;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.ss-script-item p {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+}
+
+.ss-script-date {
+  font-size: 12px;
+  opacity: 0.8;
+  display: block;
+  margin-bottom: 5px;
+  letter-spacing: 0.025em;
+}
+
+.ss-no-scripts {
+  padding: 40px 20px;
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px dashed #444;
+  margin-top: 10px;
+}
+
+/* ---------------- TABLETS / MEDIUM SCREENS ---------------- */
+@media (max-width: 1024px) {
+
+  .ss-content {
+    gap: 20px;
+  }
+
+  .ss-textarea-card textarea {
+    height: 160px;
+  }
+
+  .ss-past-scripts-card {
+    padding: 15px;
+  }
+}
+
+/* ---------------- SMALL SCREENS / PHONES ---------------- */
+@media (max-width: 768px) {
+
+  /* Page layout */
+  .ss-container {
+    flex-direction: column;
+  }
+
+  /* Content adjustments */
+  .ss-content {
+    gap: 15px;
+  }
+
+  /* Textarea card */
+  .ss-textarea-card textarea {
+    height: 120px;
+  }
+
+  /* Past scripts card */
+  .ss-past-scripts-card {
+    padding: 15px;
+  }
+
+  /* Script items */
+  .ss-script-item {
+    padding: 8px 10px;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  /* Backdrop blur optional */
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-card {
+  background: #0a213e;
+  /* Dark navy from your image */
+  color: white;
+  padding: 30px;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+  position: absolute;
+  top: 7px;
+  right: 0px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.modal-date {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 0;
+  letter-spacing: 0.015em;
+}
+
+.modal-body p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #d1d1d1;
+  letter-spacing: 0.025em;
+  margin-bottom: 30px;
+  white-space: pre-wrap;
+  /* It maintains line breaks */
+}
+
+.modal-delete-btn {
+  background: #00A5B7;
+  /* Teal from your image */
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.modal-delete-btn:hover {
+  transform: scale(1.05);
+  background: #008a99;
+}
+
+/* =============== NEW STYLES FOR API INTEGRATION =============== */
+
+/* Loading State */
+.ss-loading-state {
+  padding: 40px 20px;
+  text-align: center;
+  color: #888;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff40;
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.loading-spinner-large {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #00A5B720;
+  border-top-color: #00A5B7;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 15px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Modal Actions Container */
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* Edit Button */
+.modal-edit-btn {
+  background: #00A5B7;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.modal-edit-btn:hover {
+  transform: scale(1.05);
+  background: #008a99;
+}
+
+/* Save Button */
+.modal-save-btn {
+  background: #00A5B7;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.modal-save-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  background: #008a99;
+}
+
+.modal-save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Cancel Button */
+.modal-cancel-btn {
+  background: transparent;
+  color: #d1d1d1;
+  border: 1px solid #d1d1d140;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-cancel-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-cancel-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Delete Confirmation Button */
+.modal-delete-confirm-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.modal-delete-confirm-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  background: #c0392b;
+}
+
+.modal-delete-confirm-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Delete Confirmation Text */
+.delete-confirm-text {
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+/* Edit Textarea in Modal */
+.modal-edit-textarea {
+  width: 100%;
+  min-height: 150px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 15px;
+  resize: vertical;
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+}
+
+.modal-edit-textarea:disabled {
+  opacity: 0.7;
+}
+.back-btn-container {
+  margin-left: 30px;
+}
+

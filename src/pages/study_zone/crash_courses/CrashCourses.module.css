@@ -1,0 +1,309 @@
+/* ---------------- PAGE LAYOUT */
+.crash-page {
+  display: flex;
+  height: 100dvh;
+  font-family: Poppins, sans-serif;
+}
+
+/* MAIN AREA */
+.cc-main-area {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* CONTENT */
+.cc-content {
+  flex: 1;
+  background: linear-gradient(to bottom, #4fc3f7, #f7c873);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 30px 50px;
+}
+
+/* Horizontal card */
+.cc-header {
+  background: white;
+  color: #003F52;
+  text-align: center;
+  width: 100%;
+  padding: 40px 30px;
+  border-radius: 40px;
+  margin-bottom: 60px;
+}
+
+.cc-header h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #083862;
+  margin-bottom: 6px;
+}
+
+.cc-header p {
+  font-size: 17px;
+  color: #0C4866;
+  font-weight: 400;
+}
+
+/* Filter buttons */
+.cc-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.cc-filters button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  background: white;
+  color: #082C4E;
+}
+
+.cc-filters button.active {
+  background: #082C4E;
+  color: white;
+}
+
+/* Video grid */
+.cc-video-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 22px;
+  max-width: 1200px;
+}
+
+/* Video card */
+.cc-video-card {
+  position: relative;
+  height: 210px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px 25px;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  min-width: 300px;
+  flex-grow: 1;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+}
+
+.cc-video-card:hover {
+  scale: 1.025;
+}
+
+.cc-video-card h4 {
+  margin-top: 10px;
+  color: #083862;
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); */
+  width: 90%;
+}
+
+.cc-card-info {
+  display: flex;
+  justify-content: space-between;
+  color: #072445;
+  /* text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); */
+}
+
+.cc-card-info .card-info-duration {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cc-card-info .card-info-duration svg {
+  margin-bottom: 1px;
+}
+
+.cc-card-info .card-info-lessons {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #00bcd4;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.cc-filter-section {
+  margin-bottom: 35px;
+}
+
+.cc-dropdown-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.dropdown-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 180px;
+}
+
+.dropdown-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #082C4E;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-left: 5px;
+}
+
+.custom-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-select {
+  width: 100%;
+  padding: 12px 18px;
+  border: 2px solid white;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #083862;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  appearance: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-select:focus {
+  outline: none;
+  border-color: #083862;
+  background: white;
+  box-shadow: 0 4px 15px rgba(8, 56, 98, 0.15);
+}
+
+/* Custom arrow for select */
+.custom-dropdown::after {
+  content: '▼';
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: #083862;
+  pointer-events: none;
+}
+
+.cc-type-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #072445;
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 40px;
+  font-size: 18px;
+  color: #003F52;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .cc-main-area {
+    flex: 1;
+    width: 100%;
+  }
+
+  .cc-filters button {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cc-filters button {
+    font-size: 14.5px;
+  }
+}
+
+@media (max-width: 439px) {
+  .dropdown-group {
+    min-width: 165px;
+  }
+}
+
+.back-btn-container {
+  margin-left: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* 2nd video card */
+/* .cc-video-card-head {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-inline: 25px;
+}
+
+.cc-video-card-head h4 {
+  color: #083862;
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+} */

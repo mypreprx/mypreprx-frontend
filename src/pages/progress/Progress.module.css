@@ -1,0 +1,363 @@
+.pr-layout {
+  display: flex;
+  min-height: 100vh;
+  /* Matching the image gradient exactly */
+  background: linear-gradient(180deg, #00B4D8 0%, #FFD38B 100%);
+}
+
+.pr-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Centered container for the cards and button */
+.pr-content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  gap: 30px;
+}
+
+.pr-main-header-card {
+  background: white;
+  color: #003F52;
+  text-align: center;
+  width: 100%;
+  padding: 40px 30px;
+  border-radius: 40px;
+}
+
+.pr-main-header-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #083862;
+  margin-bottom: 6px;
+}
+
+.pr-main-header-card p {
+  font-size: 17px;
+  font-weight: 400;
+  color: #0C4866;
+}
+
+.pr-header-card {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 40px;
+  padding: 40px 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: none;
+  text-align: center;
+}
+
+.pr-header-card svg {
+  min-width: 32px;
+}
+
+.pr-progress-text {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  color: #0c4866;
+}
+
+.pr-progress-text strong {
+  font-size: 32px;
+  font-weight: 800;
+  color: #f4a938;
+}
+
+.pr-stats-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.pr-stat-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 24px 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 130px;
+}
+
+.pr-stat-card p {
+  font-weight: 600;
+  color: #0c4866;
+  margin: 0;
+}
+
+.pr-stat-card strong {
+  font-size: 28px;
+  color: #1f3e5a;
+}
+
+.pr-stat-card span {
+  font-size: 12px;
+  color: #7c8a9f;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.h-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.affirmation-text {
+  font-size: 1.1rem;
+  color: #2D4356;
+  font-weight: 400;
+}
+
+.pr-button-wrapper {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.pr-viewtr-btn {
+  padding: 15px 45px;
+  border-radius: 15px;
+  border: none;
+  background: #F4A938;
+  color: #1F3E5A;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pr-viewtr-btn:hover {
+  background: #e69a2e;
+  transform: translateY(-2px);
+}
+
+.pr-badges-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.pr-badges-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #072445;
+    margin-bottom: 1.5rem;
+}
+
+.pr-badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+
+.pr-badge-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.pr-badge-card:hover {
+    transform: translateY(-5px);
+}
+
+.pr-badge-img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    transition: filter 0.3s;
+}
+
+.pr-badge-card.locked .pr-badge-img {
+    filter: grayscale(100%) opacity(0.5);
+}
+
+.pr-badge-card h4 {
+    font-size: 1rem;
+    color: #072445;
+    margin-bottom: 0.5rem;
+}
+
+.pr-badge-card p {
+    font-size: 0.85rem;
+    color: #6d839c;
+}
+
+.pr-badge-card.earned h4 {
+    color: #00A5B7;
+}
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* TABLET: ≤ 900px — 2x2 grid */
+@media (max-width: 900px) {
+  .pr-content-container {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .pr-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .pr-stat-card {
+    min-height: 110px;
+    padding: 20px 16px;
+  }
+
+  .pr-stat-card strong {
+    font-size: 24px;
+  }
+
+  .pr-main-header-card,
+  .pr-header-card {
+    padding: 30px 20px;
+    border-radius: 28px;
+  }
+}
+
+/* MOBILE: ≤ 640px */
+@media (max-width: 640px) {
+  .pr-content-container {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  .pr-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .pr-stat-card {
+    min-height: 100px;
+    padding: 16px 14px;
+    border-radius: 18px;
+    gap: 6px;
+  }
+
+  .pr-stat-card p {
+    font-size: 12px;
+  }
+
+  .pr-stat-card strong {
+    font-size: 20px;
+  }
+
+  .pr-stat-card span {
+    font-size: 11px;
+  }
+
+  .pr-main-header-card,
+  .pr-header-card {
+    padding: 22px 16px;
+    border-radius: 20px;
+  }
+
+  .pr-main-header-card h3 {
+    font-size: 20px;
+  }
+
+  .pr-main-header-card p {
+    font-size: 14px;
+  }
+
+  .pr-progress-text {
+    font-size: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pr-progress-text strong {
+    font-size: 26px;
+  }
+
+  .h-card-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .affirmation-text {
+    font-size: 0.95rem;
+  }
+
+  .pr-badges-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .pr-badge-img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .pr-badge-card h4 {
+    font-size: 0.85rem;
+  }
+
+  .pr-badge-card p {
+    font-size: 0.75rem;
+  }
+
+  .pr-viewtr-btn {
+    width: 100%;
+    padding: 13px 20px;
+    font-size: 15px;
+  }
+
+  .pr-button-wrapper {
+    margin-top: 10px;
+  }
+
+  .pr-badges-section {
+    margin-top: 0;
+    width: 100%;
+  }
+}
+
+/* EXTRA SMALL: ≤ 380px — single column stats */
+@media (max-width: 380px) {
+  .pr-stats-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .pr-stat-card {
+    padding: 14px 12px;
+    min-height: 90px;
+  }
+
+  .pr-stat-card strong {
+    font-size: 18px;
+  }
+
+  .pr-content-container {
+    padding: 10px;
+    gap: 10px;
+  }
+}

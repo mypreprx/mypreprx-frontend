@@ -1,0 +1,164 @@
+ /* ================= BASE LAYOUT ================= */
+.ph-layout {
+    display: flex;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ================= SIDEBAR ================= */
+.ph-sidebar {
+    width: 210px;
+    background: #ffffff;
+    padding: 25px 10px;
+    border-right: 1px solid #EBEBEB;
+}
+
+.ph-logo-box {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.ph-logo {
+    width: 130px;
+    height: auto;
+}
+
+/* ----- Your exact menu-item styling (namespaced) ----- */
+.ph-menu-item {
+    width: 100%;
+    padding: 10px 18px;
+    font-weight: 700; 
+    font-size: 16px;
+    line-height: 20px;
+    color: #0C4866;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    border-radius: 8px;
+    margin-bottom: 6px;
+}
+
+.ph-menu-item:hover {
+    background-color: #007D99;
+    color: #fff;
+}
+
+.ph-menu-item.active {
+    background-color: #0C4866;
+    color: #fff;
+}
+
+/* ================= MAIN ================= */
+.ph-main {
+    flex: 1;
+    padding: 35px 50px;
+    background: linear-gradient(180deg, #00A8C5 0%, #F5C878 100%);
+    overflow-y: auto;
+}
+
+
+/* ================= TOPBAR ================= */
+.ph-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.ph-title {
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.ph-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.ph-search input {
+    padding: 10px 18px;
+    border-radius: 40px;
+    border: none;
+    width: 250px;
+    outline: none;
+}
+
+.ph-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ph-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+/* ================= HEADER BOX ================= */
+.ph-header-box {
+    background: white;
+    padding: 35px;
+    border-radius: 28px;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+/* ================= CARDS ================= */
+.ph-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.ph-card {
+    background: white;
+    padding: 18px 18px;
+    width: 700px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 130px;
+}
+
+.ph-card h4 {
+    color: #0C4866;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.ph-meta {
+    display: flex;
+    gap: 18px;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.ph-pink {
+    color: #E91E63;
+    font-weight: 600;
+}
+
+.ph-arrow {
+    font-size: 20px;
+    color: #E91E63;
+}
+/* Sidebar icon wrapper */
+.ph-menu-icon {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Placeholder box where you paste your SVG */
+.ph-menu-icon-box {
+    width: 18px;
+    height: 18px;
+}

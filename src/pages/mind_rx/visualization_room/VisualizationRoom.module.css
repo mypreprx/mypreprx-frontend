@@ -1,0 +1,226 @@
+/* GLOBAL CONTAINER */
+.vr-container {
+    display: flex;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    background: linear-gradient(to bottom, #28c4df, #ffd38b);
+    width: 100%;
+}
+
+/* MAIN CONTENT */
+.vr-main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.vr-content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* HEADER CARD */
+.vr-header-card {
+    background: white;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    color: #003F52;
+    padding: 40px 30px;
+    border-radius: 40px;
+}
+
+.vr-header-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #083862;
+    margin-bottom: 6px;
+}
+
+.vr-header-card p {
+    font-size: 17px;
+    color: #0C4866;
+    font-weight: 400;
+}
+
+/* VIDEO GRID */
+.vr-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* VIDEO CARD */
+.vr-card {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    /* Placeholder gradient, can be image */
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.vr-card-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+}
+
+.vr-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.40);
+    backdrop-filter: blur(2px);
+    /* Semi-transparent blurred overlay to make text readable */
+    z-index: 1;
+}
+
+.vr-card:hover {
+    transform: translateY(-5px);
+}
+
+.vr-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.40);
+    backdrop-filter: blur(2px);
+    /* Semi-transparent blurred overlay to make text readable */
+    z-index: 1;
+}
+
+.vr-card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+
+.vr-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #082C4E;
+    margin-bottom: 5px;
+    width: 100%;
+    text-align: left;
+}
+
+.vr-meta {
+    font-size: 13px;
+    color: #008fa3;
+    font-weight: 600;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: left;
+}
+
+.vr-desc {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+    margin-bottom: auto;
+    width: 100%;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.vr-play-btn {
+    width: 50px;
+    height: 50px;
+    background: #00A5B7;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 165, 183, 0.3);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.vr-play-btn:hover {
+    transform: scale(1.05);
+    background: #008fa3;
+}
+
+.loadingMessage {
+    margin-top: 60px;
+    font-size: 18px;
+    color: #0c4866;
+    text-align: center;
+}
+
+.playerWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.videoPlayer {
+    width: 100%;
+    max-width: 720px;
+    border-radius: 16px;
+    background: #000;
+    overflow: hidden;
+    display: block;
+    border-radius: 26px;
+    background-color: white;
+}
+
+.playerSubtitle {
+    font-size: 16px;
+    color: #004957;
+    font-weight: 600;
+}
+
+.playerDescription {
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .vr-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .vr-container {
+        flex-direction: column;
+    }
+
+    .vr-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.back-btn-container {
+    margin-left: 2px;
+}

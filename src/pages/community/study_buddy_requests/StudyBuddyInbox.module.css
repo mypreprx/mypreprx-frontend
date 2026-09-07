@@ -1,0 +1,148 @@
+/* StudyBuddyInbox.module.css */
+.sb-inbox-page {
+    display: flex;
+    min-height: 100dvh;
+    font-family: Poppins, sans-serif;
+    background: linear-gradient(to bottom, #4fc3f7, #f7c873);
+}
+
+.sb-main-area {
+    flex: 1;
+}
+
+/* Reuse header style from requests page if possible, or define here */
+.sb-header-card {
+    background: white;
+    color: #003F52;
+    text-align: center;
+    max-width: 100%;
+    padding: 40px 30px;
+    border-radius: 40px;
+    margin: 30px 30px 40px 30px;
+}
+
+.sb-header-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #083862;
+    margin-bottom: 6px;
+}
+
+.sb-header-card p {
+    font-size: 17px;
+    color: #0C4866;
+    font-weight: 400;
+}
+
+.sb-inbox-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sb-message-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.sb-message-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sb-avatar {
+    width: 60px;
+    height: 60px;
+    background: #e0f2fe;
+    color: #0284c7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.sb-message-content {
+    flex: 1;
+    overflow: hidden;
+}
+
+.sb-message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.sb-username {
+    font-size: 18px;
+    font-weight: 600;
+    color: #083862;
+}
+
+.sb-timestamp {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.sb-preview {
+    font-size: 15px;
+    color: #475569;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.sb-empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #083862;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    margin: 30px;
+}
+
+.back-btn {
+    align-self: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: #003F52;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-out;
+}
+
+.back-btn:hover {
+    background: hsl(0, 0%, 97%);
+}
+
+.back-btn svg {
+    transition: transform 0.2s;
+}
+
+.back-btn:hover>svg {
+    transform: translateX(-5px);
+}

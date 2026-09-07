@@ -1,0 +1,54 @@
+.michelButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    border: 2px solid #008fa3;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: none;
+}
+
+.michelButton:hover {
+    transform: translateY(-2px) scale(1.1);
+}
+
+.michelButton:active {
+    transform: translateY(0);
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    padding: 6px;
+}
+
+.text {
+    display: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .michelButton {
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+    }
+}

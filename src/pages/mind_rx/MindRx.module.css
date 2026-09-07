@@ -1,0 +1,176 @@
+/* PAGE LAYOUT */
+.mr-container {
+    display: flex;
+    min-height: 100dvh;
+    font-family: Poppins, sans-serif;
+    background: linear-gradient(to bottom, #28c4df, #ffd38b);
+    width: 100%;
+}
+
+/* MAIN CONTENT AREA */
+.mr-main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.mr-content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* HEADER CARD */
+.mr-header-card {
+    background: white;
+    padding: 30px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    color: #082C4E;
+}
+
+.mr-header-card h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #082C4E;
+}
+
+.mr-header-card p {
+    font-size: 16px;
+    color: #4A5568;
+    margin-bottom: 20px;
+}
+
+/* SLIDER */
+.mr-slider-section {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.mr-slider-section label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #082C4E;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.mr-slider {
+    width: 100%;
+    height: 12px;
+    background: linear-gradient(to right, #F8B400, #7FD3DA);
+    border-radius: 10px;
+    outline: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.mr-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 32px;
+    height: 32px;
+    background-color: #F8B400;
+    border: 3px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    background-image: var(--thumb-icon);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.mr-slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #082C4E;
+}
+
+/* MORNING AFFIRMATION CARD */
+.mr-affirmation-card {
+    background: white;
+    padding: 25px;
+    border-radius: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.mr-affirmation-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #082C4E;
+    margin-bottom: 15px;
+}
+
+.mr-affirmation-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.mr-icon-box {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #00A5B7;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.mr-affirmation-text {
+    font-size: 16px;
+    color: #006079;
+    font-weight: 500;
+    text-align: left;
+}
+
+/* NAVIGATION GRID */
+.mr-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .mr-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .mr-container {
+        flex-direction: column;
+    }
+
+    .mr-header-card h3 {
+        font-size: 24px;
+    }
+
+    .mr-affirmation-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .mr-affirmation-text {
+        text-align: center;
+    }
+}

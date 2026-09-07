@@ -1,0 +1,234 @@
+.container {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.header {
+    padding: 25px 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.title {
+    margin: 0 0 8px 0;
+    color: #083862;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.description {
+    margin: 0;
+    color: #666;
+    font-size: 15px;
+}
+
+.userCell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    background: #083862;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 22px;
+    gap: 20px;
+    background: #fbfbfc;
+    border-bottom: 1px solid #eee;
+}
+
+.searchWrapper {
+    flex: 1;
+    max-width: 400px;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s;
+    background: #fff;
+    color: hsl(208, 85%, 10%);
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: #083862;
+    box-shadow: 0 0 0 3px rgba(8, 56, 98, 0.1);
+}
+
+.filterWrapper {
+    min-width: 150px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.filterSelect {
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #fff;
+    cursor: pointer;
+    color: hsl(208, 85%, 10%);
+}
+
+.filterSelect:focus {
+    outline: none;
+    border-color: #083862;
+}
+
+
+.tableWrapper {
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.table th {
+    background: #f8fafc;
+    color: #083862;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    color: #444;
+    font-size: 14px;
+}
+
+.table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.userBadge {
+    background: hsl(205, 87%, 94%);
+    color: hsl(205, 87%, 40%);
+}
+
+.adminBadge {
+    background: hsl(340, 80%, 94%);
+    color: hsl(340, 80%, 40%);
+}
+
+.onlineBadge {
+    background: hsl(145, 67%, 94%);
+    color: hsl(145, 67%, 40%);
+}
+
+.offlineBadge {
+    background: hsl(0, 0%, 94%);
+    color: hsl(0, 0%, 40%);
+}
+
+.loading,
+.error,
+.noData {
+    text-align: center;
+    padding: 60px 20px;
+    color: #888;
+    font-size: 16px;
+}
+
+.error {
+    color: #c62828;
+    background: #ffebee;
+    border-radius: 8px;
+}
+
+
+/* RESPNSIVENESS */
+@media (max-width: 954px) {
+    .searchWrapper {
+        max-width: 100%;
+    }
+
+    .filterWrapper {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .table th,
+    .table td {
+        padding: 12px 15px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 554px) {
+    .filterWrapper {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+}

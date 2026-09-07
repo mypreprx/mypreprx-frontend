@@ -1,0 +1,475 @@
+/* TOP BAR */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #009cbf;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.topbar h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    padding: 8px 18px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    outline: none;
+    width: 220px;
+    background-color: transparent;
+    color: #fff;
+}
+
+.search-box input::placeholder {
+    color: hsl(0, 0%, 93%, 0.8);
+    font-weight: 100;
+}
+
+.suggestions {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    right: 0;
+    z-index: 1100;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 16px;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.16);
+    overflow: hidden;
+    max-height: 260px;
+}
+
+.suggestion-item {
+    width: 100%;
+    padding: 10px 14px;
+    text-align: left;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    color: #111;
+}
+
+.suggestion-item:hover {
+    background: rgba(0, 156, 191, 0.08);
+}
+
+.suggestion-title {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.suggestion-subtitle {
+    font-size: 11px;
+    color: #555;
+}
+
+.profile-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+.profile-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.hamburger {
+    font-size: 26px;
+    cursor: pointer;
+    color: #fff;
+    display: none;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 900;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.topbar-left svg {
+    color: white;
+    width: 28px;
+    height: 28px;
+    margin-right: 4px;
+}
+
+/* =============================================
+   RIGHT PANEL
+   ============================================= */
+
+/* dim backdrop */
+.rp-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    background: rgba(0, 0, 0, 0.38);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    animation: rpFadeIn 0.28s ease forwards;
+}
+
+.rp-overlay--closing {
+    animation: rpFadeOut 0.28s ease forwards;
+}
+
+/* the sliding panel itself */
+.rp-panel {
+    width: 260px;
+    height: 100vh;
+    background: #0b2d4f;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: -6px 0 28px rgba(0, 0, 0, 0.25);
+    animation: rpSlideIn 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.rp-panel--closing {
+    animation: rpSlideOut 0.28s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
+}
+
+/* open keyframes */
+@keyframes rpFadeIn {
+    from {
+        background: rgba(0, 0, 0, 0);
+    }
+
+    to {
+        background: rgba(0, 0, 0, 0.38);
+    }
+}
+
+@keyframes rpSlideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0.4;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* close keyframes */
+@keyframes rpFadeOut {
+    from {
+        background: rgba(0, 0, 0, 0.38);
+    }
+
+    to {
+        background: rgba(0, 0, 0, 0);
+    }
+}
+
+@keyframes rpSlideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* ── logo bar ── */
+.rp-logo-bar {
+    background-color: white;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ddd;
+    flex-shrink: 0;
+}
+
+.rp-logo {
+    height: 70px;
+    width: 70px;
+    object-fit: contain;
+}
+
+/* ── profile card ── */
+.rp-profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 16px 14px 14px;
+    background: rgba(255, 255, 255, 0.07);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rp-profile-card-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.rp-profile-card-info {
+    text-align: center;
+}
+
+.rp-profile-card-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.rp-profile-card-email {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 2px 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.rp-view-profile-btn {
+    margin-top: 4px;
+    padding: 6px 20px;
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+    background: transparent;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.18s, border-color 0.18s;
+}
+
+.rp-view-profile-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+}
+
+/* ── menu ── */
+.rp-menu {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.rp-item {
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    opacity: 0.9;
+    transition: background 0.15s, opacity 0.15s;
+}
+
+.rp-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 1;
+}
+
+.rp-item--logout {
+    margin-top: auto;
+    color: #ff6b6b !important;
+}
+
+.rp-item--logout:hover {
+    background: rgba(255, 107, 107, 0.12) !important;
+}
+
+/* ── search history ── */
+.rp-search-history {
+    margin-top: 20px;
+    padding: 10px 15px;
+    padding-bottom: 20px;
+}
+
+.rp-search-history h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-transform: lowercase;
+    color: white;
+}
+
+.rp-history-card {
+    background: white;
+    color: #333;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.rp-history-card p {
+    margin: 0 0 4px;
+    font-weight: 600;
+}
+
+.rp-history-card span {
+    display: block;
+}
+
+/* ── mobile close button (X) ── */
+.rp-close-btn {
+    display: none; /* hidden on desktop */
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.rp-close-btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.rp-close-btn:focus {
+    outline: none;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (min-width: 769px) and (max-width: 829px) {
+    .search-box input {
+        width: 145px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Show hamburger */
+    .hamburger {
+        display: block;
+        font-size: 26px;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    /* TOPBAR — FORCE SINGLE ROW */
+    .topbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        /* 🔥 IMPORTANT */
+        width: 100%;
+        padding: 15px;
+        overflow: hidden;
+        /* 🔥 prevents overflow */
+    }
+
+    /* LEFT & RIGHT */
+    .topbar-left {
+        flex: 0 0 auto;
+    }
+
+    .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex: 1;
+        justify-content: flex-end;
+        min-width: 0;
+        /* 🔥 critical for flex overflow */
+    }
+
+    /* Hide long text */
+    .profile-name {
+        display: none;
+    }
+
+    .rp-panel {
+        width: min(300px, 100vw);
+    }
+}
+
+@media (max-width: 569px) {
+    .search-box input {
+        width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .topbar h2 {
+        display: none;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+
+    .rp-panel {
+        width: 100vw;
+    }
+
+    .rp-close-btn {
+        display: flex;
+    }
+}

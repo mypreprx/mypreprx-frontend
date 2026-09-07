@@ -1,0 +1,242 @@
+.drillContainer {
+  display: flex;
+  height: 100vh;
+  background-color: #f7f9fc;
+}
+
+.mainArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 40px;
+  overflow-y: auto;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: #0c4866;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 8px;
+  text-align: left;
+  padding: 0;
+}
+
+.drillCard {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.drillHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.drillCount {
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.subtopicBadge {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f766e;
+  background: #f0fdfa;
+  border: 1px solid #99f6e4;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.questionText {
+  font-size: 20px;
+  font-weight: 500;
+  color: #072445;
+  line-height: 1.5;
+}
+
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  background: white;
+  border: 2px solid #e0e5ed;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.option:hover {
+  border-color: #0c4866;
+  background: #f0f4f8;
+}
+
+.option.selected {
+  border-color: #0c4866;
+  background: #e6f0fa;
+}
+
+.option.correct {
+  border-color: #2e7d32;
+  background: #e8f5e9;
+}
+
+.option.wrong {
+  border-color: #d9534f;
+  background: #fdf0f0;
+}
+
+.letter {
+  font-weight: 600;
+  margin-right: 12px;
+  color: #0c4866;
+}
+
+.optionText {
+  flex: 1;
+  font-size: 16px;
+  color: #333;
+}
+
+.feedbackWrap {
+  margin-top: 24px;
+  background: white;
+  border-left: 4px solid #0c4866;
+  padding: 20px;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.feedbackTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #072445;
+  margin-bottom: 12px;
+}
+
+.feedbackSubtitle {
+  font-weight: 600;
+  color: #d9534f;
+  margin-top: 16px;
+}
+
+.wrongAnswers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.wrongAnswerRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.wrongAnswerLetter {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #eceef1;
+  color: #667085;
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: 6px;
+  margin-top: 1px;
+}
+
+.wrongAnswerText {
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+  padding-top: 3px;
+}
+
+.feedbackBox {
+  margin-top: 12px;
+  padding: 8px;
+  border-radius: 4px;
+  line-height: 1.6;
+}
+
+.drillButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.submitBtn {
+  background: #0c4866;
+  color: white;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submitBtn:hover {
+  background: #072445;
+}
+
+.submitBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.flagBtn {
+  background: #e0e5ed;
+  color: #072445;
+}
+
+.flagBtn:hover {
+  background: #cdd5e0;
+}
+
+.completeCard {
+  background: white;
+  border-radius: 12px;
+  padding: 48px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-top: 40px;
+}
+
+.completeTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #072445;
+  margin-bottom: 12px;
+}
+
+.completeText {
+  color: #666;
+  margin-bottom: 24px;
+}

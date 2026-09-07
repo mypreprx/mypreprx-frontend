@@ -1,0 +1,195 @@
+:root {
+  --sata-primary-navy: #0d1e2b;
+  --sata-teal-accent: #009cbf;
+  --sata-teal-hover: #00718f;
+  --sata-teal-light: #e0f2f7;
+  --sata-text-dark: #1f2937;
+  --sata-text-muted: #4b5563;
+  --sata-border-light: #e5e7eb;
+  --sata-bg-light: #f8fafc;
+}
+
+.sata-container {
+  display: flex;
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px 20px;
+  width: 100%;
+}
+
+.sata-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid var(--sata-border-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.sata-left-card {
+  flex: 1.8;
+  padding: 36px 32px;
+}
+
+.sata-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sata-header-icon {
+  width: 48px;
+  height: 48px;
+  background-color: var(--sata-teal-light);
+  color: var(--sata-teal-accent);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sata-title {
+  color: var(--sata-primary-navy);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.sata-subtitle {
+  color: var(--sata-teal-accent);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.sata-divider {
+  width: 40px;
+  height: 3px;
+  background-color: var(--sata-teal-accent);
+  margin: 16px 0;
+  border-radius: 2px;
+}
+
+.sata-instruction {
+  color: var(--sata-teal-accent);
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+.sata-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.sata-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--sata-border-light);
+}
+
+.sata-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--sata-teal-light);
+  color: var(--sata-teal-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sata-item-content {
+  flex: 1;
+}
+
+.sata-item-title {
+  color: var(--sata-primary-navy);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.sata-item-desc {
+  color: var(--sata-text-muted);
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.sata-right-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  background-color: #fafbfc;
+  padding: 40px 24px 48px;
+  align-self: flex-start;
+}
+
+.sata-image-container {
+  width: 100%;
+  max-width: 220px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.sata-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.sata-cta-title {
+  color: var(--sata-primary-navy);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.sata-cta-desc {
+  color: var(--sata-text-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 32px;
+  max-width: 240px;
+}
+
+.sata-drill-btn {
+  width: 100%;
+  padding: 14px 20px;
+  background-color: #EFA930;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.sata-drill-btn:hover {
+  background-color: #d99a26;
+}
+
+.sata-drill-btn:focus,
+.sata-drill-btn:focus-visible {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .sata-container {
+    flex-direction: column;
+  }
+}
