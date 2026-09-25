@@ -286,6 +286,19 @@ const useAdminStore = create((set) => ({
         }
     },
 
+    // Admin exception: immediate Stripe cancellation (does not delete the account)
+    cancelUserSubscription: async (userId) => {
+        try {
+            const response = await api.post(`/admin/subscriptions/${userId}/cancel-immediate`);
+            toast.success(response.data?.message || 'Subscription canceled immediately');
+            await useAdminStore.getState().fetchUsers();
+            return true;
+        } catch (err) {
+            toast.error(err.response?.data?.message || 'Failed to cancel subscription');
+            return false;
+        }
+    },
+
     fetchDashboardData: async () => {
         set({ isLoading: true, error: null });
         try {

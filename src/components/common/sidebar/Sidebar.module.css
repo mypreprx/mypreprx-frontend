@@ -71,6 +71,70 @@
     fill: #EFA930;
 }
 
+/* Dropdown arrow */
+.dropdown-arrow {
+    margin-left: auto;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.dropdown-arrow-open {
+    transform: rotate(180deg);
+}
+
+.menu-item.active .dropdown-arrow path {
+    stroke: #EFA930;
+}
+
+/* Subscriptions submenu */
+.submenu {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7fafc;
+    border-left: 1px solid #e0e0e0;
+    margin-left: 28px;
+    padding: 4px 0;
+}
+
+.submenu-item {
+    position: relative;
+    width: 100%;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: #0C4866;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.submenu-item:hover {
+    background-color: #eef4f7;
+    color: #0C4866;
+}
+
+.submenu-item.active {
+    background-color: #0C4866;
+    color: #fff;
+    font-weight: 600;
+}
+
+.submenu-item.active::after {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background-color: #00A5B7;
+    z-index: 50;
+    transition: background-color 0.2s ease;
+}
+
 @media (max-width: 768px) {
 
     /* Sidebar */

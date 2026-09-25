@@ -142,6 +142,10 @@ export const SidebarIconMichelleAI = () => (
 );
 
 
+export const SidebarIconSubscriptions = () => (
+    <path d="M17.5 2.5H2.5C1.67157 2.5 1 3.17157 1 4V16C1 16.8284 1.67157 17.5 2.5 17.5H17.5C18.3284 17.5 19 16.8284 19 16V4C19 3.17157 18.3284 2.5 17.5 2.5ZM17.5 5.5V7H2.5V5.5H17.5ZM17.5 9.5V11.5H2.5V9.5H17.5ZM2.5 14.5V13H8.5V14.5H2.5ZM11 14.5V13H17.5V14.5H11Z" fill="currentColor" />
+);
+
 export const SidebarIconLogout = () => (
     <path d="M17 7L15.59 8.41L18.17 11H8V13H18.17L15.59 15.58L17 17L22 12L17 7ZM4 5H12V3H4C2.9 3 2 3.9 2 5V19C2 20.1 2.9 21 4 21H12V19H4V5Z" fill="currentColor" />
 );

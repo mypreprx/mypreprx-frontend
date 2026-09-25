@@ -1,0 +1,42 @@
+.subscription-overlay-root {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: #072445;
+}
+
+/* Blurred Home page sitting behind the card */
+.subscription-overlay-bg {
+  position: absolute;
+  inset: 0;
+  filter: blur(10px);
+  transform: scale(1.06);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Dark scrim so the centered card stands out */
+.subscription-overlay-dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 36, 69, 0.55);
+  pointer-events: none;
+}
+
+/* Centered scrollable layer holding Pricing / Payment card */
+.subscription-overlay-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+/* margin:auto centers on both axes and stays scrollable when the card is taller than the viewport */
+.subscription-overlay-content > * {
+  margin: auto;
+  flex-shrink: 0;
+}

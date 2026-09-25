@@ -36,7 +36,10 @@ export const LoginPage = () => {
 
     const handleGoogleSuccess = async (credentialResponse) => {
         try {
-            await googleSignIn(credentialResponse);
+            const result = await googleSignIn(credentialResponse);
+            if (result?.isNewUser) {
+                navigate('/pricing', { replace: true });
+            }
         } catch (error) {
             console.error("Google sign in error:", error);
         }

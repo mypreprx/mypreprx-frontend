@@ -232,3 +232,25 @@
         font-size: 12px;
     }
 }
+
+.cancelSubBtn {
+    background-color: #e53e3e;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.cancelSubBtn:hover {
+    background-color: #c53030;
+}
+
+.cancelSubBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

@@ -1,0 +1,156 @@
+/* Container Box */
+.pricing-container {
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  padding: 32px 28px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f4f8;
+  font-family: 'Poppins', sans-serif;
+  color: var(--color-text-main, #213547);
+  box-sizing: border-box;
+}
+
+/* Match SecurePayment desktop width */
+@media (min-width: 768px) {
+  .pricing-container {
+    max-width: 460px;
+    padding: 36px 32px;
+  }
+}
+
+/* Typography Header */
+.pricing-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.pricing-title {
+  margin: 0;
+  font-size: var(--text-3xl, 26px);
+  font-weight: 700;
+  color: var(--color-primary-navy, #072445);
+}
+
+.pricing-subtitle {
+  margin: 6px 0 0 0;
+  font-size: var(--text-sm, 14px);
+  color: var(--color-text-muted, #555555);
+  font-weight: 500;
+}
+
+/* Wrapper for Plan Cards */
+.plans-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Plan Card Styles */
+.plan-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 16px;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.plan-card:hover {
+  border-color: #bee3f8;
+}
+
+.plan-card.selected {
+  border-color: #2b99cc;
+  box-shadow: 0 0 0 1px #2b99cc;
+}
+
+/* Plan Text */
+.plan-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.plan-title {
+  font-size: var(--text-base, 16px);
+  font-weight: 600;
+  color: var(--color-primary-navy, #072445);
+}
+
+.plan-price-row {
+  display: flex;
+  align-items: baseline;
+}
+
+.plan-price {
+  font-size: var(--text-xl, 20px);
+  font-weight: 700;
+  color: var(--color-primary-navy, #072445);
+}
+
+.plan-period {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-primary-navy, #072445);
+}
+
+/* Plan Action & Badge */
+.plan-action {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.trial-badge {
+  background-color: #d1fae5;
+  color: #10b981;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.chevron-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* Features Included Section */
+.features-box {
+  background-color: #f7fafc;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.check-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-main, #213547);
+}
+
+/* Plan cards and features always stay vertically stacked (all screen sizes) */

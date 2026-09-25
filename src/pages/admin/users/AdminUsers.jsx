@@ -3,15 +3,24 @@ import useAdminStore from '../../../store/adminStore';
 import styles from './AdminUsers.module.css';
 
 const AdminUsers = () => {
-    const { users, isLoading, error, fetchUsers } = useAdminStore();
+    const { users, isLoading, error, fetchUsers, cancelUserSubscription } = useAdminStore();
     const [searchTerm, setSearchTerm] = useState('');
     const [roleFilter, setRoleFilter] = useState('all');
     const [statusFilter, setStatusFilter] = useState('all');
     const [joinedFilter, setJoinedFilter] = useState('all');
+    const [cancellingId, setCancellingId] = useState(null);
 
     useEffect(() => {
         fetchUsers();
     }, [fetchUsers]);
+
+    const handleCancelSubscription = async (userId) => {
+        const ok = window.confirm('Immediately cancel this user\'s subscription? Premium access will end now. The account will not be deleted.');
+        if (!ok) return;
+        setCancellingId(userId);
+        await cancelUserSubscription(userId);
+        setCancellingId(null);
+    };
 
     const filteredUsers = users.filter(user => {
         const matchesSearch = (user.username?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -110,12 +119,14 @@ const AdminUsers = () => {
                             <th>Role</th>
                             <th>Status</th>
                             <th>Joined</th>
+                            <th>Subscription</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {filteredUsers.length === 0 ? (
                             <tr>
-                                <td colSpan="6" className={styles.noData}>No accounts found</td>
+                                <td colSpan="8" className={styles.noData}>No accounts found</td>
                             </tr>
                         ) : (
                             filteredUsers.reverse().map((user, index) => (
@@ -142,6 +153,28 @@ const AdminUsers = () => {
                                         </span>
                                     </td>
                                     <td>{new Date(user.createdAt).toLocaleDateString()}</td>
+                                    <td>
+                                        <span className={`${styles.badge} ${user.subscription?.premium ? styles.onlineBadge : styles.offlineBadge}`}>
+                                            {user.subscription?.status && user.subscription.status !== 'none'
+                                                ? user.subscription.status
+                                                : 'none'}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {user.subscription?.stripeSubscriptionId &&
+                                        !['none', 'canceled'].includes(user.subscription?.status) ? (
+                                            <button
+                                                type="button"
+                                                className={styles.cancelSubBtn}
+                                                onClick={() => handleCancelSubscription(user._id)}
+                                                disabled={cancellingId === user._id}
+                                            >
+                                                {cancellingId === user._id ? 'Canceling…' : 'Cancel sub'}
+                                            </button>
+                                        ) : (
+                                            <span className={styles.noData}>—</span>
+                                        )}
+                                    </td>
                                 </tr>
                             ))
                         )}

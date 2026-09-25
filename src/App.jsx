@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import toast from "react-hot-toast";
 
 import useAuthStore from "./store/authStore";
 import useAdminAuthStore from "./store/adminAuthStore";
+import socket from "./config/socket";
 
 import ProtectedRoute from "./components/ProtectedRoutes";
 
@@ -85,6 +87,23 @@ import { ResourcesRx } from "./pages/resources_rx/ResourcesRx";
 // Profile
 import { Profile } from "./pages/profile/Profile";
 
+// Pricing
+import PricingPlan from "./pages/pricing/PricingPlan";
+
+// Payment
+import SecurePayment from "./pages/payment/SecurePayment";
+import SubscriptionOverlay from "./components/subscription/SubscriptionOverlay";
+
+// Confirmation
+import ConfirmationSuccess from "./pages/confirmation/ConfirmationSuccess";
+
+// Subscriptions
+import { ManageSubscription } from "./pages/subscription/ManageSubscription";
+import { ViewInvoices } from "./pages/subscription/ViewInvoices";
+import { UpdatePaymentMethod } from "./pages/subscription/UpdatePaymentMethod";
+import { UpgradePlan } from "./pages/subscription/UpgradePlan";
+import { CancelSubscription } from "./pages/subscription/CancelSubscription";
+
 // Admin
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -127,6 +146,19 @@ const App = () => {
         checkAuth();
         checkAdminAuth();
     }, [checkAuth, checkAdminAuth]);
+
+    // In-app billing notifications (Socket.io is already used in this app)
+    useEffect(() => {
+        const onNotification = (payload) => {
+            if (payload?.title) {
+                toast(`${payload.title} — ${payload.message}`, { id: `notif-${payload.id || payload.title}` });
+            }
+        };
+        socket.on("notification", onNotification);
+        return () => {
+            socket.off("notification", onNotification);
+        };
+    }, []);
 
     const ConditionalMichelButton = () => {
         const location = useLocation();
@@ -236,6 +268,22 @@ const App = () => {
                             <Route path="/resources-rx" element={<ResourcesRx />} />
 
                             <Route path="/profile" element={<Profile />} />
+
+                            {/* Pricing / Payment / Confirmation over blurred Home */}
+                            <Route element={<SubscriptionOverlay />}>
+                                <Route path="/pricing" element={<PricingPlan />} />
+                                <Route path="/secure-payment" element={<SecurePayment />} />
+                                <Route path="/confirmation" element={<ConfirmationSuccess />} />
+                            </Route>
+
+                            {/* Subscription management */}
+                            <Route path="/subscriptions">
+                                <Route path="manage" element={<ManageSubscription />} />
+                                <Route path="invoices" element={<ViewInvoices />} />
+                                <Route path="payment-method" element={<UpdatePaymentMethod />} />
+                                <Route path="upgrade" element={<UpgradePlan />} />
+                                <Route path="cancel" element={<CancelSubscription />} />
+                            </Route>
                         </Route>
 
                         {/* Admin Routes */}
