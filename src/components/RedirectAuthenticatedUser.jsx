@@ -13,6 +13,11 @@ const RedirectAuthenticatedUser = ({ children }) => {
     }
 
     if (isAuthenticated && user) {
+        // Not subscribed yet (or suspended) → always show the subscription flow first,
+        // never the dashboard. Matches Google new-user behavior.
+        if (user.subscription?.premium !== true) {
+            return <Navigate to="/pricing" replace />;
+        }
         if (user.interestTopic && user.interestTopic.length > 0) {
             return <Navigate to="/home" replace />;
         }

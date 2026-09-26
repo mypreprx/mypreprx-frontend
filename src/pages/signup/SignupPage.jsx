@@ -25,7 +25,7 @@ export const SignupPage = () => {
 
     const password = watch("password");
 
-    const { register: registerUser, googleSignIn } = useAuthStore();
+    const { register: registerUser, login, googleSignIn } = useAuthStore();
 
     const onSubmit = async (data) => {
         try {
@@ -36,9 +36,17 @@ export const SignupPage = () => {
                 confirmpassword: data.confirmPassword, // Backend expects 'confirmpassword'
                 role: 'user' // Default role
             });
-            navigate("/login");
         } catch (error) {
             toast.error(error.response?.data?.message || "Registration Failed");
+            return;
+        }
+        // Same as Google signup: auto-login, then straight into the subscription flow
+        try {
+            await login(data.email, data.password);
+            navigate("/pricing", { replace: true });
+        } catch (error) {
+            toast.error(error.response?.data?.message || "Login failed. Please log in manually.");
+            navigate("/login", { replace: true });
         }
     };
 

@@ -93,7 +93,7 @@ const useAuthStore = create((set) => ({
             // Registers a new user with the provided information.
             const response = await api.post('/user/register', userInfo);
             set({ isLoading: false, loadingText: '' });
-            toast.success("Registration successful! Please login.");
+            toast.success("Registration successful!");
             return response.data;
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Registration failed";
