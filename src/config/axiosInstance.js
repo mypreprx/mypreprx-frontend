@@ -26,6 +26,11 @@ api.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
+// Routes that must never trigger the paywall redirect.
+// /pricing, /secure-payment and /confirmation render <Home /> behind a blurred
+// overlay, and Home calls premium endpoints — redirecting from there would loop.
+const PAYWALL_EXEMPT = ['/pricing', '/secure-payment', '/confirmation', '/subscriptions'];
+
 api.interceptors.response.use(
     (response) => {
         return response;
@@ -62,6 +67,20 @@ api.interceptors.response.use(
                 console.error("Unauthorized access, possibly token expired.");
             }
         }
+
+        // Backend paywall rejected the request. Entitlement is only revoked by
+        // Stripe webhooks, so send the user back to the pricing flow.
+        if (error.response && error.response.status === 402
+            && error.response.data?.code === 'SUBSCRIPTION_REQUIRED') {
+            const currentPath = window.location.pathname;
+            const isExempt = PAYWALL_EXEMPT.some(
+                (p) => currentPath === p || currentPath.startsWith(`${p}/`)
+            );
+            if (!isExempt) {
+                window.location.href = '/pricing';
+            }
+        }
+
         return Promise.reject(error);
     }
 );

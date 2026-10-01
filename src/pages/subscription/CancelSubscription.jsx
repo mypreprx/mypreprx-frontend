@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import api from "../../config/axiosInstance";
 import { SubscriptionPageLayout } from "./SubscriptionPageLayout";
@@ -13,14 +14,19 @@ const CancelIconWarn = () => (
 export const CancelSubscription = () => {
   const [selectedReason, setSelectedReason] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await api.post("/billing/cancel");
+      // The reason is persisted on the subscription record (and echoed in the
+      // cancellation notification) — previously it was collected and discarded.
+      const res = await api.post("/billing/cancel", {
+        reason: selectedReason || undefined,
+      });
       toast.success(res.data?.message || "Subscription will cancel at the end of the paid period");
-      window.location.href = "/subscriptions/manage";
+      navigate("/subscriptions/manage");
     } catch (err) {
       toast.error(err.response?.data?.message || "Unable to cancel subscription");
     } finally {
@@ -77,7 +83,7 @@ export const CancelSubscription = () => {
             <button
               type="button"
               className="sub-btn sub-btn-primary"
-              onClick={() => (window.location.href = "/subscriptions/manage")}
+              onClick={() => navigate("/subscriptions/manage")}
             >
               Keep My Subscription
             </button>

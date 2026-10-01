@@ -1,33 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { PLAN_LIST, TRIAL_DAYS } from '../../config/plans';
 import './PricingPlan.css';
 
-const plans = [
-  {
-    id: 'monthly',
-    title: 'Monthly',
-    price: '$29.99',
-    billingPeriod: '/month',
-    badge: '3-day free trial',
-  },
-  {
-    id: 'three-month',
-    title: '3-Month',
-    price: '$79.99',
-    billingPeriod: '/3 months',
-    badge: '3-day free trial',
-  },
-  {
-    id: 'annual',
-    title: 'Annual',
-    price: '$259.00',
-    billingPeriod: '/year',
-    badge: '3-day free trial',
-  },
-];
-
 const features = [
-  '3-day free trial',
+  `${TRIAL_DAYS}-day free trial`,
   'Auto-renews until canceled',
   'Access to all premium features',
 ];
@@ -46,12 +23,12 @@ export default function PricingPlan() {
       {/* Header */}
       <div className="pricing-header">
         <h2 className="pricing-title">Choose Your Plan</h2>
-        <p className="pricing-subtitle">Start your 3-day free trial. Cancel anytime.</p>
+        <p className="pricing-subtitle">Start your {TRIAL_DAYS}-day free trial. Cancel anytime.</p>
       </div>
 
       {/* Plan Cards Grid / Container */}
       <div className="plans-wrapper">
-        {plans.map((plan) => {
+        {PLAN_LIST.map((plan) => {
           const isSelected = selectedPlan === plan.id;
           return (
             <div
@@ -60,10 +37,10 @@ export default function PricingPlan() {
               onClick={() => handleSelectPlan(plan.id)}
             >
               <div className="plan-info">
-                <span className="plan-title">{plan.title}</span>
+                <span className="plan-title">{plan.name}</span>
                 <div className="plan-price-row">
                   <span className="plan-price">{plan.price}</span>
-                  <span className="plan-period">{plan.billingPeriod}</span>
+                  <span className="plan-period">{plan.period}</span>
                 </div>
               </div>
 

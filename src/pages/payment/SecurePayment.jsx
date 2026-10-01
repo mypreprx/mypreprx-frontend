@@ -2,13 +2,8 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import api from '../../config/axiosInstance';
+import { getPlan, TRIAL_DAYS } from '../../config/plans';
 import './SecurePayment.css';
-
-const PLAN_DETAILS = {
-  monthly: { title: 'Monthly', price: '$29.99', period: '/month' },
-  'three-month': { title: '3-Month', price: '$79.99', period: '/3 months' },
-  annual: { title: 'Annual', price: '$259.00', period: '/year' },
-};
 
 export default function SecurePayment() {
   const location = useLocation();
@@ -16,7 +11,7 @@ export default function SecurePayment() {
   const [loading, setLoading] = useState(false);
 
   const planId = location.state?.planId || 'monthly';
-  const plan = PLAN_DETAILS[planId] || PLAN_DETAILS.monthly;
+  const plan = getPlan(planId) || getPlan('monthly');
 
   const handleContinueToStripe = async () => {
     setLoading(true);
@@ -81,8 +76,8 @@ export default function SecurePayment() {
           }}
         >
           <div>
-            <div style={{ fontWeight: 700, color: '#072445', fontSize: 16 }}>{plan.title} plan</div>
-            <div style={{ fontSize: 13, color: '#555555', fontWeight: 500 }}>3-day free trial</div>
+            <div style={{ fontWeight: 700, color: '#072445', fontSize: 16 }}>{plan.name} plan</div>
+            <div style={{ fontSize: 13, color: '#555555', fontWeight: 500 }}>{TRIAL_DAYS}-day free trial</div>
           </div>
           <div style={{ fontWeight: 700, color: '#072445', fontSize: 18 }}>
             {plan.price}

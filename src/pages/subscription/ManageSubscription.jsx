@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import api from "../../config/axiosInstance";
+import { getPlan } from "../../config/plans";
 import { SubscriptionPageLayout } from "./SubscriptionPageLayout";
 import "./Subscription.css";
 
@@ -10,12 +12,6 @@ const CheckIcon = () => (
     <path d="M8.5 12.5L10.8 14.8L15.5 9.5" stroke="#319795" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
-
-const PLAN_LABELS = {
-  monthly: { name: "Monthly", price: "$29.99", cycle: "Monthly" },
-  "three-month": { name: "3-Month", price: "$79.99", cycle: "Every 3 months" },
-  annual: { name: "Annual", price: "$259.00", cycle: "Yearly" },
-};
 
 const STATUS_LABELS = {
   none: "No subscription",
@@ -45,6 +41,7 @@ const badgeClass = (status) => {
 export const ManageSubscription = () => {
   const [sub, setSub] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const load = async () => {
     setLoading(true);
@@ -62,7 +59,7 @@ export const ManageSubscription = () => {
     load();
   }, []);
 
-  const plan = sub?.planId ? PLAN_LABELS[sub.planId] : null;
+  const plan = sub?.planId ? getPlan(sub.planId) : null;
   const status = sub?.status || "none";
 
   const openPortal = async () => {
@@ -102,7 +99,7 @@ export const ManageSubscription = () => {
         </ul>
 
         <div className="sub-actions" style={{ marginTop: "24px" }}>
-          <button type="button" className="sub-btn sub-btn-primary" onClick={() => (window.location.href = "/subscriptions/upgrade")}>
+          <button type="button" className="sub-btn sub-btn-primary" onClick={() => navigate("/subscriptions/upgrade")}>
             Upgrade Plan
           </button>
           <button type="button" className="sub-btn sub-btn-outline" onClick={openPortal}>
@@ -155,7 +152,7 @@ export const ManageSubscription = () => {
             <button
               type="button"
               className="sub-btn sub-btn-danger"
-              onClick={() => (window.location.href = "/subscriptions/cancel")}
+              onClick={() => navigate("/subscriptions/cancel")}
             >
               Cancel Subscription
             </button>

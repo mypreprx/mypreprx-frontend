@@ -7,6 +7,7 @@ import useAuthStore from "../../../store/authStore";
 import ConfirmationModal from "../modal/ConfirmationModal";
 import { getAvatarUrl } from "../../../config/avatarUrl";
 import { searchableItems } from "../../../data/searchableItems";
+import NotificationBell from "../NotificationBell";
 import {
     SidebarIconHome,
     SidebarIconStudyZone,
@@ -192,6 +193,8 @@ export const Topbar = ({ pageTitle, setSidebarOpen, sidebarOpen }) => {
                             </div>
                         )}
                     </div>
+
+                    <NotificationBell />
 
                     <div 
                         className={styles["profile-area"]} 
