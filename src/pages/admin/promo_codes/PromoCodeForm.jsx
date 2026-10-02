@@ -30,7 +30,14 @@ const PromoCodeForm = ({ promo, onSuccess, onCancel }) => {
         defaultValues: { title: '', code: '', link: '', notes: '', isActive: true }
     });
 
-    const clientBase = (import.meta.env.VITE_CLIENT_URL || 'https://www.mypreprx.com').replace(/\/+$/, '');
+    // Must mirror backend `clientBaseUrl()` in PromoCodeService, which builds
+    // links from process.env.CLIENT_URL. If only one side is configured the two
+    // would disagree and the admin's QR would point somewhere the backend never
+    // intended. VITE_CLIENT_URL is the required source; the fallback only keeps
+    // a local dev server working before .env is set up.
+    const clientBase = (
+        import.meta.env.VITE_CLIENT_URL || 'http://localhost:5173'
+    ).replace(/\/+$/, '');
     const buildLink = (code) => (code ? `${clientBase}/promo/${code}` : '');
 
     const code = watch('code');
