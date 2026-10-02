@@ -247,10 +247,60 @@
     color: #777;
 }
 
+/* A consumed code reads as spent, not merely inactive. */
+.redeemed {
+    background: #fff3e0;
+    color: #b26a00;
+}
+
+.redeemerCell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 140px;
+}
+
+.redeemerName {
+    font-weight: 600;
+    color: #083862;
+    font-size: 13px;
+}
+
+.redeemerEmail,
+.redeemedAt {
+    font-size: 11px;
+    color: #718096;
+}
+
+.notRedeemed {
+    color: #a0aec0;
+}
+
+.downloadBtn,
+.shareBtn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #cfdbe8;
+    background: #fff;
+    color: #083862;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.downloadBtn:hover,
+.shareBtn:hover {
+    background: #f0f5fa;
+    border-color: #083862;
+}
+
 .actions {
     display: flex;
     gap: 8px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .qrBtn,
@@ -336,6 +386,70 @@
     font-size: 12px;
     color: #888;
     font-style: italic;
+}
+
+.qrModalActions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 14px;
+}
+
+.qrRedeemedNotice {
+    margin-top: 14px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    color: #7a5b00;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.shareBody {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.shareBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.shareLabel {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.shareTextarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cfdbe8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: inherit;
+    line-height: 1.5;
+    resize: vertical;
+    color: #334155;
+}
+
+.shareTextarea:focus {
+    outline: 2px solid #083862;
+    outline-offset: -1px;
+}
+
+.shareActions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-top: 4px;
 }
 
 /* States */

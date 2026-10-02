@@ -408,6 +408,35 @@ const useAdminStore = create((set) => ({
         }
     },
 
+    /**
+     * Downloads the QR as a real PNG file.
+     *
+     * Fetched as a blob rather than a plain `<a download>` because the endpoint
+     * requires the admin bearer token — a bare link would return 401. The
+     * object URL is revoked immediately after the click is dispatched.
+     */
+    downloadPromoQr: async (id, code) => {
+        try {
+            const response = await api.get(`/admin/promo-codes/${id}/qr`, {
+                responseType: 'blob',
+            });
+            const url = URL.createObjectURL(response.data);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `promo-${code}.png`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+            toast.success('QR code downloaded');
+            return true;
+        } catch (err) {
+            const msg = err.response?.data?.message || 'Failed to download the QR code';
+            toast.error(msg);
+            return false;
+        }
+    },
+
     /** Preview a random code + link without saving anything. */
     generatePromoCode: async () => {
         try {
