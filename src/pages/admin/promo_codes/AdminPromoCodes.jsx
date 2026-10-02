@@ -6,7 +6,14 @@ import Modal from '../../../components/common/modal/Modal';
 import ConfirmationModal from '../../../components/common/modal/ConfirmationModal';
 import PromoCodeForm from './PromoCodeForm';
 import toast from 'react-hot-toast';
-import { AdminEditIcon, AdminDeleteIcon } from '../../../components/common/Icons';
+import {
+    AdminEditIcon,
+    AdminDeleteIcon,
+    AdminCopyIcon,
+    AdminShareIcon,
+    AdminDownloadIcon,
+    AdminMailIcon,
+} from '../../../components/common/Icons';
 import styles from './AdminPromoCodes.module.css';
 
 /**
@@ -198,7 +205,6 @@ const AdminPromoCodes = () => {
                 <table className={styles.table}>
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Title</th>
                             <th>Promo Code</th>
                             <th>Link</th>
@@ -211,7 +217,7 @@ const AdminPromoCodes = () => {
                     <tbody>
                         {filteredPromos.length === 0 ? (
                             <tr>
-                                <td colSpan="8" className={styles.emptyState}>
+                                <td colSpan="7" className={styles.emptyState}>
                                     <div className={styles.noDataInfo}>
                                         <p>
                                             {promoCodes.length === 0
@@ -223,9 +229,8 @@ const AdminPromoCodes = () => {
                                 </td>
                             </tr>
                         ) : (
-                            filteredPromos.map((promo, index) => (
+                            filteredPromos.map((promo) => (
                                 <tr key={promo._id}>
-                                    <td>{index + 1}</td>
                                     <td className={styles.promoTitle}>{promo.title}</td>
                                     <td>
                                         <code className={styles.codeChip}>{promo.code}</code>
@@ -242,11 +247,12 @@ const AdminPromoCodes = () => {
                                                 {promo.link}
                                             </a>
                                             <button
-                                                className={styles.copyLinkBtn}
-                                                onClick={() => copyText(promo.link)}
+                                                className={styles.copyIconBtn}
+                                                onClick={() => copyText(promo.link, 'Link copied')}
                                                 title="Copy link"
+                                                aria-label={`Copy link for ${promo.code}`}
                                             >
-                                                Copy
+                                                <AdminCopyIcon />
                                             </button>
                                         </div>
                                     </td>
@@ -284,38 +290,33 @@ const AdminPromoCodes = () => {
                                     <td className={styles.actions}>
                                         <button
                                             className={styles.qrBtn}
-                                            onClick={() => setSharePromo(promo)}
-                                            title="Share promo"
-                                            aria-label={`Share promo ${promo.code}`}
-                                        >Share
-                                        </button>
-                                        <button
-                                            className={styles.qrBtn}
                                             onClick={() => setQrPromo(promo)}
                                             title="View QR code"
+                                            aria-label={`View QR code for ${promo.code}`}
                                         >
                                             <QRCode value={promo.qrPayload || promo.link} size={20} bgColor="#ffffff" fgColor="#083862" />
                                         </button>
                                         <button
-                                            className={styles.downloadBtn}
+                                            className={styles.iconBtn}
                                             onClick={() => handleDownloadQr(promo)}
                                             title="Download QR as PNG"
                                             aria-label={`Download QR for ${promo.code}`}
                                         >
-                                            Download
+                                            <AdminDownloadIcon />
                                         </button>
                                         <button
-                                            className={styles.shareBtn}
-                                            onClick={() => sharePromoLink(promo)}
+                                            className={styles.iconBtn}
+                                            onClick={() => setSharePromo(promo)}
                                             title="Share promo"
                                             aria-label={`Share promo ${promo.code}`}
                                         >
-                                            Share
+                                            <AdminShareIcon />
                                         </button>
                                         <button
                                             className={styles.editBtn}
                                             onClick={() => handleEdit(promo)}
                                             title="Edit"
+                                            aria-label={`Edit ${promo.code}`}
                                         >
                                             <AdminEditIcon />
                                         </button>
@@ -368,16 +369,16 @@ const AdminPromoCodes = () => {
                         </p>
                         <div className={styles.qrModalActions}>
                             <button
-                                className={styles.downloadBtn}
+                                className={styles.actionBtn}
                                 onClick={() => handleDownloadQr(qrPromo)}
                             >
-                                Download PNG
+                                <AdminDownloadIcon /> Download PNG
                             </button>
                             <button
-                                className={styles.shareBtn}
-                                onClick={() => sharePromoLink(qrPromo)}
+                                className={styles.actionBtn}
+                                onClick={() => setSharePromo(qrPromo)}
                             >
-                                Share
+                                <AdminShareIcon /> Share
                             </button>
                         </div>
                         {isRedeemed(qrPromo) && (
@@ -412,10 +413,12 @@ const AdminPromoCodes = () => {
                                     {sharePromo.link}
                                 </a>
                                 <button
-                                    className={styles.copyLinkBtn}
+                                    className={styles.copyIconBtn}
                                     onClick={() => copyText(sharePromo.link, 'Link copied')}
+                                    title="Copy link"
+                                    aria-label="Copy link"
                                 >
-                                    Copy
+                                    <AdminCopyIcon />
                                 </button>
                             </div>
                         </div>
@@ -425,10 +428,12 @@ const AdminPromoCodes = () => {
                             <div className={styles.linkCell}>
                                 <code className={styles.codeChip}>{sharePromo.code}</code>
                                 <button
-                                    className={styles.copyLinkBtn}
+                                    className={styles.copyIconBtn}
                                     onClick={() => copyText(sharePromo.code, 'Code copied')}
+                                    title="Copy code"
+                                    aria-label="Copy code"
                                 >
-                                    Copy
+                                    <AdminCopyIcon />
                                 </button>
                             </div>
                         </div>
@@ -442,7 +447,7 @@ const AdminPromoCodes = () => {
                                 value={`You're invited! Redeem 6 months of free PrepRX access with code ${sharePromo.code}: ${sharePromo.link}`}
                             />
                             <button
-                                className={styles.copyLinkBtn}
+                                className={styles.actionBtn}
                                 onClick={() =>
                                     copyText(
                                         `You're invited! Redeem 6 months of free PrepRX access with code ${sharePromo.code}: ${sharePromo.link}`,
@@ -450,19 +455,19 @@ const AdminPromoCodes = () => {
                                     )
                                 }
                             >
-                                Copy share text
+                                <AdminCopyIcon /> Copy share text
                             </button>
                         </div>
 
                         <div className={styles.shareActions}>
-                            <button className={styles.shareBtn} onClick={() => shareByEmail(sharePromo)}>
-                                Share by email
+                            <button className={styles.actionBtn} onClick={() => shareByEmail(sharePromo)}>
+                                <AdminMailIcon /> Share by email
                             </button>
-                            <button className={styles.downloadBtn} onClick={() => handleDownloadQr(sharePromo)}>
-                                Download QR
+                            <button className={styles.actionBtn} onClick={() => handleDownloadQr(sharePromo)}>
+                                <AdminDownloadIcon /> Download QR
                             </button>
-                            <button className={styles.copyLinkBtn} onClick={() => sharePromoLink(sharePromo)}>
-                                Share…
+                            <button className={styles.actionBtn} onClick={() => sharePromoLink(sharePromo)}>
+                                <AdminShareIcon /> Share…
                             </button>
                         </div>
 

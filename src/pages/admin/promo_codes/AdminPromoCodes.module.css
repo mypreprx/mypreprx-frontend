@@ -138,16 +138,24 @@
 .tableWrapper {
     overflow-x: auto;
     scrollbar-width: none;
+    /* Stop the Link and Actions columns crushing each other on narrow screens;
+       the wrapper scrolls instead of squeezing the text into unreadable slivers. */
+    -webkit-overflow-scrolling: touch;
+}
+
+.tableWrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .table {
     width: 100%;
+    min-width: 900px;
     border-collapse: collapse;
 }
 
 .table th,
 .table td {
-    padding: 16px 20px;
+    padding: 14px 12px;
     text-align: left;
     border-bottom: 1px solid #f0f0f0;
 }
@@ -193,15 +201,17 @@
 .linkCell {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     min-width: 0;
+    max-width: 260px;
 }
 
 .linkAnchor {
     color: #0a4f8a;
     text-decoration: none;
     font-size: 13px;
-    max-width: 230px;
+    min-width: 0;
+    flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -211,21 +221,26 @@
     text-decoration: underline;
 }
 
-.copyLinkBtn {
-    padding: 4px 10px;
+/* Icon-only so the Link column stays narrow and the row does not wrap. */
+.copyIconBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
     border-radius: 6px;
-    border: 1px solid #083862;
+    border: 1px solid #cfdbe8;
     background: #fff;
     color: #083862;
-    font-size: 12px;
-    font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
     flex-shrink: 0;
+    transition: all 0.2s ease;
 }
 
-.copyLinkBtn:hover {
+.copyIconBtn:hover {
     background: #083862;
+    border-color: #083862;
     color: #fff;
 }
 
@@ -296,11 +311,57 @@
     border-color: #083862;
 }
 
+/* Row action icons — same box as the QR/edit/delete buttons so the column
+   stays on one line regardless of viewport width. */
+.iconBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 8px;
+    border: 1px solid #cfdbe8;
+    background: #fff;
+    color: #083862;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.iconBtn:hover {
+    background: #f0f5fa;
+    border-color: #083862;
+}
+
+/* Labelled variant used inside modals, where an icon alone is ambiguous. */
+.actionBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 1px solid #cfdbe8;
+    background: #fff;
+    color: #083862;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.actionBtn:hover {
+    background: #f0f5fa;
+    border-color: #083862;
+}
+
 .actions {
     display: flex;
     gap: 8px;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .qrBtn,
