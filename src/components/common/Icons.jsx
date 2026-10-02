@@ -416,3 +416,10 @@ export const TrPlanPsychIcon = () => (
     </svg>
 );
 
+// Admin sidebar — promo codes
+export const AdminPromoIcon = ({ active, width, height }) => (
+    <svg width={width} height={height} fill={active ? "#fff" : "rgba(255,255,255,0.8)"} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <path fillRule="evenodd" clipRule="evenodd" d="M14.53 2H6.5C3.46 2 1 4.46 1 7.5v8.03c0 1.06.42 2.08 1.17 2.83l10.6 10.6a4 4 0 0 0 5.66 0l6.9-6.9a4 4 0 0 0 0-5.66L14.73 5.17A3.98 3.98 0 0 0 14.53 2ZM6 7.5a1.75 1.75 0 1 1 3.5 0 1.75 1.75 0 0 1-3.5 0Z" />
+    </svg>
+);
+

@@ -1,0 +1,211 @@
+.promoForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.input {
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #333;
+    transition: all 0.2s ease;
+    background: #fff;
+    width: 100%;
+    min-width: 0;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #083862;
+    box-shadow: 0 0 0 3px rgba(8, 56, 98, 0.1);
+}
+
+.input::placeholder {
+    color: #999;
+}
+
+.input:disabled {
+    background: #f5f5f5;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.codeInput {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 76px;
+    line-height: 1.5;
+}
+
+.codeRow,
+.linkRow {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.generateBtn,
+.copyBtn {
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: 2px solid #083862;
+    background: #fff;
+    color: #083862;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.generateBtn:hover:not(:disabled),
+.copyBtn:hover:not(:disabled) {
+    background: #083862;
+    color: #fff;
+}
+
+.generateBtn:disabled,
+.copyBtn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.qrBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    min-height: 186px;
+}
+
+.qrPlaceholder {
+    color: #888;
+    font-size: 13px;
+    text-align: center;
+    font-style: italic;
+    max-width: 220px;
+}
+
+.hint {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+}
+
+.inputError {
+    border-color: #ff4d4f !important;
+}
+
+.errorText {
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+}
+
+.switchRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+}
+
+.switchRow input {
+    width: 18px;
+    height: 18px;
+    accent-color: #083862;
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.cancelBtn,
+.submitBtn {
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancelBtn {
+    background: #f1f1f1;
+    color: #555;
+}
+
+.cancelBtn:hover:not(:disabled) {
+    background: #e4e4e4;
+}
+
+.submitBtn {
+    background: linear-gradient(135deg, #083862 0%, #0a4f8a 100%);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(8, 56, 98, 0.25);
+}
+
+.submitBtn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(8, 56, 98, 0.35);
+}
+
+.cancelBtn:disabled,
+.submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+    .codeRow,
+    .linkRow {
+        flex-direction: column;
+    }
+
+    .generateBtn,
+    .copyBtn {
+        width: 100%;
+    }
+
+    .actions {
+        flex-direction: column-reverse;
+    }
+
+    .cancelBtn,
+    .submitBtn {
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 import useAuthStore from "../store/authStore";
+import { hasPendingPromo } from "../utils/promoStorage";
 
 const RedirectAuthenticatedUser = ({ children }) => {
     const { isAuthenticated, user, isCheckingAuth, isLoading } = useAuthStore();
@@ -12,8 +13,16 @@ const RedirectAuthenticatedUser = ({ children }) => {
         return null;
     }
 
-    if (isAuthenticated && user) {
-        // Not subscribed yet (or suspended) → always show the subscription flow first,
+if (isAuthenticated && user) {
+        // A promo code the user opened (or scanned) before authenticating wins
+        // over the normal routing: the whole point is that they land straight
+        // on the redemption screen after signing in or up. This one hook covers
+        // password login, signup and Google sign-in alike.
+        if (hasPendingPromo()) {
+            return <Navigate to="/redeem-promo" replace />;
+        }
+
+        // Not subscribed yet (or suspended) — always show the subscription flow first,
         // never the dashboard. Matches Google new-user behavior.
         if (user.subscription?.premium !== true) {
             return <Navigate to="/pricing" replace />;

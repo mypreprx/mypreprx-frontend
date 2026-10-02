@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import useAdminAuthStore from '../../store/adminAuthStore';
-import { AdminUsersIcon, AdminCoursesIcon, AdminDashboardIcon, AdminLogoutIcon, AdminAudiosIcon, AdminVideosIcon } from '../../components/common/Icons';
+import { AdminUsersIcon, AdminCoursesIcon, AdminDashboardIcon, AdminLogoutIcon, AdminAudiosIcon, AdminVideosIcon, AdminPromoIcon } from '../../components/common/Icons';
 import styles from './AdminLayout.module.css';
 
 
@@ -16,6 +16,7 @@ const AdminLayout = () => {
         { label: 'Dashboard', path: '/admin/dashboard', icon: AdminDashboardIcon, iconProps: { width: 22, height: 22 } },
         { label: 'Analytics', path: '/admin/analytics', icon: AdminDashboardIcon, iconProps: { width: 22, height: 22 } },
         { label: 'Users', path: '/admin/users', icon: AdminUsersIcon, iconProps: { width: 22, height: 22 } },
+        { label: 'Promo Codes', path: '/admin/promo-codes', icon: AdminPromoIcon, iconProps: { width: 20, height: 20 } },
         { label: 'Crash Courses', path: '/admin/crash-courses', icon: AdminCoursesIcon, iconProps: { width: 20, height: 20 } },
         { label: 'Visualization Room', path: '/admin/visualizations', icon: AdminVideosIcon, iconProps: { width: 20, height: 20 } },
         { label: 'Subliminal Audios', path: '/admin/subliminal-audio', icon: AdminAudiosIcon, iconProps: { width: 20, height: 20 } },

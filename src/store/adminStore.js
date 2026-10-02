@@ -7,6 +7,7 @@ const useAdminStore = create((set) => ({
     visualizations: [],
     topics: [],
     users: [],
+    promoCodes: [],
     stats: {
         totalUsers: 0,
         totalCourses: 0,
@@ -390,6 +391,77 @@ const useAdminStore = create((set) => ({
                 isLoading: false
             });
             toast.error('Failed to load dashboard data');
+        }
+    },
+
+    /* --------------------------- Promo codes --------------------------- */
+
+    fetchPromoCodes: async () => {
+        set({ isFetching: true, error: null });
+        try {
+            const response = await api.get('/admin/promo-codes');
+            set({ promoCodes: response.data.data || [], isFetching: false });
+        } catch (err) {
+            const msg = err.response?.data?.message || 'Failed to load promo codes';
+            set({ error: msg, isFetching: false });
+            toast.error(msg);
+        }
+    },
+
+    /** Preview a random code + link without saving anything. */
+    generatePromoCode: async () => {
+        try {
+            const response = await api.get('/admin/promo-codes/generate');
+            return response.data.data;
+        } catch (err) {
+            const msg = err.response?.data?.message || 'Failed to generate a promo code';
+            toast.error(msg);
+            return null;
+        }
+    },
+
+    createPromoCode: async (payload) => {
+        set({ isFetching: true });
+        try {
+            await api.post('/admin/promo-codes', payload);
+            await useAdminStore.getState().fetchPromoCodes();
+            toast.success('Promo code created');
+            set({ isFetching: false });
+            return true;
+        } catch (err) {
+            const msg = err.response?.data?.message || 'Failed to create promo code';
+            toast.error(msg);
+            set({ isFetching: false });
+            return false;
+        }
+    },
+
+    updatePromoCode: async (id, payload) => {
+        set({ isFetching: true });
+        try {
+            await api.put(`/admin/promo-codes/${id}`, payload);
+            await useAdminStore.getState().fetchPromoCodes();
+            toast.success('Promo code updated');
+            set({ isFetching: false });
+            return true;
+        } catch (err) {
+            const msg = err.response?.data?.message || 'Failed to update promo code';
+            toast.error(msg);
+            set({ isFetching: false });
+            return false;
+        }
+    },
+
+    deletePromoCode: async (id) => {
+        try {
+            await api.delete(`/admin/promo-codes/${id}`);
+            await useAdminStore.getState().fetchPromoCodes();
+            toast.success('Promo code deleted');
+            return true;
+        } catch (err) {
+            const msg = err.response?.data?.message || 'Failed to delete promo code';
+            toast.error(msg);
+            return false;
         }
     }
 

@@ -13,7 +13,13 @@ const CheckIcon = () => (
   </svg>
 );
 
+// A promo grant is not a Stripe subscription. Giving it its own label keeps
+// "Active" reserved for paying customers, so nobody mistakes free access for a
+// plan they can cancel or change in the Stripe portal.
+const PROMO_LABEL = 'Free — promo code';
+
 const STATUS_LABELS = {
+  promo: PROMO_LABEL,
   none: "No subscription",
   trialing: "Free trial",
   active: "Active",
@@ -61,6 +67,9 @@ export const ManageSubscription = () => {
 
   const plan = sub?.planId ? getPlan(sub.planId) : null;
   const status = sub?.status || "none";
+  // A promo grant has no Stripe subscription, no plan and no billing history.
+  // Show what it actually is instead of an empty plan and dead portal buttons.
+  const isPromo = status === "promo";
 
   const openPortal = async () => {
     try {
@@ -80,9 +89,13 @@ export const ManageSubscription = () => {
       <div className="sub-card">
         <div className="sub-plan-row">
           <div>
-            <p className="sub-plan-name">{plan?.name || "No active plan"}</p>
+            <p className="sub-plan-name">
+              {isPromo ? "Free access" : plan?.name || "No active plan"}
+            </p>
             <p className="sub-plan-price">
-              {plan?.price || "—"} {plan ? <span>/ {plan.cycle}</span> : null}
+              {isPromo
+                ? PROMO_LABEL
+                : `${plan?.price || "—"} ${plan ? <span>/ {plan.cycle}</span> : null}`}
             </p>
           </div>
           <span className={badgeClass(status)}>
@@ -98,17 +111,29 @@ export const ManageSubscription = () => {
           <li><CheckIcon /> Progress tracking</li>
         </ul>
 
-        <div className="sub-actions" style={{ marginTop: "24px" }}>
-          <button type="button" className="sub-btn sub-btn-primary" onClick={() => navigate("/subscriptions/upgrade")}>
-            Upgrade Plan
-          </button>
-          <button type="button" className="sub-btn sub-btn-outline" onClick={openPortal}>
-            Update Payment Method
-          </button>
-          <button type="button" className="sub-btn sub-btn-outline" onClick={openPortal}>
-            View Invoices
-          </button>
-        </div>
+        {isPromo ? (
+          <div className="sub-actions" style={{ marginTop: "24px" }}>
+            <button
+              type="button"
+              className="sub-btn sub-btn-primary"
+              onClick={() => navigate("/subscriptions/upgrade")}
+            >
+              Choose a Plan
+            </button>
+          </div>
+        ) : (
+          <div className="sub-actions" style={{ marginTop: "24px" }}>
+            <button type="button" className="sub-btn sub-btn-primary" onClick={() => navigate("/subscriptions/upgrade")}>
+              Upgrade Plan
+            </button>
+            <button type="button" className="sub-btn sub-btn-outline" onClick={openPortal}>
+              Update Payment Method
+            </button>
+            <button type="button" className="sub-btn sub-btn-outline" onClick={openPortal}>
+              View Invoices
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="sub-card">
@@ -128,6 +153,12 @@ export const ManageSubscription = () => {
               <span className="sub-info-label">Premium Access</span>
               <span className="sub-info-value">{sub?.premium ? "Yes" : "No"}</span>
             </div>
+            {isPromo && sub?.promo?.endsAt && (
+              <div className="sub-info-row">
+                <span className="sub-info-label">Free Access Ends</span>
+                <span className="sub-info-value">{formatDate(sub.promo.endsAt)}</span>
+              </div>
+            )}
             <div className="sub-info-row">
               <span className="sub-info-label">Trial Ends</span>
               <span className="sub-info-value">{formatDate(sub?.trialEndsAt)}</span>

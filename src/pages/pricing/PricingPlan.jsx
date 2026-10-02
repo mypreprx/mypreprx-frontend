@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PLAN_LIST, TRIAL_DAYS } from '../../config/plans';
+import useAuthStore from '../../store/authStore';
+import { savePendingPromo, clearPendingPromo } from '../../utils/promoStorage';
 import './PricingPlan.css';
 
 const features = [
@@ -11,11 +13,56 @@ const features = [
 
 export default function PricingPlan() {
   const [selectedPlan, setSelectedPlan] = useState('monthly');
+  const [promoOpen, setPromoOpen] = useState(false);
+  const [promoCode, setPromoCode] = useState('');
+  const [promoBusy, setPromoBusy] = useState(false);
+  const [promoError, setPromoError] = useState('');
+  const { redeemPromo } = useAuthStore();
   const navigate = useNavigate();
 
   const handleSelectPlan = (planId) => {
     setSelectedPlan(planId);
     navigate('/secure-payment', { state: { planId } });
+  };
+
+  const openPromo = () => {
+    setPromoOpen(true);
+    setPromoError('');
+  };
+
+  const closePromo = () => {
+    if (promoBusy) return;
+    setPromoOpen(false);
+    setPromoCode('');
+    setPromoError('');
+  };
+
+  const handlePromoSubmit = async (event) => {
+    event.preventDefault();
+
+    const code = promoCode.trim();
+    if (!code) {
+      setPromoError('Enter your promo code.');
+      return;
+    }
+
+    setPromoBusy(true);
+    setPromoError('');
+
+    // Store it first so a page reload mid-request does not lose the code.
+    savePendingPromo(code);
+
+    try {
+      await redeemPromo(code);
+      navigate('/redeem-promo');
+    } catch (error) {
+      setPromoError(
+        error.response?.data?.message || 'We could not apply this promo code. Please try again.'
+      );
+      clearPendingPromo();
+    } finally {
+      setPromoBusy(false);
+    }
   };
 
   return (
@@ -24,6 +71,14 @@ export default function PricingPlan() {
       <div className="pricing-header">
         <h2 className="pricing-title">Choose Your Plan</h2>
         <p className="pricing-subtitle">Start your {TRIAL_DAYS}-day free trial. Cancel anytime.</p>
+      </div>
+
+      {/* Promo code entry — for anyone who already has a code */}
+      <div className="promo-entry">
+        <p className="promo-entry-text">Already have a promo code?</p>
+        <button type="button" className="promo-entry-btn" onClick={openPromo}>
+          I have a promo code
+        </button>
       </div>
 
       {/* Plan Cards Grid / Container */}
@@ -95,6 +150,67 @@ export default function PricingPlan() {
           </div>
         ))}
       </div>
+
+      {/* Promo code modal */}
+      {promoOpen && (
+        <div
+          className="promo-modal-backdrop"
+          onClick={closePromo}
+          role="presentation"
+        >
+          <div
+            className="promo-modal"
+            onClick={(event) => event.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="promo-modal-title"
+          >
+            <h3 className="promo-modal-title" id="promo-modal-title">
+              Redeem a promo code
+            </h3>
+            <p className="promo-modal-subtitle">
+              Enter your code to unlock 6 months of free premium access.
+            </p>
+
+            <form onSubmit={handlePromoSubmit}>
+              <label className="promo-modal-label" htmlFor="promo-code-input">
+                Promo code
+              </label>
+              <input
+                id="promo-code-input"
+                type="text"
+                className="promo-modal-input"
+                value={promoCode}
+                onChange={(event) => setPromoCode(event.target.value.toUpperCase())}
+                placeholder="e.g. K7M2P9XB"
+                autoComplete="off"
+                autoFocus
+                disabled={promoBusy}
+              />
+
+              {promoError && (
+                <p className="promo-modal-error" role="alert">
+                  {promoError}
+                </p>
+              )}
+
+              <div className="promo-modal-actions">
+                <button
+                  type="button"
+                  className="promo-modal-cancel"
+                  onClick={closePromo}
+                  disabled={promoBusy}
+                >
+                  Cancel
+                </button>
+                <button type="submit" className="promo-modal-submit" disabled={promoBusy}>
+                  {promoBusy ? 'Applying…' : 'Apply code'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import api from '../config/axiosInstance';
 import toast from 'react-hot-toast';
+import { clearPendingPromo } from '../utils/promoStorage';
 
 const useAuthStore = create((set) => ({
     user: null,
@@ -132,10 +133,46 @@ const useAuthStore = create((set) => ({
     },
 
     resetPassword: async (token, password) => {
+        set({ error: null, isLoading: true, loadingText: 'Updating password...' });
         try {
             const response = await api.post(`/user/reset-password/${token}`, { password });
+            set({ isLoading: false, loadingText: '' });
             return response.data;
         } catch (error) {
+            const errorMessage = error.response?.data?.message || 'Password reset failed';
+            set({ error: errorMessage, isLoading: false, loadingText: '' });
+            throw error;
+        }
+    },
+
+    /**
+     * Redeem a single-use promo code for the signed-in account.
+     * Throws so the caller can render the server's message.
+     */
+    redeemPromo: async (code) => {
+        try {
+            const response = await api.post('/user/promo/redeem', { code });
+
+            // Pull the fresh profile so `subscription` reflects the new
+            // entitlement and routing decisions use current data.
+            try {
+                const profileRes = await api.get('/user/Home');
+                set({ user: profileRes.data.user });
+            } catch {
+                // Entitlement already applied server-side; a stale profile here
+                // only affects the next redirect, not the access itself.
+            }
+
+            clearPendingPromo();
+            return response.data;
+        } catch (error) {
+            // A 4xx is a definitive answer (invalid / already used / already
+            // subscribed), so stop carrying the code. A 5xx or a dropped
+            // connection may be transient, so keep it and let the user retry.
+            const status = error.response?.status;
+            if (status && status < 500) {
+                clearPendingPromo();
+            }
             throw error;
         }
     }

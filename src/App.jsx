@@ -110,6 +110,7 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/dashboard/AdminDashboard";
 import AdminAnalytics from "./pages/admin/analytics/AdminAnalytics";
 import AdminUsers from "./pages/admin/users/AdminUsers";
+import AdminPromoCodes from "./pages/admin/promo_codes/AdminPromoCodes";
 import AdminCrashCourses from "./pages/admin/crash_courses/AdminCrashCourses";
 import AdminSubliminalAudio from "./pages/admin/subliminal_audio/AdminSubliminalAudio";
 import AdminPriorityPractice from "./pages/admin/piriorityPractice/AdminPriorityPractice";
@@ -130,6 +131,7 @@ import MichelAIButton from "./components/MichelAIButton";
 import { Toaster } from 'react-hot-toast';
 import LoadingScreen from './components/common/loading/LoadingScreen';
 import RedirectAuthenticatedUser from "./components/RedirectAuthenticatedUser";
+import PromoRedeem from "./pages/promo/PromoRedeem";
 
 
 
@@ -151,7 +153,7 @@ const App = () => {
     useEffect(() => {
         const onNotification = (payload) => {
             if (payload?.title) {
-                toast(`${payload.title} — ${payload.message}`, { id: `notif-${payload.id || payload.title}` });
+                toast(`${payload.title} â€” ${payload.message}`, { id: `notif-${payload.id || payload.title}` });
             }
         };
         socket.on("notification", onNotification);
@@ -192,6 +194,11 @@ const App = () => {
                         </Route>
 
                         <Route path="/unauthorized" element={<Unauthorized />} />
+
+                        {/* Promo redemption — public so a shared link / scanned QR
+                            works before the visitor has an account. */}
+                        <Route path="/promo/:code" element={<PromoRedeem />} />
+                        <Route path="/redeem-promo" element={<PromoRedeem />} />
 
                         {/* Protected Routes */}
                         <Route element={<ProtectedRoute />}>
@@ -294,6 +301,9 @@ const App = () => {
                                 <Route path="dashboard" element={<AdminDashboard />} />
                                 <Route path="analytics" element={<AdminAnalytics />} />
                                 <Route path="users" element={<AdminUsers />} />
+                                <Route path="promo-codes" element={<AdminPromoCodes />} />
+                                <Route path="promo-codes/create" element={<AdminPromoCodes />} />
+                                <Route path="promo-codes/edit" element={<AdminPromoCodes />} />
                                 <Route path="crash-courses" element={<AdminCrashCourses />} />
                                 <Route path="crash-courses/create" element={<AdminCrashCourses />} />
                                 <Route path="crash-courses/edit" element={<AdminCrashCourses />} />
