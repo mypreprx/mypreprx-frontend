@@ -56,7 +56,7 @@ export const StrategyDrill = () => {
                         toast.error(res.data.message || "Failed to generate dynamic questions");
                     }
                 } else {
-                    const res = await api.get(`/user/strategy/questions?strategyTab=${encodeURIComponent(strategyTab)}&limit=15`);
+                    const res = await api.get(`/user/getStrategyQuestions?strategyTab=${encodeURIComponent(strategyTab)}&limit=15`);
                     if (res.data.success) {
                         // Filter by subcategory if needed, though random from tab is fine too
                         let filtered = res.data.data;
@@ -292,7 +292,7 @@ export const StrategyDrill = () => {
                                     };
                                     const res = await api.post('/user/flashcards/add', payload);
                                     if (res.data.success) toast.success("Flagged for review!");
-                                } catch (error) {
+                                } catch {
                                     toast.error("Failed to flag question");
                                 }
                             }}

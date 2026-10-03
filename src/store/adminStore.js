@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import api from '../config/axiosInstance';
 import toast from 'react-hot-toast';
 
-const useAdminStore = create((set) => ({
+const useAdminStore = create((set, get) => ({
     courses: [],
     visualizations: [],
     topics: [],
@@ -132,7 +132,7 @@ const useAdminStore = create((set) => ({
         try {
             const response = await api.get('/admin/alltopics');
             set({ topics: response.data.data || [] });
-        } catch (err) {
+        } catch {
             toast.error('Failed to load topics');
         }
     },
@@ -178,7 +178,7 @@ const useAdminStore = create((set) => ({
         try {
             const res = await api.get(`/admin/subtopicsforTopic/${topicId}`);
             return res.data.data || [];
-        } catch (err) {
+        } catch {
             toast.error('Failed to load subtopics');
             return [];
         }

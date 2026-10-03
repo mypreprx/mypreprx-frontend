@@ -93,9 +93,14 @@ export const ManageSubscription = () => {
               {isPromo ? "Free access" : plan?.name || "No active plan"}
             </p>
             <p className="sub-plan-price">
-              {isPromo
-                ? PROMO_LABEL
-                : `${plan?.price || "—"} ${plan ? <span>/ {plan.cycle}</span> : null}`}
+              {isPromo ? (
+                PROMO_LABEL
+              ) : (
+                <>
+                  {plan?.price || "—"}
+                  {plan ? <span> / {plan.cycle}</span> : null}
+                </>
+              )}
             </p>
           </div>
           <span className={badgeClass(status)}>
@@ -178,7 +183,8 @@ export const ManageSubscription = () => {
           </div>
         )}
 
-        {status !== "none" && status !== "canceled" && !sub?.cancelAtPeriodEnd && (
+        {/* A promo grant has no Stripe subscription, so there is nothing to cancel. */}
+        {status !== "none" && status !== "canceled" && !isPromo && !sub?.cancelAtPeriodEnd && (
           <div className="sub-actions" style={{ marginTop: "24px" }}>
             <button
               type="button"
