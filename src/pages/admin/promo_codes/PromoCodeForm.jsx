@@ -78,7 +78,6 @@ const PromoCodeForm = ({ promo, onSuccess, onCancel }) => {
         const payload = {
             title: data.title,
             code: (data.code || '').toUpperCase().trim(),
-            link: (data.link || '').trim(),
             notes: data.notes || '',
             isActive: data.isActive
         };
