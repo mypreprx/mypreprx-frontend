@@ -35,9 +35,7 @@ const PromoCodeForm = ({ promo, onSuccess, onCancel }) => {
     // would disagree and the admin's QR would point somewhere the backend never
     // intended. VITE_CLIENT_URL is the required source; the fallback only keeps
     // a local dev server working before .env is set up.
-    const clientBase = (
-        import.meta.env.VITE_CLIENT_URL || 'http://localhost:5173'
-    ).replace(/\/+$/, '');
+    const clientBase = import.meta.env.VITE_CLIENT_URL.replace(/\/+$/, '');
     const buildLink = (code) => (code ? `${clientBase}/promo/${code}` : '');
 
     const code = watch('code');
