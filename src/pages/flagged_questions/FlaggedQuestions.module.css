@@ -13,7 +13,7 @@
 }
 
 .fq-back-btn-container {
-    margin-bottom: 20px;
+    display: none;
 }
 
 /* ---------------- CONTENT ---------------- */

@@ -8,7 +8,6 @@ import useAffirmationStore from "../../../store/affirmationStore";
 
 import styles from "./ManifestationCalendar.module.css";
 import { useNavigate } from "react-router-dom";
-import { BackButton } from "../../../components/common/BackButton";
 
 
 export const ManifestationCalendar = () => {
@@ -95,11 +94,6 @@ export const ManifestationCalendar = () => {
       <div className={styles["mc-main"]}>
         {/* TOPBAR */}
         <Topbar pageTitle="Mind RX" sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-
-        {/* BACK BUTTON */}
-        <div className={styles['back-btn-container']}>
-          <BackButton to="/mind-rx" />
-        </div>
 
         {/* HEADER  */}
         <HeaderCard

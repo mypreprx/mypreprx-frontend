@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import api from '../../config/axiosInstance';
+import useAuthStore from '../../store/authStore';
+import NclexCountdownModal from '../../components/common/NclexCountdownModal/NclexCountdownModal';
 import './ConfirmationSuccess.css';
 
 const featureList = [
@@ -15,9 +17,22 @@ export default function ConfirmationSuccess({ onGoToDashboard }) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
+  const updateNclexExamDate = useAuthStore((state) => state.updateNclexExamDate);
   const [syncNote, setSyncNote] = useState(
     'Final status is confirmed by Stripe webhooks.'
   );
+  // Ask the single NCLEX question once the purchase is confirmed: this page
+  // mounts immediately after the user returns from Stripe Checkout.
+  const [examPromptOpen, setExamPromptOpen] = useState(true);
+
+  const handleExamSave = async (examDate) => {
+    try {
+      await updateNclexExamDate(examDate ? examDate.toISOString() : null);
+    } catch {
+      // Non-blocking: the subscription is already active.
+    }
+    setExamPromptOpen(false);
+  };
 
   useEffect(() => {
     if (!sessionId) return undefined;
@@ -114,6 +129,13 @@ export default function ConfirmationSuccess({ onGoToDashboard }) {
       <p className="confirmation-footer-note">
         {syncNote} We'll notify you before the trial ends.
       </p>
+
+      <NclexCountdownModal
+        isOpen={examPromptOpen}
+        onClose={() => setExamPromptOpen(false)}
+        onSkip={() => setExamPromptOpen(false)}
+        onSave={handleExamSave}
+      />
     </div>
   );
 }

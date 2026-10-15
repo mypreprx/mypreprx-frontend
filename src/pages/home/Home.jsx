@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { Sidebar } from "../../components/common/sidebar/Sidebar";
 import { Topbar } from "../../components/common/topbar/Topbar";
 import GeneratingModal from "../../components/common/GeneratingModal";
+import NclexCountdown from "../../components/common/NclexCountdown/NclexCountdown";
 
 import styles from "./Home.module.css";
 
@@ -275,10 +276,10 @@ export const Home = () => {
             <div className={styles["progress-track"]}>
               <div className={styles["progress-fill"]} style={{ width: `${progressValue}%` }} />
             </div>
-
             <p className={styles["progress-footer"]}>
               You're making progress. Keep going!
             </p>
+            <NclexCountdown />
           </div>
 
           {/* Right: Illustration */}

@@ -83,6 +83,9 @@ import { ViewTreatmentPlan } from "./pages/progress/treatment_plan/ViewTreatment
 
 // Resources Rx
 import { ResourcesRx } from "./pages/resources_rx/ResourcesRx";
+import { CareMaps } from "./pages/resources_rx/CareMaps";
+import { StudyPlanner } from "./pages/resources_rx/StudyPlanner";
+import { CheatSheets } from "./pages/resources_rx/CheatSheets";
 
 // Profile
 import { Profile } from "./pages/profile/Profile";
@@ -273,6 +276,12 @@ const App = () => {
 
 
                             <Route path="/resources-rx" element={<ResourcesRx />} />
+
+                            <Route path="/resources-rx/care-maps" element={<CareMaps />} />
+
+                            <Route path="/resources-rx/study-planner" element={<StudyPlanner />} />
+
+                            <Route path="/resources-rx/cheat-sheets" element={<CheatSheets />} />
 
                             <Route path="/profile" element={<Profile />} />
 

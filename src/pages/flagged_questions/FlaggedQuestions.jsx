@@ -4,7 +4,6 @@ import styles from "./FlaggedQuestions.module.css";
 import { Sidebar } from "../../components/common/sidebar/Sidebar";
 import { Topbar } from "../../components/common/topbar/Topbar";
 import { HeaderCard } from "../../components/common/HeaderCard";
-import { BackButton } from "../../components/common/BackButton";
 import api from "../../config/axiosInstance";
 import toast from "react-hot-toast";
 
@@ -40,6 +39,7 @@ export const FlaggedQuestions = () => {
                 setFlaggedQuestions(prev => prev.filter(q => q._id !== id));
             }
         } catch (error) {
+            console.error("Failed to unflag question", error);
             toast.error("Failed to unflag question");
         }
     };
@@ -56,11 +56,6 @@ export const FlaggedQuestions = () => {
 
                 {/* CONTENT */}
                 <div className={styles["fq-content"]}>
-                    {/* BACK BUTTON */}
-                    <div className={styles["fq-back-btn-container"]}>
-                        <BackButton to="/strategy-zone" />
-                    </div>
-
                     {/* HEADER CARD */}
                     <HeaderCard
                         title="Flagged questions list for review"

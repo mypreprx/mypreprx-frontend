@@ -27,7 +27,7 @@
 }
 
 /* ============================================================
-   HEADER & BACK BUTTON
+   HEADER
    ============================================================ */
 .rrx-header-card {
   width: 100% !important;
@@ -37,14 +37,6 @@
   padding: 40px 30px !important;
   margin-bottom: 50px !important;
   text-align: center !important;
-}
-
-.rrx-back-btn-container {
-  align-self: flex-start;
-  max-width: 900px;
-  margin: 0 auto 30px;
-  width: 100%;
-  padding-left: 10px;
 }
 
 /* ============================================================
@@ -177,6 +169,7 @@
 .rrx-download-btn {
   background: #009cbf;
   color: white;
+  text-decoration: none;
   border: none;
   border-radius: 18px;
   padding: 12px 24px;
@@ -197,6 +190,18 @@
 .rrx-download-btn svg {
   width: 18px;
   height: 18px;
+}
+
+.rrx-coming-soon {
+  background: #e2e8f0;
+  color: #475569;
+  border-radius: 16px;
+  padding: 10px 22px;
+  font-weight: 700;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* ============================================================

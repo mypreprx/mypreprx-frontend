@@ -218,6 +218,14 @@ const useAuthStore = create((set) => ({
             }
             throw error;
         }
+    },
+
+    updateNclexExamDate: async (nclexExamDate) => {
+        const response = await api.put('/user/nclex-exam-date', { nclexExamDate });
+        if (response.data?.user) {
+            set({ user: response.data.user });
+        }
+        return response.data;
     }
 }));
 

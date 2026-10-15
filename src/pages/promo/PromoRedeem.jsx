@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
 import { savePendingPromo, getPendingPromo, clearPendingPromo } from '../../utils/promoStorage';
 import { Button } from '../../components/common/Button';
+import NclexCountdownModal from '../../components/common/NclexCountdownModal/NclexCountdownModal';
 import styles from './PromoRedeem.module.css';
 
 const formatDate = (value) =>
@@ -24,11 +25,12 @@ const formatDate = (value) =>
 export const PromoRedeem = () => {
   const { code: codeFromUrl } = useParams();
   const navigate = useNavigate();
-  const { isAuthenticated, isCheckingAuth, redeemPromo } = useAuthStore();
+  const { isAuthenticated, isCheckingAuth, redeemPromo, updateNclexExamDate } = useAuthStore();
 
   const [status, setStatus] = useState('working'); // working | success | error
   const [result, setResult] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const [examPromptOpen, setExamPromptOpen] = useState(false);
   // Guards against a second POST when React re-runs the effect in dev/StrictMode
   // or the effect fires again after a re-render.
   const attempted = useRef(false);
@@ -59,6 +61,9 @@ export const PromoRedeem = () => {
         if (!cancelled) {
           setResult(data.promo || {});
           setStatus('success');
+          // Ask the single NCLEX question right after success. Skippable;
+          // the user can set it later from the Home page.
+          setExamPromptOpen(true);
         }
       } catch (error) {
         if (!cancelled) {
@@ -77,6 +82,15 @@ export const PromoRedeem = () => {
   }, [isAuthenticated, isCheckingAuth, redeemPromo]);
 
   const missingCode = !isCheckingAuth && isAuthenticated && !getPendingPromo();
+
+  const handleExamSave = async (examDate) => {
+    try {
+      await updateNclexExamDate(examDate ? examDate.toISOString() : null);
+    } catch {
+      // Non-blocking: the promo is already applied.
+    }
+    setExamPromptOpen(false);
+  };
 
   const goTo = (path) => {
     clearPendingPromo();
@@ -138,6 +152,13 @@ export const PromoRedeem = () => {
             Start studying
           </Button>
         </div>
+
+        <NclexCountdownModal
+          isOpen={examPromptOpen}
+          onClose={() => setExamPromptOpen(false)}
+          onSkip={() => setExamPromptOpen(false)}
+          onSave={handleExamSave}
+        />
       </div>
     );
   }

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Sidebar } from "../../components/common/sidebar/Sidebar";
 import { Topbar } from "../../components/common/topbar/Topbar";
-import { BackButton } from "../../components/common/BackButton";
 import "../../components/FlashCard.css";
 
 export const ReviewQuestion = () => {
@@ -50,10 +49,6 @@ export const ReviewQuestion = () => {
                 />
 
                 <div className="fc-content">
-                    {/* BACK BUTTON */}
-                    <div style={{ alignSelf: 'flex-start', marginLeft: '30px', marginBottom: '20px' }}>
-                        <BackButton to="/flagged-questions" />
-                    </div>
 
                     {/* Header with back button */}
                     <div className="fc-header-card">

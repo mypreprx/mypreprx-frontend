@@ -1,0 +1,71 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+  padding: 0.6rem 0.9rem;
+  background: linear-gradient(135deg, #4B7BFF 0%, #6B9BFF 100%);
+  border-radius: 10px;
+  color: #fff;
+}
+
+.countdown {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.days {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.past {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.editBtn,
+.updateBtn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.editBtn:hover,
+.updateBtn:hover {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+  padding: 0.4rem 0.75rem;
+  background: transparent;
+  border: 1px dashed #9db4e8;
+  color: #4B7BFF;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.addBtn:hover {
+  background: #f0f5ff;
+}
+
+.addIcon {
+  font-size: 1rem;
+  line-height: 1;
+}

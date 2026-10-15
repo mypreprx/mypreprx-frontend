@@ -207,26 +207,19 @@
  }
 
  /* ---------------- SMALL SCREENS / PHONES ---------------- */
- @media (max-width: 768px) {
+  @media (max-width: 768px) {
 
-   /* Page layout */
-   .mc-wrapper {
-     flex-direction: column;
-   }
+    /* Page layout */
+    .mc-wrapper {
+      flex-direction: column;
+    }
 
-   .mc-calendar-grid {
-     grid-template-columns: repeat(7, 1fr);
-     gap: 5px;
-   }
+    .mc-calendar-grid {
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
 
-   .mc-calendar-card {
-     padding: 15px;
-   }
- }
-
- .back-btn-container {
-   margin-left: 50px;
-   /* border: #003F52 solid 2px; */
-   display: flex;
-   justify-content: flex-start;
- }
+    .mc-calendar-card {
+      padding: 15px;
+    }
+  }
