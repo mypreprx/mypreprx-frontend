@@ -1,363 +1,523 @@
 .pr-layout {
-  display: flex;
-  min-height: 100vh;
-  /* Matching the image gradient exactly */
-  background: linear-gradient(180deg, #00B4D8 0%, #FFD38B 100%);
+    display: flex;
+    min-height: 100dvh;
+    background: linear-gradient(to bottom, #28c4df, #ffd38b);
+    font-family: "Poppins", sans-serif;
 }
 
 .pr-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow-y: auto;
 }
 
-/* Centered container for the cards and button */
-.pr-content-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px;
-  gap: 30px;
+.dashboard-container {
+    flex: 1;
+    width: 100%;
+    margin: 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
 }
 
-.pr-main-header-card {
-  background: white;
-  color: #003F52;
-  text-align: center;
-  width: 100%;
-  padding: 40px 30px;
-  border-radius: 40px;
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    gap: 16px;
 }
 
-.pr-main-header-card h3 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #083862;
-  margin-bottom: 6px;
+.header-text h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    font-family: "Poppins", sans-serif;
+    color: #ffffff;
 }
 
-.pr-main-header-card p {
-  font-size: 17px;
-  font-weight: 400;
-  color: #0C4866;
+.header-text p {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.95;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    color: #ffffff;
 }
 
-.pr-header-card {
-  width: 100%;
-  background: #ffffff;
-  border-radius: 40px;
-  padding: 40px 30px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  border: none;
-  text-align: center;
-}
-
-.pr-header-card svg {
-  min-width: 32px;
-}
-
-.pr-progress-text {
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  font-size: 20px;
-  color: #0c4866;
-}
-
-.pr-progress-text strong {
-  font-size: 32px;
-  font-weight: 800;
-  color: #f4a938;
-}
-
-.pr-stats-row {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.pr-stat-card {
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 24px 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-height: 130px;
-}
-
-.pr-stat-card p {
-  font-weight: 600;
-  color: #0c4866;
-  margin: 0;
-}
-
-.pr-stat-card strong {
-  font-size: 28px;
-  color: #1f3e5a;
-}
-
-.pr-stat-card span {
-  font-size: 12px;
-  color: #7c8a9f;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.h-card-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-.affirmation-text {
-  font-size: 1.1rem;
-  color: #2D4356;
-  font-weight: 400;
-}
-
-.pr-button-wrapper {
-  margin-top: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.pr-viewtr-btn {
-  padding: 15px 45px;
-  border-radius: 15px;
-  border: none;
-  background: #F4A938;
-  color: #1F3E5A;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.pr-viewtr-btn:hover {
-  background: #e69a2e;
-  transform: translateY(-2px);
-}
-
-.pr-badges-section {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
-.pr-badges-title {
-    font-size: 1.2rem;
+.btn-treatment {
+    background-color: #f6a623;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 14px;
     font-weight: 600;
-    color: #072445;
-    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+    font-family: "Poppins", sans-serif;
 }
 
-.pr-badges-grid {
+.btn-treatment:hover {
+    background-color: #e09516;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.main-stats-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.status-text {
+    margin: 0;
+    font-size: 14px;
+    color: #0c4866;
+    font-family: "Poppins", sans-serif;
+}
+
+.stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 160px repeat(4, 1fr);
+    gap: 16px;
+    align-items: center;
 }
 
-.pr-badge-card {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 1.5rem;
+.gauge-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
 }
 
-.pr-badge-card:hover {
-    transform: translateY(-5px);
+.circular-gauge {
+    position: relative;
+    width: 105px;
+    height: 105px;
 }
 
-.pr-badge-img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    margin-bottom: 1rem;
-    transition: filter 0.3s;
+.gauge-svg {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
 }
 
-.pr-badge-card.locked .pr-badge-img {
-    filter: grayscale(100%) opacity(0.5);
+.gauge-bg {
+    fill: none;
+    stroke: #e0f2f1;
+    stroke-width: 8;
 }
 
-.pr-badge-card h4 {
-    font-size: 1rem;
-    color: #072445;
-    margin-bottom: 0.5rem;
+.gauge-fill {
+    fill: none;
+    stroke: #00a5b7;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.3s ease;
 }
 
-.pr-badge-card p {
-    font-size: 0.85rem;
-    color: #6d839c;
+.gauge-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    font-weight: 700;
+    color: #083862;
+    font-family: "Poppins", sans-serif;
 }
 
-.pr-badge-card.earned h4 {
-    color: #00A5B7;
-}
-
-/* ============================================================
-   RESPONSIVE BREAKPOINTS
-   ============================================================ */
-
-/* TABLET: ≤ 900px — 2x2 grid */
-@media (max-width: 900px) {
-  .pr-content-container {
-    padding: 20px;
-    gap: 20px;
-  }
-
-  .pr-stats-row {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  .pr-stat-card {
-    min-height: 110px;
-    padding: 20px 16px;
-  }
-
-  .pr-stat-card strong {
-    font-size: 24px;
-  }
-
-  .pr-main-header-card,
-  .pr-header-card {
-    padding: 30px 20px;
-    border-radius: 28px;
-  }
-}
-
-/* MOBILE: ≤ 640px */
-@media (max-width: 640px) {
-  .pr-content-container {
-    padding: 14px;
-    gap: 14px;
-  }
-
-  .pr-stats-row {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .pr-stat-card {
-    min-height: 100px;
-    padding: 16px 14px;
-    border-radius: 18px;
-    gap: 6px;
-  }
-
-  .pr-stat-card p {
+.gauge-label {
     font-size: 12px;
-  }
-
-  .pr-stat-card strong {
-    font-size: 20px;
-  }
-
-  .pr-stat-card span {
-    font-size: 11px;
-  }
-
-  .pr-main-header-card,
-  .pr-header-card {
-    padding: 22px 16px;
-    border-radius: 20px;
-  }
-
-  .pr-main-header-card h3 {
-    font-size: 20px;
-  }
-
-  .pr-main-header-card p {
-    font-size: 14px;
-  }
-
-  .pr-progress-text {
-    font-size: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .pr-progress-text strong {
-    font-size: 26px;
-  }
-
-  .h-card-content {
-    flex-direction: column;
+    font-weight: 600;
+    color: #083862;
+    margin-top: 8px;
     text-align: center;
-    gap: 10px;
-  }
-
-  .affirmation-text {
-    font-size: 0.95rem;
-  }
-
-  .pr-badges-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .pr-badge-img {
-    width: 70px;
-    height: 70px;
-  }
-
-  .pr-badge-card h4 {
-    font-size: 0.85rem;
-  }
-
-  .pr-badge-card p {
-    font-size: 0.75rem;
-  }
-
-  .pr-viewtr-btn {
-    width: 100%;
-    padding: 13px 20px;
-    font-size: 15px;
-  }
-
-  .pr-button-wrapper {
-    margin-top: 10px;
-  }
-
-  .pr-badges-section {
-    margin-top: 0;
-    width: 100%;
-  }
+    font-family: "Poppins", sans-serif;
 }
 
-/* EXTRA SMALL: ≤ 380px — single column stats */
-@media (max-width: 380px) {
-  .pr-stats-row {
-    grid-template-columns: 1fr 1fr;
+.metric-box {
+    background-color: #f0fafc;
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 85px;
+    box-sizing: border-box;
+}
+
+.metric-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #0c4866;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+}
+
+.metric-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #083862;
+    font-family: "Poppins", sans-serif;
+}
+
+.cta-banner {
+    border: 1px dashed #b2ebf2;
+    border-radius: 10px;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    gap: 16px;
+}
+
+.cta-text {
+    font-size: 13px;
+    color: #0c4866;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.btn-start {
+    background-color: #00a5b7;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    flex-shrink: 0;
+}
+
+.btn-start:hover {
+    background-color: #008fa0;
+}
+
+.affirmation-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+}
+
+.affirmation-icon-box {
+    width: 38px;
+    height: 38px;
+    background-color: #fff8e1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.affirmation-content {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.affirmation-title {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #f6a623;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+    font-family: "Poppins", sans-serif;
+}
+
+.affirmation-text {
+    font-size: 13px;
+    color: #0c4866;
+    line-height: 1.4;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.btn-refresh {
+    background: none;
+    border: 1px solid #b2ebf2;
+    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+}
+
+.btn-refresh:hover:not(:disabled) {
+    background-color: #f0fafc;
+}
+
+.btn-refresh:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.badges-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.badges-title-row {
+    display: flex;
+    align-items: baseline;
     gap: 10px;
-  }
+}
 
-  .pr-stat-card {
-    padding: 14px 12px;
-    min-height: 90px;
-  }
+.badges-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #083862;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
 
-  .pr-stat-card strong {
-    font-size: 18px;
-  }
+.badges-count {
+    font-size: 13px;
+    color: #0c4866;
+    font-family: "Poppins", sans-serif;
+}
 
-  .pr-content-container {
-    padding: 10px;
-    gap: 10px;
-  }
+.badges-count strong {
+    color: #083862;
+}
+
+.badges-filters {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #eef6f8;
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.badge-filter-btn {
+    border: none;
+    background: transparent;
+    color: #0c4866;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.badge-filter-btn--active {
+    background: #ffffff;
+    color: #083862;
+    box-shadow: 0 1px 3px rgba(8, 56, 98, 0.08);
+}
+
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.badge-item {
+    position: relative;
+    border: 1px solid #e8f8fb;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    gap: 12px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.badge-item--earned {
+    border-color: #fde68a;
+    background-color: #fffbeb;
+}
+
+.badge-status-earned {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #dcfce7;
+    color: #15803d;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    padding: 3px 8px;
+    border-radius: 999px;
+}
+
+.badge-status-lock {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.badge-img {
+    width: 48px;
+    height: 54px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.badge-details {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+    padding-right: 18px;
+}
+
+.badge-type {
+    font-size: 10px;
+    font-weight: 700;
+    color: #7a9baf;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+    font-family: "Poppins", sans-serif;
+}
+
+.badge-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #083862;
+    margin: 0 0 2px;
+    line-height: 1.2;
+    font-family: "Poppins", sans-serif;
+}
+
+.badge-desc {
+    font-size: 11px;
+    color: #0c4866;
+    margin: 0 0 8px;
+    line-height: 1.3;
+    font-family: "Poppins", sans-serif;
+}
+
+.badge-progress-bar {
+    height: 4px;
+    background-color: #e0f2f1;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.badge-progress-fill {
+    height: 100%;
+    background-color: #00a5b7;
+    transition: width 0.3s ease;
+}
+
+.badge-progress-text {
+    font-size: 11px;
+    color: #0c4866;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+}
+
+.badge-earned-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 2px;
+}
+
+.badge-earned-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: #0c4866;
+    font-family: "Poppins", sans-serif;
+}
+
+.badge-earned-underline {
+    height: 3px;
+    width: 56px;
+    border-radius: 2px;
+}
+
+.badges-empty {
+    margin: 8px 0 0;
+    font-size: 13px;
+    color: #0c4866;
+    font-family: "Poppins", sans-serif;
+}
+
+@media (max-width: 900px) {
+    .dashboard-container {
+        padding: 24px 20px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gauge-container {
+        grid-column: 1 / -1;
+    }
+
+    .badges-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-container {
+        padding: 20px 16px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .badges-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .cta-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-start {
+        width: 100%;
+    }
 }

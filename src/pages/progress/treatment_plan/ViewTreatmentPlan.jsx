@@ -3,56 +3,96 @@ import { useNavigate } from "react-router-dom";
 
 import { Sidebar } from "../../../components/common/sidebar/Sidebar";
 import { Topbar } from "../../../components/common/topbar/Topbar";
-import {
-    TrPlanMilestoneIcon,
-    TrPlanStreakIcon,
-    TrPlanQuestionsIcon,
-    TrPlanMedSurgIcon,
-    TrPlanPharmaIcon,
-    TrPlanPediatricsIcon,
-    TrPlanPsychIcon
-} from "../../../components/common/Icons";
 import api from "../../../config/axiosInstance";
 import useAuthStore from "../../../store/authStore";
 
 import styles from "./ViewTreatmentPlan.module.css";
 
-const mapTopicIcon = (index) => {
-    const icons = [TrPlanMedSurgIcon, TrPlanPharmaIcon, TrPlanPediatricsIcon, TrPlanPsychIcon];
-    return icons[index] || TrPlanMedSurgIcon;
+const ARC_LENGTH = 251.3; // π * 80
+
+const ArrowLeftIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12" />
+        <polyline points="12 19 5 12 12 5" />
+    </svg>
+);
+
+const FlameIcon = () => (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E56B26" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z" />
+    </svg>
+);
+
+const ListIcon = () => (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00A5B7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="8" y1="6" x2="21" y2="6" />
+        <line x1="8" y1="12" x2="21" y2="12" />
+        <line x1="8" y1="18" x2="21" y2="18" />
+        <line x1="3" y1="6" x2="3.01" y2="6" />
+        <line x1="3" y1="12" x2="3.01" y2="12" />
+        <line x1="3" y1="18" x2="3.01" y2="18" />
+    </svg>
+);
+
+const CheckCircleIcon = () => (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22 4 12 14.01 9 11.01" />
+    </svg>
+);
+
+const ClockIcon = () => (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00A5B7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12 6 12 12 16 14" />
+    </svg>
+);
+
+const BarChartIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00A5B7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="12" y1="20" x2="12" y2="10" />
+        <line x1="18" y1="20" x2="18" y2="4" />
+        <line x1="6" y1="20" x2="6" y2="16" />
+    </svg>
+);
+
+const TargetIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E11D48" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="6" />
+        <circle cx="12" cy="12" r="2" />
+    </svg>
+);
+
+const PlusIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19" />
+        <line x1="5" y1="12" x2="19" y2="12" />
+    </svg>
+);
+
+const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+const toDateKey = (date) => {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
 };
 
-const getGaugeIndicatorPosition = (percent) => {
-    const clamped = Math.max(0, Math.min(100, percent));
-    const angle = Math.PI * (1 - clamped / 100);
-    const radius = 80;
-    const centerX = 100;
-    const centerY = 120;
-    return {
-        cx: centerX + Math.cos(angle) * radius,
-        cy: centerY - Math.sin(angle) * radius
-    };
-};
+const getCurrentWeekDays = () => {
+    const now = new Date();
+    const day = now.getDay(); // 0 Sun .. 6 Sat
+    const mondayOffset = day === 0 ? -6 : 1 - day;
+    const monday = new Date(now);
+    monday.setHours(0, 0, 0, 0);
+    monday.setDate(now.getDate() + mondayOffset);
 
-const buildMoodPath = (moodGraph = []) => {
-    if (!moodGraph.length) return "";
-
-    const width = 260;
-    const height = 120;
-    const leftPadding = 20;
-    const rightPadding = 20;
-    const availableWidth = width - leftPadding - rightPadding;
-    const maxValue = 100;
-    const minValue = 0;
-    const points = moodGraph.map((entry, index) => {
-        const x = leftPadding + (availableWidth * index) / Math.max(1, moodGraph.length - 1);
-        const value = typeof entry.value === "number" ? entry.value : Number(entry.value || 0);
-        const normalized = 1 - (value - minValue) / (maxValue - minValue || 1);
-        const y = 20 + normalized * (height - 40);
-        return `${x},${y}`;
+    return DAY_LABELS.map((label, index) => {
+        const date = new Date(monday);
+        date.setDate(monday.getDate() + index);
+        return { label, key: toDateKey(date) };
     });
-
-    return `M ${points.join(" L ")}`;
 };
 
 export const ViewTreatmentPlan = () => {
@@ -86,164 +126,259 @@ export const ViewTreatmentPlan = () => {
         fetchAnalytics();
     }, [user]);
 
+    // Lifetime stats only (all-time, not weekly/monthly)
     const progressPercent = analytics?.overallProgress ?? 0;
-    const indicator = getGaugeIndicatorPosition(progressPercent);
-    const moodPath = useMemo(() => buildMoodPath(analytics?.moodGraph || []), [analytics?.moodGraph]);
-    const weakArea = analytics?.weakAreas?.[0] || null;
     const subjectMastery = analytics?.subjectMastery || [];
-    const totalQuestions = analytics?.totalQuestions ?? 0;
-    const questionAnalytics = analytics?.questionAnalytics || {};
-    const accuracy = questionAnalytics.accuracy ?? 0;
-    const averageTime = questionAnalytics.averageTimePerQuestion
-        ? `${questionAnalytics.averageTimePerQuestion} sec`
-        : "N/A";
+    const weakAreas = (analytics?.weakAreas || []).filter(
+        (area) => typeof area.mastery === "number" && area.mastery < 60
+    );
+    const totalQuestions = analytics?.lifetimeTotalQuestions ?? 0;
+    const accuracy =
+        analytics?.questionAnalytics?.accuracy ??
+        progressPercent;
+    const averageTime = analytics?.averageTimePerQuestion ?? analytics?.questionAnalytics?.averageTimePerQuestion;
+    const averageTimeDisplay = averageTime ? `${averageTime} sec` : "—";
     const streak = analytics?.streak ?? 0;
+    const hasQuizActivity = totalQuestions > 0;
+    const arcOffset = ARC_LENGTH * (1 - Math.min(Math.max(progressPercent, 0), 100) / 100);
 
-    const studyProgressData = [
-        { icon: TrPlanMilestoneIcon, text: `${streak} day streak` },
-        { icon: TrPlanQuestionsIcon, text: `${totalQuestions} questions completed` },
-        { icon: TrPlanStreakIcon, text: `${accuracy}% accuracy` }
-    ];
+    const moodByDate = useMemo(() => {
+        const map = {};
+        (analytics?.moodGraph || []).forEach((entry) => {
+            if (!entry?.date) return;
+            const key = String(entry.date).slice(0, 10);
+            map[key] = typeof entry.value === "number" ? entry.value : Number(entry.value || 0);
+        });
+        return map;
+    }, [analytics?.moodGraph]);
 
-    const moodLabels = analytics?.moodGraph?.slice(-7).map((item) => {
-        const date = item.date ? new Date(item.date) : null;
-        return date ? date.toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "-";
-    }) || [];
+    const weekDays = useMemo(() => getCurrentWeekDays(), []);
+
+    const openTopicReview = (area) => {
+        if (area?.topicTitle && area.topicTitle !== "Unknown Topic") {
+            const formattedTitle = area.topicTitle.toLowerCase().replace(/[\s/]+/g, "-");
+            navigate(`/study-zone/topic/${formattedTitle}`, {
+                state: { topicId: area.topicId, title: area.topicTitle },
+            });
+            return;
+        }
+        navigate("/study-zone/all-topics");
+    };
 
     return (
-        <div className={styles["vtp-wrapper"]}>
+        <div className={styles["vtp-layout"]}>
             <Sidebar sidebarOpen={sidebarOpen} />
 
             <main className={styles["vtp-main"]}>
-                <Topbar pageTitle="Strategy Zone" sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+                <Topbar pageTitle="Progress" sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-                <div className={styles["vtp-header-pill"]}>Treatment plan progress</div>
+                <div className={styles["treatment-container"]}>
+                    <button
+                        type="button"
+                        className={styles["back-link"]}
+                        onClick={() => navigate("/progress")}
+                    >
+                        <ArrowLeftIcon />
+                        Back to progress
+                    </button>
 
-                {loading ? (
-                    <div className={styles["vtp-loading"]}>Loading your progress...</div>
-                ) : error ? (
-                    <div className={styles["vtp-loading"]} style={{ color: "#d32f2f" }}>{error}</div>
-                ) : (
-                    <>
-                        <div className={styles["vtp-top-row"]}>
-                            <div className={`${styles["vtp-card"]} ${styles["vtp-progress-card"]}`}>
-                                <div className={styles["vtp-card-header"]}>
-                                    <span>Progress Over Time</span>
-                                    <span className={styles["vtp-increasing"]}>▲ Increasing</span>
-                                </div>
+                    <header className={styles["treatment-header"]}>
+                        <h1>Treatment plan</h1>
+                        <p>Every dose brings you closer. Here’s where you stand and what to focus on next.</p>
+                    </header>
 
-                                <div className={styles["vtp-gauge-container"]}>
-                                    <svg viewBox="0 0 200 150" className={styles["vtp-gauge"]}>
-                                        <path d="M 20 120 A 80 80 0 0 1 180 120" className={styles["vtp-gauge-path-bg"]} />
-                                        <path d="M 20 120 A 80 80 0 0 1 180 120" className={styles["vtp-gauge-path-bg-light"]} />
-                                        <circle cx={indicator.cx} cy={indicator.cy} r="12" className={styles["vtp-gauge-circle"]} />
-                                    </svg>
-                                    <div className={styles["vtp-gauge-text"]}>
-                                        <span className={styles["vtp-gauge-label"]}>Your confidence</span>
-                                        <strong className={styles["vtp-gauge-value"]}>{progressPercent}%</strong>
-                                        <span className={styles["vtp-gauge-sub"]}>Across completed topics</span>
+                    {loading ? (
+                        <div className={styles.card}>
+                            <p className={styles["status-text"]}>Loading your progress...</p>
+                        </div>
+                    ) : error ? (
+                        <div className={styles.card}>
+                            <p className={styles["status-text"]} style={{ color: "#d32f2f" }}>{error}</p>
+                        </div>
+                    ) : (
+                        <>
+                            <div className={styles["grid-2x2"]}>
+                                <div className={`${styles.card} ${styles["confidence-card"]}`}>
+                                    <div className={styles["card-top-bar"]}>
+                                        <h2>Confidence over time</h2>
+                                        <span className={styles["pill-tag"]}>
+                                            {hasQuizActivity ? "From your quizzes" : "Not enough data"}
+                                        </span>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div className={`${styles["vtp-card"]} ${styles["vtp-study-card"]}`}>
-                                <div className={styles["vtp-study-header-card"]}>
-                                    Study progress – every dose brings you closer
-                                </div>
-
-                                <div className={styles["vtp-study-list-card"]}>
-                                    {studyProgressData.map((item, index) => (
-                                        <div key={index} className={styles["vtp-study-item"]}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                                <item.icon />
-                                                {item.text}
+                                    <div className={styles["arc-gauge-container"]}>
+                                        <div className={styles["arc-gauge"]}>
+                                            {/* Extra viewBox padding so round stroke caps are not clipped */}
+                                            <svg viewBox="0 0 220 130" className={styles["arc-svg"]}>
+                                                <path d="M 30 100 A 80 80 0 0 1 190 100" className={styles["arc-bg"]} />
+                                                <path
+                                                    d="M 30 100 A 80 80 0 0 1 190 100"
+                                                    className={styles["arc-fill"]}
+                                                    style={{
+                                                        strokeDasharray: String(ARC_LENGTH),
+                                                        strokeDashoffset: String(arcOffset),
+                                                    }}
+                                                />
+                                            </svg>
+                                            <div className={styles["arc-content"]}>
+                                                <span className={styles["arc-value"]}>{progressPercent}%</span>
+                                                <span className={styles["arc-subtext"]}>across completed topics</span>
                                             </div>
                                         </div>
-                                    ))}
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div className={styles["vtp-subject-section"]}>
-                            <h4>Subject Mastery</h4>
-                            <div className={styles["vtp-subject-grid"]}>
-                                {subjectMastery.length ? subjectMastery.map((item, index) => {
-                                    const Icon = mapTopicIcon(index);
-                                    return (
-                                        <div key={item.topicId || index} className={styles["vtp-sub-card"]}>
-                                            <Icon />
-                                            <p>{item.topicTitle}</p>
-                                            <strong>{item.mastery}%</strong>
+                                <div className={`${styles.card} ${styles["snapshot-card"]}`}>
+                                    <h2>Study snapshot</h2>
+                                    <div className={styles["snapshot-grid"]}>
+                                        <div className={styles["snapshot-box"]}>
+                                            <div className={styles["snapshot-header"]}>
+                                                <FlameIcon />
+                                                <span>Day streak</span>
+                                            </div>
+                                            <div className={styles["snapshot-value"]}>{streak}</div>
                                         </div>
-                                    );
-                                }) : (
-                                    <div className={styles["vtp-sub-card"]}>
-                                        <p>No subject mastery data yet</p>
+
+                                        <div className={styles["snapshot-box"]}>
+                                            <div className={styles["snapshot-header"]}>
+                                                <ListIcon />
+                                                <span>Questions answered</span>
+                                            </div>
+                                            <div className={styles["snapshot-value"]}>{totalQuestions}</div>
+                                        </div>
+
+                                        <div className={styles["snapshot-box"]}>
+                                            <div className={styles["snapshot-header"]}>
+                                                <CheckCircleIcon />
+                                                <span>Accuracy</span>
+                                            </div>
+                                            <div className={styles["snapshot-value"]}>{accuracy}%</div>
+                                        </div>
+
+                                        <div className={styles["snapshot-box"]}>
+                                            <div className={styles["snapshot-header"]}>
+                                                <ClockIcon />
+                                                <span>Avg time / Q</span>
+                                            </div>
+                                            <div className={styles["snapshot-value"]}>{averageTimeDisplay}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {subjectMastery.length > 0 ? (
+                                    <div className={`${styles.card} ${styles["data-card"]}`}>
+                                        <h2>Subject mastery</h2>
+                                        <div className={styles["mastery-list"]}>
+                                            {subjectMastery.map((item, index) => (
+                                                <div key={item.topicId || index} className={styles["mastery-row"]}>
+                                                    <div className={styles["mastery-meta"]}>
+                                                        <span className={styles["mastery-title"]}>
+                                                            {item.topicTitle || "Topic"}
+                                                        </span>
+                                                        <strong>{item.mastery}%</strong>
+                                                    </div>
+                                                    <div className={styles["mastery-bar"]}>
+                                                        <div
+                                                            className={styles["mastery-fill"]}
+                                                            style={{ width: `${Math.min(Math.max(item.mastery, 0), 100)}%` }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className={`${styles.card} ${styles["empty-state-card"]}`}>
+                                        <div className={`${styles["icon-wrapper"]} ${styles["cyan-bg"]}`}>
+                                            <BarChartIcon />
+                                        </div>
+                                        <h3>No mastery data yet</h3>
+                                        <p>Finish a quiz and we’ll break down your strength in each subject.</p>
+                                        <button
+                                            type="button"
+                                            className={styles["btn-action"]}
+                                            onClick={() => navigate("/study-zone")}
+                                        >
+                                            Take a quiz
+                                        </button>
+                                    </div>
+                                )}
+
+                                {weakAreas.length > 0 ? (
+                                    <div className={`${styles.card} ${styles["data-card"]}`}>
+                                        <h2>Weak areas</h2>
+                                        <div className={styles["weak-list"]}>
+                                            {weakAreas.map((area, index) => (
+                                                <div key={area.topicId || index} className={styles["weak-row"]}>
+                                                    <div className={styles["weak-meta"]}>
+                                                        <span className={styles["weak-title"]}>
+                                                            {area.topicTitle || "Topic"}
+                                                        </span>
+                                                        <strong>{area.mastery}%</strong>
+                                                    </div>
+                                                    <button
+                                                        type="button"
+                                                        className={styles["btn-review"]}
+                                                        onClick={() => openTopicReview(area)}
+                                                    >
+                                                        Review
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className={`${styles.card} ${styles["empty-state-card"]}`}>
+                                        <div className={styles["card-title-absolute"]}>
+                                            <h2>Weak areas</h2>
+                                        </div>
+                                        <div className={`${styles["icon-wrapper"]} ${styles["pink-bg"]}`}>
+                                            <TargetIcon />
+                                        </div>
+                                        <h3>No weak areas found</h3>
+                                        <p>Topics where your accuracy drops below 60% will show up here for review.</p>
                                     </div>
                                 )}
                             </div>
-                        </div>
 
-                        <div className={styles["vtp-bottom-row"]}>
-                            <div className={`${styles["vtp-card"]} ${styles["vtp-tracker-card"]}`}>
-                                <div className={styles["vtp-card-header"]}>Mind Rx Tracker</div>
-
-                                <div className={styles["vtp-legend"]}>
-                                    <span className={styles["blue"]} /> Mood
-                                </div>
-
-                                <svg viewBox="0 0 300 160" className={styles["vtp-line-chart"]}>
-                                    {moodPath ? (
-                                        <path d={moodPath} />
-                                    ) : (
-                                        <path d="M10 120 L290 120" />
-                                    )}
-                                </svg>
-
-                                <div className={styles["vtp-days"]}>
-                                    {moodLabels.length ? moodLabels.map((label, index) => (
-                                        <span key={index}>{label}</span>
-                                    )) : <span>No mood data</span>}
-                                </div>
-                            </div>
-
-                            <div className={styles["vtp-right-column"]}>
-                                <div className={styles["vtp-card"]}>
-                                    <div className={styles["vtp-card-header"]} style={{ justifyContent: 'center', marginBottom: '8px' }}>
-                                        Weak area tracker
+                            <div className={`${styles.card} ${styles["mood-card"]}`}>
+                                <div className={styles["mood-header"]}>
+                                    <div className={styles["mood-title-group"]}>
+                                        <h2>Mind Rx mood tracker</h2>
+                                        <p>How you feel affects how you learn. Check in daily.</p>
                                     </div>
-                                    <p className={styles["vtp-weak"]}>{weakArea?.topicTitle || "No weak area yet"}</p>
-                                    <div className={styles["vtp-accuracy-row"]}>
-                                        <span>Accuracy</span>
-                                        <strong>{weakArea ? `${weakArea.mastery}%` : "N/A"}</strong>
-                                    </div>
-                                    <button 
-                                        className={styles["vtp-btn"]}
-                                        onClick={() => {
-                                            if (weakArea && weakArea.topicTitle && weakArea.topicTitle !== "Unknown Topic") {
-                                                const formattedTitle = weakArea.topicTitle.toLowerCase().replace(/[\s/]+/g, '-');
-                                                navigate(`/study-zone/topic/${formattedTitle}`, {
-                                                    state: { topicId: weakArea.topicId, title: weakArea.topicTitle }
-                                                });
-                                            } else {
-                                                navigate('/study-zone/all-topics');
-                                            }
-                                        }}
+                                    <button
+                                        type="button"
+                                        className={styles["btn-outline"]}
+                                        onClick={() => navigate("/mind-rx")}
                                     >
-                                        Review
+                                        <PlusIcon />
+                                        Log today’s mood
                                     </button>
                                 </div>
 
-                                <div className={styles["vtp-card"]}>
-                                    <div className={styles["vtp-card-header"]}>Question Analytics</div>
-                                    <div className={styles["vtp-qa"]}><span>Answered</span><strong>{questionAnalytics.totalQuestions || 0}</strong></div>
-                                    <div className={styles["vtp-qa"]}><span>Accuracy</span><strong>{accuracy}%</strong></div>
-                                    <div className={styles["vtp-qa"]}><span>Average time/Q</span><strong>{averageTime}</strong></div>
+                                <div className={styles["mood-days-row"]}>
+                                    {weekDays.map((day) => {
+                                        const value = moodByDate[day.key];
+                                        const hasMood = typeof value === "number" && !Number.isNaN(value);
+                                        const barHeight = hasMood ? Math.max(6, Math.round((value / 100) * 48)) : 6;
+
+                                        return (
+                                            <div key={day.key} className={styles["mood-day-col"]}>
+                                                <div
+                                                    className={hasMood ? styles["mood-bar"] : styles["mood-placeholder-bar"]}
+                                                    style={hasMood ? { height: `${barHeight}px` } : undefined}
+                                                    title={hasMood ? `${value}` : undefined}
+                                                />
+                                                <span className={styles["mood-day-label"]}>{day.label}</span>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </div>
-                        </div>
-                    </>
-                )}
+                        </>
+                    )}
+                </div>
             </main>
         </div>
     );

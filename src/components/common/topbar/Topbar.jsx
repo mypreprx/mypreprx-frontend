@@ -5,6 +5,7 @@ import styles from "./Topbar.module.css";
 import userPic from "../../../assets/user.png";
 import useAuthStore from "../../../store/authStore";
 import ConfirmationModal from "../modal/ConfirmationModal";
+import ShareAppModal from "../modal/ShareAppModal";
 import { getAvatarUrl } from "../../../config/avatarUrl";
 import { searchableItems } from "../../../data/searchableItems";
 import NotificationBell from "../NotificationBell";
@@ -25,6 +26,7 @@ export const Topbar = ({ pageTitle, setSidebarOpen, sidebarOpen }) => {
     const [panelOpen, setPanelOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+    const [isShareModalOpen, setIsShareModalOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [showSuggestions, setShowSuggestions] = useState(false);
     const panelRef = useRef(null);
@@ -103,6 +105,27 @@ export const Topbar = ({ pageTitle, setSidebarOpen, sidebarOpen }) => {
 
     const handleLogoutClick = () => {
         setIsLogoutModalOpen(true);
+    };
+
+    const handleHelpSupportClick = () => {
+        // Same Gmail web compose path as Share App email share
+        const subject = encodeURIComponent("PrepRX Support Request");
+        const body = encodeURIComponent(
+            [
+                "Hello PrepRX Support,",
+                "",
+                "Please describe your issue below:",
+                "",
+                "",
+                "—",
+                `Name: ${user?.username || "Guest"}`,
+                `Email: ${user?.email || ""}`,
+                `Page: ${window.location.href}`,
+            ].join("\n")
+        );
+        const emailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=admin@mypreprx.com&su=${subject}&body=${body}`;
+        window.open(emailUrl, "_blank", "noopener,noreferrer");
+        closePanel();
     };
 
     const confirmLogout = async () => {
@@ -295,14 +318,14 @@ export const Topbar = ({ pageTitle, setSidebarOpen, sidebarOpen }) => {
                                 Resources Rx
                             </div>
 
-                            <div className={styles["rp-item"]}>
+                            <div className={styles["rp-item"]} onClick={handleHelpSupportClick}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11.9996 17.4001C11.3962 17.4002 10.815 17.1731 10.3715 16.7639C9.92811 16.3547 9.65508 15.7935 9.60681 15.1921C8.00623 14.6255 6.65727 13.5117 5.79804 12.0473C4.93881 10.5829 4.62456 8.86199 4.91076 7.18839C5.19696 5.5148 6.06522 3.99613 7.36226 2.90045C8.6593 1.80477 10.3017 1.20255 11.9996 1.20007C13.8055 1.19981 15.5455 1.87818 16.8747 3.10066C18.2039 4.32315 19.0251 6.00048 19.1756 7.80007C19.1806 7.87813 19.1693 7.95638 19.1425 8.02985C19.1156 8.10331 19.0738 8.17039 19.0196 8.22682C18.9655 8.28324 18.9001 8.32778 18.8278 8.35761C18.7555 8.38744 18.6778 8.4019 18.5996 8.40007C18.4389 8.39605 18.2854 8.3324 18.1689 8.22152C18.0525 8.11063 17.9815 7.96042 17.9696 7.80007C17.8627 6.73908 17.475 5.72573 16.8464 4.86436C16.2178 4.00299 15.3709 3.32472 14.393 2.89938C13.4152 2.47404 12.3416 2.31699 11.2829 2.44441C10.2242 2.57182 9.21852 2.9791 8.3695 3.62431C7.52047 4.26952 6.85874 5.12935 6.45243 6.11527C6.04612 7.1012 5.90991 8.1776 6.05782 9.23366C6.20573 10.2897 6.63242 11.2873 7.29396 12.1236C7.9555 12.96 8.82799 13.6049 9.82161 13.9921C10.0024 13.6014 10.2849 13.2666 10.6396 13.0226C10.9943 12.7787 11.408 12.6346 11.8375 12.6056C12.267 12.5765 12.6964 12.6634 13.0807 12.8573C13.4651 13.0512 13.7901 13.3449 14.022 13.7077C14.2538 14.0704 14.3838 14.4888 14.3983 14.919C14.4128 15.3492 14.3114 15.7754 14.1046 16.153C13.8978 16.5305 13.5933 16.8455 13.223 17.0649C12.8526 17.2843 12.4301 17.4001 11.9996 17.4001ZM6.01041 14.4001H6.11961C6.82804 15.095 7.65401 15.6589 8.55921 16.0657C8.82524 16.9434 9.41624 17.6865 10.2116 18.1433C11.0069 18.6 11.9466 18.736 12.8388 18.5235C13.731 18.3109 14.5084 17.7658 15.0123 16.9995C15.5163 16.2332 15.7087 15.3035 15.5504 14.4001H17.9996C18.6361 14.4001 19.2466 14.6529 19.6967 15.103C20.1468 15.5531 20.3996 16.1636 20.3996 16.8001C20.3996 18.8293 19.4 20.3593 17.8376 21.3565C16.2992 22.3369 14.2256 22.8001 11.9996 22.8001C9.77361 22.8001 7.70001 22.3369 6.16161 21.3565C4.59921 20.3605 3.59961 18.8281 3.59961 16.8001C3.59961 15.4645 4.68321 14.4001 6.01041 14.4001ZM16.7996 8.40007C16.7999 9.21204 16.5941 10.0108 16.2017 10.7216C15.8092 11.4325 15.2429 12.0321 14.5556 12.4645C14.2209 12.1271 13.8227 11.8594 13.384 11.6767C12.9453 11.494 12.4748 11.4 11.9996 11.4001C11.5244 11.4 11.0539 11.494 10.6152 11.6767C10.1765 11.8594 9.77831 12.1271 9.44361 12.4645C8.53211 11.8913 7.83982 11.0282 7.47801 10.0141C7.29343 9.496 7.19926 8.95005 7.19961 8.40007C7.19961 7.12703 7.70532 5.90614 8.6055 5.00596C9.50567 4.10579 10.7266 3.60007 11.9996 3.60007C13.2726 3.60007 14.4935 4.10579 15.3937 5.00596C16.2939 5.90614 16.7996 7.12703 16.7996 8.40007Z" fill="white" />
                                 </svg>
                                 Help &amp; Support
                             </div>
 
-                            <div className={styles["rp-item"]}>
+                            <div className={styles["rp-item"]} onClick={() => setIsShareModalOpen(true)}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fillRule="evenodd" clipRule="evenodd" d="M13.803 5.33307C13.803 3.49307 15.303 2.00007 17.151 2.00007C17.5898 1.99889 18.0245 2.08418 18.4303 2.25106C18.8361 2.41794 19.2051 2.66315 19.5161 2.97268C19.8271 3.2822 20.0741 3.64997 20.2429 4.05498C20.4117 4.45999 20.4991 4.89429 20.5 5.33307C20.5 7.17407 19 8.66707 17.151 8.66707C16.7076 8.6674 16.2686 8.5797 15.8593 8.40907C15.4501 8.23845 15.0788 7.98828 14.767 7.67307L10.132 10.8291C10.2608 11.4721 10.1975 12.1388 9.95 12.7461L15.032 16.0861C15.6307 15.5982 16.3797 15.3322 17.152 15.3331C17.5908 15.332 18.0255 15.4174 18.4312 15.5844C18.837 15.7514 19.2059 15.9968 19.5168 16.3064C19.8277 16.616 20.0746 16.9838 20.2433 17.3889C20.412 17.794 20.4992 18.2283 20.5 18.6671C20.5 20.5071 19 22.0001 17.151 22.0001C16.7123 22.0011 16.2777 21.9157 15.872 21.7488C15.4663 21.5819 15.0975 21.3366 14.7866 21.0271C14.4757 20.7176 14.2288 20.3499 14.06 19.9449C13.8913 19.54 13.8039 19.1058 13.803 18.6671C13.8022 18.1997 13.9007 17.7375 14.092 17.3111L9.05 14.0001C8.43922 14.5307 7.65706 14.8223 6.848 14.8211C6.40922 14.8221 5.97453 14.7367 5.56877 14.5697C5.16301 14.4027 4.79413 14.1574 4.48321 13.8478C4.17229 13.5381 3.92543 13.1703 3.75673 12.7652C3.58802 12.3602 3.50079 11.9259 3.5 11.4871C3.50092 11.0484 3.58825 10.6142 3.75701 10.2092C3.92578 9.80427 4.17266 9.43654 4.48356 9.12703C4.79447 8.81752 5.1633 8.57229 5.569 8.40535C5.97469 8.23841 6.4093 8.15302 6.848 8.15407C7.912 8.15407 8.858 8.64707 9.471 9.41507L13.964 6.35607C13.8568 6.02567 13.8025 5.68042 13.803 5.33307Z" fill="white" />
                                 </svg>
@@ -338,6 +361,12 @@ export const Topbar = ({ pageTitle, setSidebarOpen, sidebarOpen }) => {
                 onConfirm={confirmLogout}
                 title="Log Out"
                 message="Are you sure you want to log out?"
+            />
+
+            {/* Share App modal */}
+            <ShareAppModal
+                isOpen={isShareModalOpen}
+                onClose={() => setIsShareModalOpen(false)}
             />
         </>
     );
