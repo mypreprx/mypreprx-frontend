@@ -233,7 +233,7 @@ export const Progress = () => {
         return badgesData;
     }, [badgesData, badgeFilter]);
 
-    const hasActivity = lifetimeQuestions > 0;
+    const hasActivity = lifetimeQuestions > 0 || streak > 0;
 
     const handleRefreshAffirmation = async () => {
         setAffirmationRefreshing(true);

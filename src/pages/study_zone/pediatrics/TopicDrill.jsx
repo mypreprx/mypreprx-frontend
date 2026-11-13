@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Sidebar } from "../../../components/common/sidebar/Sidebar";
 import { Topbar } from "../../../components/common/topbar/Topbar";
@@ -6,6 +6,7 @@ import api from "../../../config/axiosInstance";
 import toast from "react-hot-toast";
 import styles from "./TopicDrill.module.css";
 import GeneratingModal from "../../../components/common/GeneratingModal";
+import { recordStudyDayAlways } from "../../../utils/recordStudyDay";
 
 export const TopicDrill = () => {
     const navigate = useNavigate();
@@ -21,6 +22,11 @@ export const TopicDrill = () => {
 
     const [selectedOption, setSelectedOption] = useState(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const questionStartedAt = useRef(Date.now());
+
+    useEffect(() => {
+        questionStartedAt.current = Date.now();
+    }, [currentIndex]);
 
     useEffect(() => {
         if (!topicId) {
@@ -85,7 +91,22 @@ export const TopicDrill = () => {
         setSelectedOption(opt);
     };
 
-    const handleSubmit = () => setIsSubmitted(true);
+    const handleSubmit = () => {
+        const correct = selectedOption === currentQ.correctAnswer;
+        setIsSubmitted(true);
+        const timeSpentSeconds = Math.max(
+            1,
+            Math.round((Date.now() - questionStartedAt.current) / 1000)
+        );
+        recordStudyDayAlways("topic-drill", {
+            isCorrect: correct,
+            questionId: currentQ._id,
+            topicId,
+            topicTitle,
+            userAnswer: selectedOption || "",
+            timeSpentSeconds,
+        });
+    };
 
     const handleNext = () => {
         if (currentIndex < questions.length - 1) {

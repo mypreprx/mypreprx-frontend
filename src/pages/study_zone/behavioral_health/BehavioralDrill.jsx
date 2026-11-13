@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Sidebar } from '../../../components/common/sidebar/Sidebar';
 import { Topbar } from '../../../components/common/topbar/Topbar';
 import api from '../../../config/axiosInstance';
 import toast from 'react-hot-toast';
 import styles from './BehavioralDrill.module.css';
+import { recordStudyDayAlways } from '../../../utils/recordStudyDay';
 
 export const BehavioralDrill = () => {
     const navigate = useNavigate();
@@ -18,6 +19,11 @@ export const BehavioralDrill = () => {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [loading, setLoading] = useState(true);
+    const questionStartedAt = useRef(Date.now());
+
+    useEffect(() => {
+        questionStartedAt.current = Date.now();
+    }, [currentCaseIndex, currentQuestionIndex]);
 
     useEffect(() => {
         const fetchCases = async () => {
@@ -77,7 +83,21 @@ export const BehavioralDrill = () => {
     };
 
     const handleSubmit = () => {
+        const correct =
+            selectedOptions.length === (currentQ.correctAnswers || []).length &&
+            selectedOptions.every((val) => (currentQ.correctAnswers || []).includes(val));
         setIsSubmitted(true);
+        const timeSpentSeconds = Math.max(
+            1,
+            Math.round((Date.now() - questionStartedAt.current) / 1000)
+        );
+        recordStudyDayAlways("behavioral-health", {
+            isCorrect: correct,
+            questionId: currentQ._id,
+            topicTitle: topic || "Behavioral Health",
+            userAnswer: selectedOptions.join(", "),
+            timeSpentSeconds,
+        });
     };
 
     const handleNext = () => {

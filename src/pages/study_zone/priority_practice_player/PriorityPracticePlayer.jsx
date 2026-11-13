@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Sidebar } from "../../../components/common/sidebar/Sidebar";
 import { Topbar } from "../../../components/common/topbar/Topbar";
@@ -6,6 +6,7 @@ import { Button } from "../../../components/common/Button";
 import styles from "./PriorityPracticePlayer.module.css";
 import toast from "react-hot-toast";
 import api from "../../../config/axiosInstance";
+import { recordStudyDayAlways } from "../../../utils/recordStudyDay";
 
 export const PriorityPracticePlayer = () => {
   const navigate = useNavigate();
@@ -20,6 +21,11 @@ export const PriorityPracticePlayer = () => {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [userAnswers, setUserAnswers] = useState([]);
+  const questionStartedAt = useRef(Date.now());
+
+  useEffect(() => {
+    questionStartedAt.current = Date.now();
+  }, [currentQuestionIndex]);
 
   const currentQuestion = caseStudy?.questions ? caseStudy.questions[currentQuestionIndex] : null;
   const correctOptionIndex = currentQuestion?.options?.findIndex(
@@ -59,14 +65,27 @@ export const PriorityPracticePlayer = () => {
     }
     setIsSubmitted(true);
 
+    const selected = currentQuestion.options[selectedOptionIndex];
     const newAnswer = {
       questionId: currentQuestion._id || `q-${currentQuestionIndex}`,
-      selectedOption: currentQuestion.options[selectedOptionIndex],
+      selectedOption: selected,
     };
     setUserAnswers((prev) => [
       ...prev.filter((a) => a.questionId !== newAnswer.questionId),
       newAnswer,
     ]);
+
+    const timeSpentSeconds = Math.max(
+      1,
+      Math.round((Date.now() - questionStartedAt.current) / 1000)
+    );
+    recordStudyDayAlways("priority-practice", {
+      isCorrect: selected === currentQuestion.correctAnswer,
+      questionId: currentQuestion._id,
+      topicTitle: caseStudy?.title || "Priority Practice",
+      userAnswer: selected || "",
+      timeSpentSeconds,
+    });
   };
 
   const handleAddToFlashcard = async () => {

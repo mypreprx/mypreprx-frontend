@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Sidebar } from "../../../components/common/sidebar/Sidebar";
 import { Topbar } from "../../../components/common/topbar/Topbar";
@@ -7,6 +7,7 @@ import api from "../../../config/axiosInstance";
 import toast from "react-hot-toast";
 import styles from "./StrategyDrill.module.css";
 import GeneratingModal from "../../../components/common/GeneratingModal";
+import { recordStudyDayAlways } from "../../../utils/recordStudyDay";
 
 export const StrategyDrill = () => {
     const navigate = useNavigate();
@@ -30,6 +31,11 @@ export const StrategyDrill = () => {
     // Multi-select state for SATA, single for others
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const questionStartedAt = useRef(Date.now());
+
+    useEffect(() => {
+        questionStartedAt.current = Date.now();
+    }, [currentIndex]);
 
     useEffect(() => {
         if (!strategyTab) {
@@ -101,7 +107,24 @@ export const StrategyDrill = () => {
     };
 
     const handleSubmit = () => {
+        const isSataQ = currentQ.strategyTab === "SATA Boot Camp" || currentQ.correctAnswers?.length > 1;
+        const correct = isSataQ
+            ? (currentQ.correctAnswers || []).length === selectedOptions.length &&
+              (currentQ.correctAnswers || []).every((c) => selectedOptions.includes(c))
+            : selectedOptions.length > 0 && (currentQ.correctAnswers || []).includes(selectedOptions[0]);
         setIsSubmitted(true);
+        const timeSpentSeconds = Math.max(
+            1,
+            Math.round((Date.now() - questionStartedAt.current) / 1000)
+        );
+        // Count this answer toward Progress questions/accuracy/streak
+        recordStudyDayAlways("strategy-zone", {
+            isCorrect: correct,
+            questionId: currentQ._id,
+            topicTitle: strategyTab || "Strategy Zone",
+            userAnswer: selectedOptions.join(", "),
+            timeSpentSeconds,
+        });
     };
 
     const handleNext = async () => {

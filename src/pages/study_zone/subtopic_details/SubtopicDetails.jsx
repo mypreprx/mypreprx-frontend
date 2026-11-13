@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { Sidebar } from "../../../components/common/sidebar/Sidebar";
 import { Topbar } from "../../../components/common/topbar/Topbar";
 import api from "../../../config/axiosInstance";
 import GeneratingModal from "../../../components/common/GeneratingModal";
 import styles from './SubtopicDetails.module.css';
+import { recordStudyDayAlways } from '../../../utils/recordStudyDay';
 
 export const SubtopicDetails = () => {
     const { subtopicSlug } = useParams();
@@ -18,6 +19,7 @@ export const SubtopicDetails = () => {
     // New states for interactive questions
     const [userAnswers, setUserAnswers] = useState({});
     const [submittedAnswers, setSubmittedAnswers] = useState({});
+    const questionStartedAt = useRef({});
 
     const subtopicId = location.state?.subtopicId;
     const subtopicTitle = location.state?.subtopicTitle || "Subtopic Details";
@@ -83,6 +85,9 @@ export const SubtopicDetails = () => {
 
     const handleOptionSelect = (qIndex, optionIndex) => {
         if (!submittedAnswers[qIndex]) {
+            if (!questionStartedAt.current[qIndex]) {
+                questionStartedAt.current[qIndex] = Date.now();
+            }
             setUserAnswers(prev => ({ ...prev, [qIndex]: optionIndex }));
         }
     };
@@ -90,6 +95,19 @@ export const SubtopicDetails = () => {
     const handleCheckAnswer = (qIndex) => {
         if (userAnswers[qIndex] !== undefined) {
             setSubmittedAnswers(prev => ({ ...prev, [qIndex]: true }));
+            const question = questions[qIndex];
+            const selectedIdx = userAnswers[qIndex];
+            const selectedText = question?.options?.[selectedIdx];
+            const correct = selectedText === question?.correctAnswer;
+            const started = questionStartedAt.current[qIndex] || Date.now();
+            const timeSpentSeconds = Math.max(1, Math.round((Date.now() - started) / 1000));
+            recordStudyDayAlways("subtopic-quiz", {
+                isCorrect: correct,
+                questionId: question?._id,
+                topicTitle: topicTitle || subtopicTitle || "Study Zone",
+                userAnswer: selectedText || "",
+                timeSpentSeconds,
+            });
         }
     };
 

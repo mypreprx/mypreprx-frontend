@@ -7,6 +7,7 @@ import api from "../../../config/axiosInstance";
 import styles from "./QuizPage.module.css";
 import toast from 'react-hot-toast';
 import GeneratingModal from "../../../components/common/GeneratingModal";
+import { recordStudyDayAlways } from "../../../utils/recordStudyDay";
 
 
 export const QuizPage = () => {
@@ -197,6 +198,9 @@ export const QuizPage = () => {
       selectedOption: selectedOptions.join(', ')
     };
     setUserAnswers(prev => [...prev.filter(a => a.questionId !== currentQuestion._id), newAnswer]);
+    // Day streak only here — lifetime questions/accuracy come from finishQuiz → /user/startQuiz
+    // to avoid double-counting the same answers.
+    recordStudyDayAlways("quiz");
   };
 
   const handleAddToFlashcard = async () => {
